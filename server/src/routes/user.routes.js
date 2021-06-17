@@ -7,8 +7,8 @@ const jwt = require('jsonwebtoken');
 router.get('/', (req, res) => res.send("Hola Mundo"));
 
 router.post('/register', async (req, res) => {
-    const { user, password } = req.body;
-    const newUser = new User({user, password});
+    const { nombre, nick, correo, contra } = req.body;
+    const newUser = new User({nombre, nick, correo, contra});
     await newUser.save();
 
     const token = jwt.sign({_id: newUser._id}, 'secretKey');
@@ -24,12 +24,12 @@ router.put('/update', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const {user, password} = req.body;
+    const {nick, contra} = req.body;
 
-    const userLogin = await User.findOne({user: user});
+    const userLogin = await User.findOne({nick: nick});
 
-    if(!userLogin) return res.status(401).send("Usuario no existente");
-    if(userLogin.password !== password) return res.status(401).send("Contraseña incorrecta");
+    if(!userLogin) return res.status(401).send("wrong_user");
+    if(userLogin.contra !== contra) return res.status(401).send("wrong_password");
 
     const token = jwt.sign({_id: userLogin._id}, 'secretKey');
 

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-4 mx-auto">
+        <div class="card">
+            <div class="card-header text-center h5">
+                Iniciar sesión
+            </div>
+            <div class="card-body">
+                <div id="error_messages" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
+                <form (submit)="IniciarSesion()">
+                    <div class="form-group">
+                        <input [(ngModel)]="usuario.nick" class="form-control" type="text" autocomplete="off" name="nick" id="" placeholder="Usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="usuario.contra" class="form-control" type="password" autocomplete="off" name="contra" id="" placeholder="Contraseña" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

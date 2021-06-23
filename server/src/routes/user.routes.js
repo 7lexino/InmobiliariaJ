@@ -4,8 +4,6 @@ const router = Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
-router.get('/', (req, res) => res.send("Hola Mundo"));
-
 router.post('/register', async (req, res) => {
     const { nombre, nick, correo, contra } = req.body;
     const newUser = new User({nombre, nick, correo, contra});
@@ -14,7 +12,6 @@ router.post('/register', async (req, res) => {
     const token = jwt.sign({_id: newUser._id}, 'secretKey');
 
     res.status(200).json({token});
-    res.send("Usuario registrado");
 });
 
 router.put('/update', async (req, res) => {
@@ -34,10 +31,6 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({_id: userLogin._id}, 'secretKey');
 
     return res.status(200).json({token});
-});
-
-router.get('/profile', VerificarToken, (req, res) => {
-    res.send("Bienvenido!");
 });
 
 module.exports = router;

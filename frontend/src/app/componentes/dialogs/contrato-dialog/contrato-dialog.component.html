@@ -1,0 +1,71 @@
+<div class="container-fluid">
+                            
+    <h4>{{ data.tituloVentana }}</h4>
+
+    <form class="row g-3">
+        <div class="col-4">
+            <input [(ngModel)]="contratoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <label class="form-label" for="txtNoContrato">N° Contrato</label>
+            <input [(ngModel)]="contratoActivo.noContrato" name="noContrato" class="form-control" type="text" id="txtNoContrato">
+            
+        </div>
+        <div class="col-4">
+            <label for="txtFInicio" class="form-label">Fecha inicio</label>
+            <input [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio">
+            <mat-datepicker-toggle matSuffix [for]="txtFInicio"></mat-datepicker-toggle>
+            <mat-datepicker #txtFInicio></mat-datepicker>
+        </div>
+        <div class="col-4">
+            <label for="txtFCierre" class="form-label">Fecha cierre</label>
+            <input [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre">
+            <mat-datepicker-toggle matSuffix [for]="txtFCierre"></mat-datepicker-toggle>
+            <mat-datepicker #txtFCierre></mat-datepicker>
+        </div>
+        <div class="col-6">
+            <label for="dataListPropiedad" class="form-label">Propiedad</label>
+            <input [(ngModel)]="contratoActivo.propiedadId" name="propiedadId" class="form-control" list="opcionesPropiedad" id="dataListPropiedad" placeholder="Propiedad" autocomplete="off">
+            <datalist id="opcionesPropiedad">
+                <option *ngFor="let prop of propiedades" [value]="prop._id">
+            </datalist>
+        </div>
+        <div class="col-6">
+            <label for="dataListInquilino" class="form-label">Inquilino</label>
+            <input [(ngModel)]="contratoActivo.inquilinoId" name="inquilinoId" name="inquilino" class="form-control" list="opcionesInquilino" id="dataListInquilino" placeholder="Propiedad" autocomplete="off">
+            <datalist id="opcionesInquilino">
+                <option *ngFor="let inq of inquilinos" [value]="inq._id">
+            </datalist>
+        </div>
+        <div class="col-4">
+            <label for="numCostoInicial" class="form-label">Costo inicial</label>
+            <input [(ngModel)]="contratoActivo.costoInicial" class="form-control" type="number" name="costoInicial" id="numCostoInicial"  />
+        </div>
+        <div class="col-4">
+            <label for="numCostoPeriodo" class="form-label">Costo por periodo</label>
+            <input [(ngModel)]="contratoActivo.costoPeriodo" class="form-control" type="number" name="costoPeriodo" id="numCostoPeriodo"  />
+        </div>
+
+        <div class="col-8">
+            <h5>Información del Aval</h5>
+            <label for="txtNombreAval" class="form-label">Nombre completo</label>
+            <input [(ngModel)]="contratoActivo.aval.nombre" class="form-control" type="text" name="aval.nombre" id="txtNombreAval"  />
+        </div>
+        <div class="w-100"></div>
+        <div class="col-4">
+            <label for="txtCorreoAval" class="form-label">Correo electrónico</label>
+            <input [(ngModel)]="contratoActivo.aval.correo" class="form-control" type="email" name="aval.correo" id="txtCorreoAval"  />
+        </div>
+        <div class="col-4">
+            <label for="txtTelefono1" class="form-label">Teléfono 1</label>
+            <input [(ngModel)]="contratoActivo.aval.telefono1" class="form-control" type="text" name="aval.telefono1" id="txtTelefono1"  />
+        </div>
+        <div class="col-4">
+            <label for="txtTelefono2" class="form-label">Teléfono 2</label>
+            <input [(ngModel)]="contratoActivo.aval.telefono2" class="form-control" type="text" name="aval.telefono2" id="txtTelefono2"  />
+        </div>
+        
+        <div class="col-12 d-flex justify-content-end">
+            <button (click)="CrearContrato()" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+
+</div>

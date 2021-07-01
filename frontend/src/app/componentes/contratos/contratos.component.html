@@ -1,1 +1,45 @@
-<p>contratos works!</p>
+<div class="row">
+    <div class="col-10">
+        <h1>Contratos</h1>
+        <div class="btn-group  mb-2 mt-4" role="group" aria-label="Basic radio toggle button group">
+            <input (click)="GetActivos()" type="radio" class="btn-check" name="radEstadoProp" id="radActivos" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="radActivos">Activos</label>
+            <input type="radio" class="btn-check" name="radEstadoProp" id="radPorVencer" autocomplete="off">
+            <label class="btn btn-outline-primary" for="radPorVencer">Por vencer</label>
+            <input type="radio" class="btn-check" name="radEstadoProp" id="radArchivados" autocomplete="off">
+            <label class="btn btn-outline-primary" for="radArchivados">Archivados</label>
+        </div>
+    </div>
+    <div class="col-2">
+        <!-- <button id="btnAddContrato" (click)="NuevoContrato()" class="btn btn btn-primary btn-block" data-bs-toggle="modal" href="#modalAgregarContrato" role="button">Crear Contrato</button> -->
+        <button class="btn btn btn-primary btn-block" (click)="AbrirContratoDialog()">Crear contrato</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col border" style="background-color: white;">
+        <table class="table table-hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">N°</th>
+                <th scope="col">Propiedad</th>
+                <th scope="col">Inquilino</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Cierre</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contr of contratos">
+                <td>{{ contr.noContrato }}</td>
+                <td>{{ contr.propiedad[0].direccion.calle + ', ' + contr.propiedad[0].direccion.ciudad }}</td>
+                <td>Inquilino</td>
+                <td>{{ contr.fechaInicio | date:'dd/M/Y' }}</td>
+                <td>{{ contr.fechaCierre | date:'dd/M/y' }}</td>
+                <td>
+                    <button (click)="VerContrato(contr._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Inquilino = model('Inquilino')
 
 const propiedadSchema = new Schema({
     predial: String,
@@ -6,8 +7,8 @@ const propiedadSchema = new Schema({
     estadoRenta: String,
     direccion: {
         calle: String,
-        no_ext: Number,
-        no_int: Number,
+        no_ext: String,
+        no_int: String,
         colonia: String,
         c_p: Number,
         ciudad: String,

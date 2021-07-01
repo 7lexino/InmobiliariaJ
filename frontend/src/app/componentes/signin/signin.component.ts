@@ -15,11 +15,12 @@ export class SigninComponent implements OnInit {
     nick: "",
     correo: "",
     contra: ""
-  }
+  } 
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
   
   IniciarSesion(){

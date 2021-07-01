@@ -4,12 +4,12 @@ export interface Propiedad {
     tipo: string,
     estadoRenta: string,
     direccion: {
-        calle: String,
-        no_ext: Number,
-        no_int: Number,
-        colonia: String,
-        c_p: Number,
-        ciudad: String,
-        estado: String
+        calle: string,
+        no_ext: string,
+        no_int: string,
+        colonia: string,
+        c_p: number,
+        ciudad: string,
+        estado: string
     }
 }

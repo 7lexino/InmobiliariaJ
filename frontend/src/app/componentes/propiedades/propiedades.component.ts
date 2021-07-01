@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Propiedad } from 'src/app/interfaces/propiedad';
 import { PropiedadesService } from 'src/app/servicios/propiedades.service';
-import * as $ from 'jquery';
+//import * as $ from 'jquery';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -26,8 +26,8 @@ export class PropiedadesComponent implements OnInit {
     estadoRenta: 'Disponible',
     direccion: {
       calle: '',
-      no_ext: 0,
-      no_int: 0,
+      no_ext: '',
+      no_int: '',
       colonia: '',
       c_p: 0,
       ciudad: '',
@@ -51,8 +51,8 @@ export class PropiedadesComponent implements OnInit {
     this.propiedadActiva.tipo = '';
     this.propiedadActiva.estadoRenta = 'Disponible';
     this.propiedadActiva.direccion.calle = '';
-    this.propiedadActiva.direccion.no_ext = 0
-    this.propiedadActiva.direccion.no_int = 0
+    this.propiedadActiva.direccion.no_ext = ''
+    this.propiedadActiva.direccion.no_int = ''
     this.propiedadActiva.direccion.colonia = ''
     this.propiedadActiva.direccion.c_p = 0;
     this.propiedadActiva.direccion.ciudad = ''
@@ -79,6 +79,7 @@ export class PropiedadesComponent implements OnInit {
 
   NuevaPropiedad(){
     $("#titleModalPropiedad").text("Nueva Propiedad");
+    $("#numPredial").prop("disabled", false);
     this.ClearFields();
   }
 
@@ -93,7 +94,7 @@ export class PropiedadesComponent implements OnInit {
           this.GetDisponibles();
         }
         else
-          alert("Error al agregar propiedad");
+          alert("Error al crear propiedad");
       },
       err => console.log(err)
     )
@@ -119,10 +120,8 @@ export class PropiedadesComponent implements OnInit {
 
   GuardarPropiedad(propiedad: Propiedad){
     if(propiedad._id == ''){ 
-      console.log("Creando...");
       this.CrearPropiedad();
     }else{
-      console.log("Modificando...");
       this.ModificarPropiedad(propiedad);
     }
   }
@@ -132,6 +131,7 @@ export class PropiedadesComponent implements OnInit {
       res => {
         this.propiedadActiva = res;
         $("#titleModalPropiedad").text("Editar Propiedad");
+        $("#numPredial").prop("disabled", true);
       },
       err => console.log(err)
     )

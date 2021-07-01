@@ -43,11 +43,11 @@
                                 </div>
                                 <div class="col-3">
                                     <label for="numExt" class="form-label">Núm. Ext.</label>
-                                    <input [(ngModel)]="propiedadActiva.direccion.no_ext" class="form-control" type="number" name="direccion.no_ext" id="numExt"  />
+                                    <input [(ngModel)]="propiedadActiva.direccion.no_ext" class="form-control" type="text" name="direccion.no_ext" id="numExt"  />
                                 </div>
                                 <div class="col-3">
                                     <label for="numInt" class="form-label">Núm. Int.</label>
-                                    <input [(ngModel)]="propiedadActiva.direccion.no_int" class="form-control" type="number" name="direccion.no_int" id="numInt" />
+                                    <input [(ngModel)]="propiedadActiva.direccion.no_int" class="form-control" type="text" name="direccion.no_int" id="numInt" />
                                 </div>
                                 <div class="col-8">
                                     <label for="txtColonia" class="form-label">Colonia</label>
@@ -130,8 +130,8 @@
                 <td>{{ prop.direccion.ciudad }}, {{ prop.direccion.estado }}</td>
                 <td>
                     <button (click)="VerPropiedad(prop._id)" class="btn btn-info btn-sm" data-bs-toggle="modal" href="#modalAgregarPropiedad"><fa-icon [icon]="faEye"></fa-icon></button>
-                    <button class="btn btn-success btn-sm mx-2" title="Crear contrato"><fa-icon [icon]="faMoneyBillAlt"></fa-icon></button>
-                    <button (click)="EliminarPropiedad(prop._id)" class="btn btn-danger btn-sm"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                    <!-- <button class="btn btn-success btn-sm mx-2" title="Crear contrato"><fa-icon [icon]="faMoneyBillAlt"></fa-icon></button> -->
+                    <button (click)="EliminarPropiedad(prop._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                 </td>
               </tr>
             </tbody>

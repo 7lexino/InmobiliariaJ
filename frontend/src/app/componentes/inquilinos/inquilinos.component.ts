@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Inquilino } from 'src/app/interfaces/inquilino';
 import { InquilinosService } from 'src/app/servicios/inquilinos.service';
-//import * as $ from 'jquery';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { InquilinoDialogComponent } from '../dialogs/inquilino-dialog/inquilino-dialog.component';
 
 @Component({
   selector: 'app-inquilinos',
@@ -32,7 +33,7 @@ export class InquilinosComponent implements OnInit {
   
   
   //Default Methods
-constructor(private inquiService: InquilinosService) { }
+constructor(private inquiService: InquilinosService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.GetTodos();
@@ -48,8 +49,7 @@ constructor(private inquiService: InquilinosService) { }
     this.inquilinoActivo.contacto.apellidos = '';
     this.inquilinoActivo.contacto.correo = '';
     this.inquilinoActivo.contacto.telefono1 = '';
-    this.inquilinoActivo.contacto.telefono2 = '';
-    
+    this.inquilinoActivo.contacto.telefono2 = ''; 
   }
 
   GetTodos(){
@@ -62,64 +62,33 @@ constructor(private inquiService: InquilinosService) { }
   }
 
   NuevoInquilino(){
-    $("#titleModalInquilino").text("Nuevo Inquilino");
-    $("#txtCompania").prop("disabled", false);
-    $("#radPersona").prop("disabled", false);
-    $("#radEmpresa").prop("disabled", false);
     this.ClearFields();
-  }
-
-  CrearInquilino(){
-    this.inquiService.AgregarInquilino(this.inquilinoActivo).subscribe(
-      res => {
-        if(res){
-          alert("Inquilino creado");
-          $("#btnCloseModal").trigger("click");
-          
-          this.ClearFields();
-          this.GetTodos();
-        }
-        else
-          alert("Error al crear inquilino");
+    const dialogRef = this.matDialog.open(InquilinoDialogComponent, {
+      data: {
+        tituloVentana: "Nuevo Inquilino",
+        inquilinoActivo: this.inquilinoActivo
       },
-      err => console.log(err)
-    )
-  }
-
-  ModificarInquilino(inquilino: Inquilino){
-    this.inquiService.ActualizarInquilino(inquilino).subscribe(
-      res => {
-        console.log(res);
-        if(res){
-          alert("Inquilino modificado");
-          $("#btnCloseModal").trigger("click");
-          
-          this.ClearFields();
-          this.GetTodos();
-        }
-        else
-          alert("Error al modificar el inquilino");
-      },
-      err => console.log(err)
-    )
-  }
-
-  GuardarInquilino(inquilino: Inquilino){
-    if(inquilino._id == ''){ 
-      this.CrearInquilino();
-    }else{
-      this.ModificarInquilino(inquilino);
-    }
+      width: "500px"
+    });
+    dialogRef.afterClosed().subscribe(res =>{
+      this.GetTodos();
+    })
   }
 
   VerInquilino(inquiId: string){
-    $("#titleModalInquilino").text("Editar Inquilino");
-    $("#txtCompania").prop("disabled", true);
-    $("#radPersona").prop("disabled", true);
-    $("#radEmpresa").prop("disabled", true);
     this.inquiService.GetInquilino(inquiId).subscribe(
       res => {
         this.inquilinoActivo = res;
+        const dialogRef = this.matDialog.open(InquilinoDialogComponent, {
+          data: {
+            tituloVentana: "Editar Inquilino",
+            inquilinoActivo: this.inquilinoActivo
+          },
+          width: "500px"
+        });
+        dialogRef.afterClosed().subscribe(res => {
+          this.GetTodos();
+        })
       },
       err => console.log(err)
     )

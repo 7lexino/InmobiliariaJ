@@ -9,65 +9,7 @@
         </div>
     </div>
     <div class="col-2">
-        <div class="modal fade" id="modalAgregarInquilino" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-            <!-- Ventana Modal -->
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="titleModalInquilino"></h5>
-                        <button id="btnCloseModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            
-                            <form class="row g-3">
-                                <div class="col-12">
-                                    <input [(ngModel)]="inquilinoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
-                                    <label class="form-label">Tipo</label><br>
-                                    <div class="form-check form-check-inline">
-                                        <input [(ngModel)]="inquilinoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radPersona" [value]="true">
-                                        <label class="form-check-label" for="radPersona">Persona</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input [(ngModel)]="inquilinoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radEmpresa" [value]="false">
-                                        <label class="form-check-label" for="radEmpresa">Empresa</label>
-                                    </div>
-                                </div>
-                                <div class="col-12" *ngIf="inquilinoActivo.tipo == false">
-                                    <label for="txtCompania" class="form-label">Nombre compañía</label>
-                                    <input [(ngModel)]="inquilinoActivo.empresa" class="form-control" type="text" name="empresa" id="txtCompania" />
-                                </div>
-                                <div class="col-12">
-                                    <label for="txtNombre" class="form-label">Nombre</label>
-                                    <input [(ngModel)]="inquilinoActivo.contacto.nombre" class="form-control" type="text" name="contacto.nombre" id="txtNombre"  />
-                                </div>
-                                <div class="col-12">
-                                    <label for="txtApellidos" class="form-label">Apellidos</label>
-                                    <input [(ngModel)]="inquilinoActivo.contacto.apellidos" class="form-control" type="text" name="contacto.apellidos" id="txtApellidos" />
-                                </div>
-                                <div class="col-12">
-                                    <label for="txtCorreo" class="form-label">Correo electrónico</label>
-                                    <input [(ngModel)]="inquilinoActivo.contacto.correo" class="form-control" type="text" name="contacto.correo" id="txtCorreo" />
-                                </div>
-                                <div class="col-6">
-                                    <label for="txtTel1" class="form-label">Teléfono 1</label>
-                                    <input [(ngModel)]="inquilinoActivo.contacto.telefono1" class="form-control" type="text" name="contacto.telefono1" id="txtTel1" />
-                                </div>
-                                <div class="col-6">
-                                    <label for="txtTel2" class="form-label">Teléfono 2</label>
-                                    <input [(ngModel)]="inquilinoActivo.contacto.telefono2" class="form-control" type="text" name="contacto.telefono2" id="txtTel2" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button (click)="GuardarInquilino(inquilinoActivo)" class="btn btn-primary">Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Fin Ventana Modal -->
-        <button id="btnAddInquilino" (click)="NuevoInquilino()" class="btn btn btn-primary btn-block" data-bs-toggle="modal" href="#modalAgregarInquilino" role="button">Agregar Inquilino</button>
+        <button (click)="NuevoInquilino()" class="btn btn btn-primary btn-block" role="button">Agregar Inquilino</button>
     </div>
 </div>
 <div class="row">
@@ -88,7 +30,7 @@
                 <td>{{ inqui.contacto.correo }}</td>
                 <td>{{ inqui.contacto.telefono1 }} / {{ inqui.contacto.telefono2 }}</td>
                 <td>
-                    <button (click)="VerInquilino(inqui._id)" class="btn btn-info btn-sm" data-bs-toggle="modal" href="#modalAgregarInquilino"><fa-icon [icon]="faEye"></fa-icon></button>
+                    <button (click)="VerInquilino(inqui._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
                     <button (click)="EliminarInquilino(inqui._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                 </td>
               </tr>

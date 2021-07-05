@@ -1,13 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Contrato } from 'src/app/interfaces/contrato';
-import * as $ from 'jquery';
-import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { ContratosService } from 'src/app/servicios/contratos.service';
 import { PropiedadesService } from 'src/app/servicios/propiedades.service';
 import { Propiedad } from 'src/app/interfaces/propiedad';
 import { InquilinosService } from 'src/app/servicios/inquilinos.service';
 import { Inquilino } from 'src/app/interfaces/inquilino';
+import { DateAdapter} from '@angular/material/core';
 
 @Component({
   selector: 'app-contrato-dialog',
@@ -17,10 +16,6 @@ import { Inquilino } from 'src/app/interfaces/inquilino';
 export class ContratoDialogComponent implements OnInit {
 
   //Variables
-  faEye = faEye;
-  faMoneyBillAlt = faMoneyBillAlt;
-  faTrashAlt = faTrashAlt;
-
   contratoActivo: Contrato = {
     _id: '',
     tipo: true,
@@ -69,10 +64,11 @@ export class ContratoDialogComponent implements OnInit {
   }, private matDialogRef: MatDialogRef<ContratoDialogComponent>,
   private contrService: ContratosService,
   private propService: PropiedadesService,
-  private inquiService: InquilinosService) {
+  private inquiService: InquilinosService,
+  private dateAdapter: DateAdapter<Date>) {
     //
     this.contratoActivo = data.contratoActivo;
-    //this.contratoActivo.fechaInicio = this.contratoActivo.fechaInicio.toLocaleString();
+    this.dateAdapter.setLocale('mx');
   }
 
   ngOnInit(): void {
@@ -91,15 +87,6 @@ export class ContratoDialogComponent implements OnInit {
     )
   }
 
-  PropiedadesDisponibles(){
-    this.propService.GetPropiedadesDisponibles().subscribe(
-      res => {
-        this.propiedades = res;
-      },
-      err => console.log(err)
-    )
-  }
-
   TraerInquilinos(){
     this.inquiService.GetInquilinos().subscribe(
       res => {
@@ -112,8 +99,8 @@ export class ContratoDialogComponent implements OnInit {
   ClearFields(){
     this.contratoActivo._id = '';
     this.contratoActivo.tipo = true;
-    this.contratoActivo.noContrato = 0; //Individuo o Empresa
-    this.contratoActivo.fechaInicio = ''; //Nombre de la Compañía
+    this.contratoActivo.noContrato = 0; 
+    this.contratoActivo.fechaInicio = ''; 
     this.contratoActivo.fechaCierre = '';
     this.contratoActivo.aval.nombre = '';
     this.contratoActivo.aval.correo = '';
@@ -130,6 +117,13 @@ export class ContratoDialogComponent implements OnInit {
     this.contratoActivo.propiedad.direccion.estado = '';
     this.contratoActivo.propiedad.direccion.no_ext = '';
     this.contratoActivo.propiedad.direccion.no_int = '';
+    this.contratoActivo.inquilino._id = '';
+    this.contratoActivo.inquilino.empresa = '';
+    this.contratoActivo.inquilino.contacto.nombre = '';
+    this.contratoActivo.inquilino.contacto.apellidos = '';
+    this.contratoActivo.inquilino.contacto.correo = '';
+    this.contratoActivo.inquilino.contacto.telefono1 = '';
+    this.contratoActivo.inquilino.contacto.telefono2 = '';
   }
 
   CrearContrato(){
@@ -138,7 +132,7 @@ export class ContratoDialogComponent implements OnInit {
         if(res){
           alert("Contrato creado");
           this.ClearFields();
-          // this.GetActivos();
+          this.matDialogRef.close();
         }
         else
           alert("Error al crear contrato");

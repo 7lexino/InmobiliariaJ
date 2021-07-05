@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Contrato } from 'src/app/interfaces/contrato';
 import { ContratosService } from 'src/app/servicios/contratos.service';
-import * as $ from 'jquery';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ContratoDialogComponent } from '../dialogs/contrato-dialog/contrato-dialog.component';
@@ -69,22 +68,20 @@ constructor(private contrService: ContratosService, private matDialog: MatDialog
   ngOnInit(): void {
     this.GetActivos();
   }
-  
-  ngAfterViewInit(): void{
-    // ($("#txtFInicio") as any).datepicker();
-    //$("#ui-datepicker-div").css("background-color", "#FFF");
-  }
 
   //Custom Methods
 
-  AbrirContratoDialog(){
+  NuevoContrato(){
     this.ClearFields();
-    this.matDialog.open(ContratoDialogComponent, {
+    const dialogRef = this.matDialog.open(ContratoDialogComponent, {
       data: {
         tituloVentana: "Nuevo Contrato",
         contratoActivo: this.contratoActivo
       },
       width: "700px"
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.GetActivos();
     });
   }
 
@@ -109,6 +106,13 @@ constructor(private contrService: ContratosService, private matDialog: MatDialog
     this.contratoActivo.propiedad.direccion.estado = '';
     this.contratoActivo.propiedad.direccion.no_ext = '';
     this.contratoActivo.propiedad.direccion.no_int = '';
+    this.contratoActivo.inquilino._id = '';
+    this.contratoActivo.inquilino.empresa = '';
+    this.contratoActivo.inquilino.contacto.nombre = '';
+    this.contratoActivo.inquilino.contacto.apellidos = '';
+    this.contratoActivo.inquilino.contacto.correo = '';
+    this.contratoActivo.inquilino.contacto.telefono1 = '';
+    this.contratoActivo.inquilino.contacto.telefono2 = '';
   }
 
   GetActivos(){
@@ -124,6 +128,7 @@ constructor(private contrService: ContratosService, private matDialog: MatDialog
     this.contrService.GetContratosPorVencer().subscribe(
       res => {
         this.contratos = res;
+        console.log(this.contratos);
       },
       err => console.log(err)
     )
@@ -138,41 +143,19 @@ constructor(private contrService: ContratosService, private matDialog: MatDialog
     )
   }
 
-  // NuevoContrato(){
-  //   $("#titleModalContrato").text("Nuevo Contrato");
-  //   // $("#txtCompania").prop("disabled", false);
-  //   // $("#radPersona").prop("disabled", false);
-  //   // $("#radEmpresa").prop("disabled", false);
-  //   this.ClearFields();
-  // }
-
-  // CrearContrato(contrato: Contrato){
-  //   this.contrService.AgregarContrato(this.contratoActivo).subscribe(
-  //     res => {
-  //       if(res){
-  //         alert("Contrato creado");
-  //         $("#btnCloseModal").trigger("click");
-          
-  //         this.ClearFields();
-  //         this.GetActivos();
-  //       }
-  //       else
-  //         alert("Error al crear contrato");
-  //     },
-  //     err => console.log(err)
-  //   )
-  // }
-
   VerContrato(contrId: string){
     this.contrService.GetContrato(contrId).subscribe(
       res => {
         this.contratoActivo = res;
-        this.matDialog.open(ContratoDialogComponent, {
+        const dialogRef = this.matDialog.open(ContratoDialogComponent, {
           data: {
             tituloVentana: "Detalles",
             contratoActivo: this.contratoActivo
           },
           width: "700px"
+        });
+        dialogRef.afterClosed().subscribe(res => {
+          this.GetActivos();
         });
       },
       err => console.log(err)

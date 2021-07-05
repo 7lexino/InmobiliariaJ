@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Propiedad } from 'src/app/interfaces/propiedad';
 import { PropiedadesService } from 'src/app/servicios/propiedades.service';
-//import * as $ from 'jquery';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material/dialog';
+import { PropiedadDialogComponent } from '../dialogs/propiedad-dialog/propiedad-dialog.component';
 
 
 
@@ -37,13 +38,27 @@ export class PropiedadesComponent implements OnInit {
   
   
   //Default Methods
-  constructor(private propService: PropiedadesService) { }
+  constructor(private propService: PropiedadesService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.GetDisponibles();
   }
 
   //Custom Methods
+
+  NuevaPropiedad(){
+    this.ClearFields();
+    const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
+      data: {
+        tituloVentana: "Nueva Propiedad",
+        propiedadActiva: this.propiedadActiva
+      },
+      width: "500px"
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.GetDisponibles();
+    });
+  }
 
   ClearFields(){
     this.propiedadActiva._id = '';
@@ -77,61 +92,20 @@ export class PropiedadesComponent implements OnInit {
     )
   }
 
-  NuevaPropiedad(){
-    $("#titleModalPropiedad").text("Nueva Propiedad");
-    $("#numPredial").prop("disabled", false);
-    this.ClearFields();
-  }
-
-  CrearPropiedad(){
-    this.propService.AgregarPropiedad(this.propiedadActiva).subscribe(
-      res => {
-        if(res){
-          alert("Propiedad creada");
-          $("#btnCloseModal").trigger("click");
-          
-          this.ClearFields();
-          this.GetDisponibles();
-        }
-        else
-          alert("Error al crear propiedad");
-      },
-      err => console.log(err)
-    )
-  }
-
-  ModificarPropiedad(propiedad: Propiedad){
-    this.propService.ActualizarPropiedad(propiedad).subscribe(
-      res => {
-        console.log(res);
-        if(res){
-          alert("Propiedad actualizada");
-          $("#btnCloseModal").trigger("click");
-          
-          this.ClearFields();
-          this.GetDisponibles();
-        }
-        else
-          alert("Error al actualizar la propiedad");
-      },
-      err => console.log(err)
-    )
-  }
-
-  GuardarPropiedad(propiedad: Propiedad){
-    if(propiedad._id == ''){ 
-      this.CrearPropiedad();
-    }else{
-      this.ModificarPropiedad(propiedad);
-    }
-  }
-
   VerPropiedad(propId: string){
     this.propService.GetPropiedad(propId).subscribe(
       res => {
         this.propiedadActiva = res;
-        $("#titleModalPropiedad").text("Editar Propiedad");
-        $("#numPredial").prop("disabled", true);
+        const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
+          data: {
+            tituloVentana: "Editar Propiedad",
+            propiedadActiva: this.propiedadActiva
+          },
+          width: "500px"
+        });
+        dialogRef.afterClosed().subscribe(res => {
+          this.GetDisponibles();
+        });
       },
       err => console.log(err)
     )
@@ -152,4 +126,5 @@ export class PropiedadesComponent implements OnInit {
       )
     }
   }
+
 }

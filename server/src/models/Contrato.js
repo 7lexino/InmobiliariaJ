@@ -13,8 +13,30 @@ const contratoSchema = new Schema({
     },
     costoInicial: Number,
     costoPeriodo: Number,
-    propiedadId: { type: Schema.ObjectId, ref: 'Propiedad' },
-    inquilinoId: { type: Schema.ObjectId, ref: 'Inquilino' }
+    propiedad: {
+        _id: String,
+        predial: String,
+        direccion: {
+            calle: String,
+            no_ext: String,
+            no_int: String,
+            colonia: String,
+            c_p: Number,
+            ciudad: String,
+            estado: String
+        }
+    },
+    inquilino: {
+        _id: String,
+        empresa: String,
+        contacto: {
+            nombre: String,
+            apellidos: String,
+            correo: String,
+            telefono1: String,
+            telefono2: String,
+        }
+    }
 },{
     timestamps: true
 });

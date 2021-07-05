@@ -15,8 +15,28 @@ export interface Contrato {
     },
     costoInicial: number,
     costoPeriodo: number,
-    propiedadId: string,
-    propiedad: Propiedad[],
-    inquilinoId: string,
-    inquilino: Inquilino[]
+    propiedad: {
+        _id: string,
+        predial: string,
+        direccion: {
+            calle: string,
+            no_ext: string,
+            no_int: string,
+            colonia: string,
+            c_p: number,
+            ciudad: string,
+            estado: string
+        }
+    },
+    inquilino: {
+        _id: string,
+        empresa: string,
+        contacto: {
+            nombre: string,
+            apellidos: string,
+            correo: string,
+            telefono1: string,
+            telefono2: string,
+        }
+    }
 }

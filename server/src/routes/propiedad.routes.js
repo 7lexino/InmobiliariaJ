@@ -11,17 +11,19 @@ router.post('/nueva', async (req, res) => {
     res.status(200).send(true);
 });
 
+router.get('/todas', async (req, res) => {
+    const props = await Propiedad.find({});
+    res.status(200).json(props);
+})
+
 router.get('/disponibles', async (req, res) => {
-    const prop = await Propiedad.find({"estadoRenta": "Disponible"});
-    res.status(200).json(prop);
+    const props = await Propiedad.find({"estadoRenta": "Disponible"});
+    res.status(200).json(props);
 })
 
 router.get('/rentadas', async (req, res) => {
-    await Propiedad.find({"estadoRenta": "Rentada"}, function(err, props){
-        Inquilino.populate(props, { path: "Inquilino" }, function(err, props){
-            res.status(200).json(props);
-        })
-    });
+    const props = await Propiedad.find({"estadoRenta": "Rentada"});
+    res.status(200).json(props);
 })
 
 router.get('/get/:id', async (req, res) => {

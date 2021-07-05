@@ -35,12 +35,9 @@ export class ContratoDialogComponent implements OnInit {
     },
     costoInicial: 0,
     costoPeriodo: 0,
-    propiedadId: '',
-    propiedad: [{
+    propiedad: {
       _id: '',
       predial: '',
-      tipo: '',
-      estadoRenta: '',
       direccion: {
           calle: '',
           no_ext: '',
@@ -50,20 +47,18 @@ export class ContratoDialogComponent implements OnInit {
           ciudad: '',
           estado: ''
       }
-    }],
-    inquilinoId: '',
-    inquilino: [{
+    },
+    inquilino: {
       _id: '',
-      tipo: true, //Individuo o Empresa
-      empresa: '', //Nombre de la Compañía
-      contacto: { //Información personal del contacto
+      empresa: '',
+      contacto: {
           nombre: '',
           apellidos: '',
           correo: '',
           telefono1: '',
           telefono2: '',
       }
-    }]
+    }
   };
   propiedades: Propiedad[] = [];
   inquilinos: Inquilino[] = [];
@@ -81,11 +76,20 @@ export class ContratoDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.PropiedadesDisponibles();
+    this.TraerPropiedades();
     this.TraerInquilinos();
   }
 
   //Custom Methods
+
+  TraerPropiedades(){
+    this.propService.GetPropiedades().subscribe(
+      res =>{
+        this.propiedades = res;
+      },
+      err => console.log(err)
+    )
+  }
 
   PropiedadesDisponibles(){
     this.propService.GetPropiedadesDisponibles().subscribe(
@@ -117,6 +121,15 @@ export class ContratoDialogComponent implements OnInit {
     this.contratoActivo.aval.telefono2 = '';
     this.contratoActivo.costoInicial = 0;
     this.contratoActivo.costoPeriodo = 0;
+    this.contratoActivo.propiedad._id = '';
+    this.contratoActivo.propiedad.predial = '';
+    this.contratoActivo.propiedad.direccion.c_p = 0;
+    this.contratoActivo.propiedad.direccion.calle = '';
+    this.contratoActivo.propiedad.direccion.ciudad = '';
+    this.contratoActivo.propiedad.direccion.colonia = '';
+    this.contratoActivo.propiedad.direccion.estado = '';
+    this.contratoActivo.propiedad.direccion.no_ext = '';
+    this.contratoActivo.propiedad.direccion.no_int = '';
   }
 
   CrearContrato(){
@@ -131,7 +144,7 @@ export class ContratoDialogComponent implements OnInit {
           alert("Error al crear contrato");
       },
       err => console.log(err)
-    )
+    );
   }
 
 }

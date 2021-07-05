@@ -4,9 +4,9 @@
         <div class="btn-group  mb-2 mt-4" role="group" aria-label="Basic radio toggle button group">
             <input (click)="GetActivos()" type="radio" class="btn-check" name="radEstadoProp" id="radActivos" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="radActivos">Activos</label>
-            <input type="radio" class="btn-check" name="radEstadoProp" id="radPorVencer" autocomplete="off">
+            <input (click)="GetPorVencer()" type="radio" class="btn-check" name="radEstadoProp" id="radPorVencer" autocomplete="off">
             <label class="btn btn-outline-primary" for="radPorVencer">Por vencer</label>
-            <input type="radio" class="btn-check" name="radEstadoProp" id="radArchivados" autocomplete="off">
+            <input (click)="GetArchivados()" type="radio" class="btn-check" name="radEstadoProp" id="radArchivados" autocomplete="off">
             <label class="btn btn-outline-primary" for="radArchivados">Archivados</label>
         </div>
     </div>
@@ -31,7 +31,7 @@
             <tbody>
               <tr *ngFor="let contr of contratos">
                 <td>{{ contr.noContrato }}</td>
-                <td>{{ contr.propiedad[0].direccion.calle + ', ' + contr.propiedad[0].direccion.ciudad }}</td>
+                <td>{{ contr.propiedad.direccion.calle + ', ' + contr.propiedad.direccion.ciudad }}</td>
                 <td>Inquilino</td>
                 <td>{{ contr.fechaInicio | date:'dd/M/Y' }}</td>
                 <td>{{ contr.fechaCierre | date:'dd/M/y' }}</td>

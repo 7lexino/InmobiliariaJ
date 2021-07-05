@@ -36,12 +36,9 @@ export class ContratosComponent implements OnInit {
     },
     costoInicial: 0,
     costoPeriodo: 0,
-    propiedadId: '',
-    propiedad: [{
+    propiedad: {
       _id: '',
       predial: '',
-      tipo: '',
-      estadoRenta: '',
       direccion: {
           calle: '',
           no_ext: '',
@@ -50,21 +47,19 @@ export class ContratosComponent implements OnInit {
           c_p: 0,
           ciudad: '',
           estado: ''
-      }
-    }],
-    inquilinoId: '',
-    inquilino: [{
+        }
+    },
+    inquilino: {
       _id: '',
-      tipo: true, //Individuo o Empresa
-      empresa: '', //Nombre de la Compañía
-      contacto: { //Información personal del contacto
+      empresa: '',
+      contacto: {
           nombre: '',
           apellidos: '',
           correo: '',
           telefono1: '',
           telefono2: '',
       }
-    }]
+    }
   };
   
   
@@ -105,12 +100,37 @@ constructor(private contrService: ContratosService, private matDialog: MatDialog
     this.contratoActivo.aval.telefono2 = '';
     this.contratoActivo.costoInicial = 0;
     this.contratoActivo.costoPeriodo = 0;
-    this.contratoActivo.propiedadId = '';
-    this.contratoActivo.inquilinoId = '';
+    this.contratoActivo.propiedad._id = '';
+    this.contratoActivo.propiedad.predial = '';
+    this.contratoActivo.propiedad.direccion.c_p = 0;
+    this.contratoActivo.propiedad.direccion.calle = '';
+    this.contratoActivo.propiedad.direccion.ciudad = '';
+    this.contratoActivo.propiedad.direccion.colonia = '';
+    this.contratoActivo.propiedad.direccion.estado = '';
+    this.contratoActivo.propiedad.direccion.no_ext = '';
+    this.contratoActivo.propiedad.direccion.no_int = '';
   }
 
   GetActivos(){
     this.contrService.GetContratosActivos().subscribe(
+      res => {
+        this.contratos = res;
+      },
+      err => console.log(err)
+    )
+  }
+
+  GetPorVencer(){
+    this.contrService.GetContratosPorVencer().subscribe(
+      res => {
+        this.contratos = res;
+      },
+      err => console.log(err)
+    )
+  }
+
+  GetArchivados(){
+    this.contrService.GetContratosArchivados().subscribe(
       res => {
         this.contratos = res;
       },

@@ -11,6 +11,10 @@ export class PropiedadesService {
 
   constructor(private http:HttpClient) { }
 
+  GetPropiedades(){
+    return this.http.get<Propiedad[]>(this.URL + '/todas');
+  }
+
   GetPropiedadesDisponibles(){
     return this.http.get<Propiedad[]>(this.URL + '/disponibles');
   }

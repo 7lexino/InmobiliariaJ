@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="col-2">
-        <button (click)="NuevaPropiedad()" class="btn btn btn-primary btn-block" role="button">Agregar propiedad</button>
+      <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevaPropiedad()" class="btn btn btn-primary btn-block" role="button">Agregar propiedad</button>
     </div>
 </div>
 <div class="row">

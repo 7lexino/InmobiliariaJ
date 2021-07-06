@@ -7,16 +7,16 @@
             <div class="card-body">
                 <form (submit)="Registrar()">
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.nombre" class="form-control" type="text" name="nombre" id="" placeholder="Nombre" required>
+                        <input [(ngModel)]="usuario.nombre" class="form-control" type="text" name="nombre" id="" placeholder="Nombre" required autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.nick" class="form-control" type="text" name="nick" id="" placeholder="Usuario" required>
+                        <input [(ngModel)]="usuario.nick" class="form-control" type="text" name="nick" id="" placeholder="Usuario" required autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.correo" class="form-control" type="email" name="correo" id="" placeholder="Correo" required>
+                        <input [(ngModel)]="usuario.correo" class="form-control" type="email" name="correo" id="" placeholder="Correo" required autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.contra" class="form-control" type="password" name="contra" id="" placeholder="Contraseña" required>
+                        <input [(ngModel)]="usuario.contra" class="form-control" type="password" name="contra" id="" placeholder="Contraseña" required autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <button class="btn btn-primary btn-block" type="submit">Registrar</button>

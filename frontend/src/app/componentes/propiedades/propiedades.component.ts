@@ -4,8 +4,7 @@ import { PropiedadesService } from 'src/app/servicios/propiedades.service';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { PropiedadDialogComponent } from '../dialogs/propiedad-dialog/propiedad-dialog.component';
-
-
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-propiedades',
@@ -38,7 +37,7 @@ export class PropiedadesComponent implements OnInit {
   
   
   //Default Methods
-  constructor(private propService: PropiedadesService, private matDialog: MatDialog) { }
+  constructor(public authService:AuthService, private propService: PropiedadesService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.GetDisponibles();

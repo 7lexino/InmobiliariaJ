@@ -5,8 +5,8 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 router.post('/register', async (req, res) => {
-    const { nombre, nick, correo, contra } = req.body;
-    const newUser = new User({nombre, nick, correo, contra});
+    const { nombre, nick, correo, contra} = req.body;
+    const newUser = new User({nombre, nick, correo, contra, rango: 1});
     await newUser.save();
 
     const token = jwt.sign({_id: newUser._id}, 'secretKey');
@@ -31,6 +31,11 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({_id: userLogin._id}, 'secretKey');
 
     return res.status(200).json({token});
+});
+
+router.get('/usuario/:nick', async (req, res) => {
+    const usuario = await User.findOne({nick: req.params.nick});
+    res.status(200).json(usuario);
 });
 
 module.exports = router;

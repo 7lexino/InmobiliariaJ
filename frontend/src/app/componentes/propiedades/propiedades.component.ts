@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Propiedad } from 'src/app/interfaces/propiedad';
 import { PropiedadesService } from 'src/app/servicios/propiedades.service';
-import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faMoneyBillAlt, faTrashAlt, faTools } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { PropiedadDialogComponent } from '../dialogs/propiedad-dialog/propiedad-dialog.component';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { MantenimientoDialogComponent } from '../dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
 
 @Component({
   selector: 'app-propiedades',
@@ -17,6 +18,7 @@ export class PropiedadesComponent implements OnInit {
   faEye = faEye;
   faMoneyBillAlt = faMoneyBillAlt;
   faTrashAlt = faTrashAlt;
+  faTools = faTools;
 
   propiedades: Propiedad[] = [];
   propiedadActiva: Propiedad = {
@@ -40,11 +42,11 @@ export class PropiedadesComponent implements OnInit {
   constructor(public authService:AuthService, private propService: PropiedadesService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.authService.VerificarToken();
     this.GetDisponibles();
   }
 
   //Custom Methods
-
   NuevaPropiedad(){
     this.ClearFields();
     const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
@@ -126,4 +128,13 @@ export class PropiedadesComponent implements OnInit {
     }
   }
 
+  AbrirMtto(propId: string){
+    const dialogRef = this.matDialog.open(MantenimientoDialogComponent, {
+      data: {
+        tituloVentana: "Mantenimientos",
+        propiedadActiva: this.propiedadActiva
+      },
+      width: "500px"
+    });
+  }
 }

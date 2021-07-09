@@ -11,8 +11,7 @@
         </div>
     </div>
     <div class="col-2">
-        <!-- <button id="btnAddContrato" (click)="NuevoContrato()" class="btn btn btn-primary btn-block" data-bs-toggle="modal" href="#modalAgregarContrato" role="button">Crear Contrato</button> -->
-        <button class="btn btn btn-primary btn-block" (click)="NuevoContrato()">Crear contrato</button>
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn btn-primary btn-block" (click)="NuevoContrato()">Crear contrato</button>
     </div>
 </div>
 <div class="row">

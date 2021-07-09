@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Propiedad } from 'src/app/interfaces/propiedad';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { PropiedadesService } from 'src/app/servicios/propiedades.service';
 
 @Component({
@@ -32,7 +33,8 @@ export class PropiedadDialogComponent implements OnInit {
     tituloVentana: string,
     propiedadActiva: Propiedad
   }, private matDialogRef: MatDialogRef<PropiedadDialogComponent>, 
-    private propService:PropiedadesService) {
+    private propService:PropiedadesService,
+    public authService:AuthService) {
     //
     this.propiedadActiva = data.propiedadActiva;
   }

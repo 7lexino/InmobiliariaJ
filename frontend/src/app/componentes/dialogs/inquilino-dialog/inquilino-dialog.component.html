@@ -40,7 +40,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end">
-            <button (click)="GuardarInquilino(inquilinoActivo)" class="btn btn-primary">Guardar</button>
+            <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="GuardarInquilino(inquilinoActivo)" class="btn btn-primary">Guardar</button>
         </div>
     </form>
 </div>

@@ -5,6 +5,7 @@ import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-i
 import { MatDialog } from '@angular/material/dialog';
 import { ContratoDialogComponent } from '../dialogs/contrato-dialog/contrato-dialog.component';
 import { Propiedad } from 'src/app/interfaces/propiedad';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 //Usar Angular Material para componente datepicker y otros componentes
 
@@ -63,9 +64,10 @@ export class ContratosComponent implements OnInit {
   
   
   //Default Methods
-constructor(private contrService: ContratosService, private matDialog: MatDialog) { }
+constructor(public authService:AuthService, private contrService: ContratosService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.authService.VerificarToken();
     this.GetActivos();
   }
 

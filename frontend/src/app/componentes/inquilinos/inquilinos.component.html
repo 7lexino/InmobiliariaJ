@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="col-2">
-        <button (click)="NuevoInquilino()" class="btn btn btn-primary btn-block" role="button">Agregar Inquilino</button>
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevoInquilino()" class="btn btn btn-primary btn-block" role="button">Agregar Inquilino</button>
     </div>
 </div>
 <div class="row">
@@ -31,7 +31,7 @@
                 <td>{{ inqui.contacto.telefono1 }} / {{ inqui.contacto.telefono2 }}</td>
                 <td>
                     <button (click)="VerInquilino(inqui._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
-                    <button (click)="EliminarInquilino(inqui._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                    <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="EliminarInquilino(inqui._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                 </td>
               </tr>
             </tbody>

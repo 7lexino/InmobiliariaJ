@@ -4,6 +4,7 @@ import { InquilinosService } from 'src/app/servicios/inquilinos.service';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { InquilinoDialogComponent } from '../dialogs/inquilino-dialog/inquilino-dialog.component';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-inquilinos',
@@ -33,9 +34,10 @@ export class InquilinosComponent implements OnInit {
   
   
   //Default Methods
-constructor(private inquiService: InquilinosService, private matDialog: MatDialog) { }
+constructor(public authService: AuthService, private inquiService: InquilinosService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.authService.VerificarToken();
     this.GetTodos();
   }
 

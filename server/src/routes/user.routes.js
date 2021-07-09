@@ -33,14 +33,25 @@ router.post('/login', async (req, res) => {
     return res.status(200).json({token});
 });
 
+router.get('/getActiveUser', async (req, res) => {
+    VerificarToken(req, res);
+    res.status(200).json(req._id);
+});
+
 router.get('/usuario/:nick', async (req, res) => {
     const usuario = await User.findOne({nick: req.params.nick});
     res.status(200).json(usuario);
 });
 
+router.get('/getusuario/:id', async (req, res) => {
+    const usuario = await User.findOne({_id: req.params.id});
+    res.status(200).json(usuario);
+});
+
 module.exports = router;
 
-function VerificarToken(req, res, next){
+
+function VerificarToken(req, res){
     ///Verificamos que exista un token en el header
     if(!req.headers.authorization) return res.status(401).send("Petición no autorizada");
     
@@ -55,5 +66,4 @@ function VerificarToken(req, res, next){
 
     //Guardamos el id
     req._id = data._id;
-    next();
 }

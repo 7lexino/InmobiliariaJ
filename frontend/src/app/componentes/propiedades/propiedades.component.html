@@ -30,8 +30,8 @@
                 <td>{{ prop.direccion.ciudad }}, {{ prop.direccion.estado }}</td>
                 <td>
                     <button (click)="VerPropiedad(prop._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
-                    <!-- <button class="btn btn-success btn-sm mx-2" title="Crear contrato"><fa-icon [icon]="faMoneyBillAlt"></fa-icon></button> -->
-                    <button (click)="EliminarPropiedad(prop._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                    <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="AbrirMtto(prop._id)" class="btn btn-warning btn-sm mx-2"><fa-icon [icon]="faTools"></fa-icon></button>
+                    <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="EliminarPropiedad(prop._id)" class="btn btn-danger btn-sm"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                 </td>
               </tr>
             </tbody>

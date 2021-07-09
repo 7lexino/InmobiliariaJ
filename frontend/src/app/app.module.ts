@@ -26,6 +26,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ContratoDialogComponent } from './componentes/dialogs/contrato-dialog/contrato-dialog.component';
 import { InquilinoDialogComponent } from './componentes/dialogs/inquilino-dialog/inquilino-dialog.component';
 import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog/propiedad-dialog.component';
+import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog
     ContratoDialogComponent,
     InquilinoDialogComponent,
     PropiedadDialogComponent,
+    MantenimientoDialogComponent,
   ],
   imports: [
     BrowserModule,

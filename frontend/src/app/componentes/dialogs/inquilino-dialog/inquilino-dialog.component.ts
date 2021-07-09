@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inquilino } from 'src/app/interfaces/inquilino';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { InquilinosService } from 'src/app/servicios/inquilinos.service';
 
 @Component({
@@ -29,7 +30,9 @@ export class InquilinoDialogComponent implements OnInit {
     tituloVentana: string,
     inquilinoActivo: Inquilino
   }, private matDialogRef: MatDialogRef<InquilinoDialogComponent>,
-    private inquiService: InquilinosService) {
+    private inquiService: InquilinosService,
+    public authService:AuthService) {
+      //
       this.inquilinoActivo = data.inquilinoActivo;
     }
 

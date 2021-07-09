@@ -36,18 +36,33 @@ export class AuthService {
     return this.http.post<any>(this.URL + '/register', usuario);
   }
 
+  VerificarToken(){
+    const res = this.http.get<any>(this.URL + '/getActiveUser');
+
+    res.subscribe(
+      res => {
+        this.usuarioActivo._id = res;
+
+        const userObserver = this.http.get<Usuario>(this.URL + '/getusuario/' + this.usuarioActivo._id);
+        userObserver.subscribe(
+          res => {
+            this.usuarioActivo.nombre = res.nombre;
+            this.usuarioActivo.rango = res.rango;
+            this.usuarioActivo.nick = res.nick;
+            this.usuarioActivo.correo = res.correo;
+          },
+          err => console.log(err)
+        )
+      },
+      err => console.log(err)
+    )
+  }
+
   Loguear(usuario: Usuario){
     const token = this.http.post<any>(this.URL + '/login', usuario);
     token.subscribe(
       res => {
-        const user = this.http.get<Usuario>(this.URL + '/usuario/' + usuario.nick);
-        user.subscribe(
-          res => {
-            this.usuarioActivo = res;
-    
-          },
-          err => console.log(err)
-        )
+        //this.VerificarToken();
       },
       err => console.log(err)
     )

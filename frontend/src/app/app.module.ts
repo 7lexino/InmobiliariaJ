@@ -27,6 +27,7 @@ import { ContratoDialogComponent } from './componentes/dialogs/contrato-dialog/c
 import { InquilinoDialogComponent } from './componentes/dialogs/inquilino-dialog/inquilino-dialog.component';
 import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog/propiedad-dialog.component';
 import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
+import { MttoIndividualDialogComponent } from './componentes/dialogs/mtto-individual-dialog/mtto-individual-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimient
     InquilinoDialogComponent,
     PropiedadDialogComponent,
     MantenimientoDialogComponent,
+    MttoIndividualDialogComponent,
   ],
   imports: [
     BrowserModule,

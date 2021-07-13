@@ -8,8 +8,8 @@
             <label class="btn btn-outline-primary" for="radRentada">Rentadas</label>
         </div>
     </div>
-    <div class="col-2">
-      <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevaPropiedad()" class="btn btn btn-primary btn-block" role="button">Agregar propiedad</button>
+    <div class="col-2 d-flex justify-content-end">
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevaPropiedad()" type="button" class="btn btn-primary align-self-start" role="button">Agregar propiedad</button>
     </div>
 </div>
 <div class="row">
@@ -20,7 +20,7 @@
                 <th scope="col">Predial</th>
                 <th scope="col">Estatus</th>
                 <th scope="col">Ubicación</th>
-                <th scope="col">Acción</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -29,8 +29,8 @@
                 <td>{{ prop.estadoRenta }}</td>
                 <td>{{ prop.direccion.ciudad }}, {{ prop.direccion.estado }}</td>
                 <td>
-                    <button (click)="VerPropiedad(prop._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
-                    <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="AbrirMtto(prop._id)" class="btn btn-warning btn-sm mx-2"><fa-icon [icon]="faTools"></fa-icon></button>
+                    <button (click)="VerPropiedad(prop)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
+                    <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="AbrirMtto(prop)" class="btn btn-warning btn-sm mx-2"><fa-icon [icon]="faTools"></fa-icon></button>
                     <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="EliminarPropiedad(prop._id)" class="btn btn-danger btn-sm"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
                 </td>
               </tr>

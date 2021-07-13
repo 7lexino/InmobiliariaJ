@@ -11,14 +11,18 @@
         </div>
         <div class="col-4">
             <label for="txtFInicio" class="form-label">Fecha inicio</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio">
-            <mat-datepicker-toggle matSuffix [for]="txtFInicio"></mat-datepicker-toggle>
+            <div style="position: relative;">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio">
+                <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFInicio"></mat-datepicker-toggle>
+            </div>
             <mat-datepicker #txtFInicio></mat-datepicker>
         </div>
         <div class="col-4">
             <label for="txtFCierre" class="form-label">Fecha cierre</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre">
-            <mat-datepicker-toggle matSuffix [for]="txtFCierre"></mat-datepicker-toggle>
+            <div style="position: relative;">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre">
+                <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFCierre"></mat-datepicker-toggle>
+            </div>
             <mat-datepicker #txtFCierre></mat-datepicker>
         </div>
         <div class="col-6">

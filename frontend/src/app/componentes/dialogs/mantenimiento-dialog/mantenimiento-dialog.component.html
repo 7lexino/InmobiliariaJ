@@ -1,1 +1,61 @@
-<p>mantenimiento-dialog works!</p>
+<div class="container-fluid">
+    <!-- <div class="row">
+        <div class="col-8"></div>
+        <div (click)="NuevoMantenimiento()" class="col-4 d-flex justify-content-end"><button class="btn btn-primary">Nuevo mantenimiento</button></div>
+    </div> -->
+    <div class="row">
+        <div class="col-4">
+            <h4>Nuevo mantenimiento</h4>
+            <form class="row g-3">
+                <div class="col-12">
+                    <input [(ngModel)]="mantenimientoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+                    <input [(ngModel)]="mantenimientoActivo.propiedadId" class="form-control" type="hidden" name="propiedadId" id="propId" />
+                </div>
+                <div class="col-12">
+                    <label for="txtDescripcion" class="form-label">Descripción</label>
+                    <textarea [(ngModel)]="mantenimientoActivo.descripcion" name="descripcion" class="form-control" id="txtDescripcion" rows="3" placeholder="Descripción del mantenimiento hecho"></textarea>
+                </div>
+                <div class="col-6">
+                    <label for="txtCosto" class="form-label">Costo</label>
+                    <input [(ngModel)]="mantenimientoActivo.costo" class="form-control" type="number" name="costo" id="txtCosto" autocomplete="off" />
+                </div>
+                <div class="col-6">
+                    <label for="txtFecha" class="form-label">Fecha</label>
+                    <div style="position: relative;">
+                        <input style="position:relative;" [(ngModel)]="mantenimientoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" autocomplete="off" />
+                        <mat-datepicker-toggle matSuffix style="position: absolute; right: 0px; top: 0px;" [for]="txtFecha"></mat-datepicker-toggle>
+                    </div>
+                    <mat-datepicker #txtFecha></mat-datepicker>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button (click)="ClearFieldsMtto()" class="btn btn-info">Limpiar</button>
+                    <button (click)="GuardarMantenimiento()" class="btn btn-primary ms-2">Guardar</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-8">
+            <h4>{{ data.tituloVentana }}</h4>
+            <table class="table table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Costo</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let mtto of mantenimientos">
+                    <td>{{ mtto.fecha | date:'dd/M/Y' }}</td>
+                    <td>{{ mtto.descripcion }}</td>
+                    <td>{{ mtto.costo }}</td>
+                    <td>
+                        <button (click)="VerMantenimiento(mtto._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
+                        <button (click)="EliminarMantenimiento(mtto._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

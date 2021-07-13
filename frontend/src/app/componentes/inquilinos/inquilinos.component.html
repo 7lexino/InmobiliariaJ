@@ -8,8 +8,8 @@
             <label class="btn btn-outline-primary" for="radRentada">Rentadas</label> -->
         </div>
     </div>
-    <div class="col-2">
-        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevoInquilino()" class="btn btn btn-primary btn-block" role="button">Agregar Inquilino</button>
+    <div class="col-2 d-flex d-flex justify-content-end">
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevoInquilino()" class="btn btn-primary align-self-start" role="button">Agregar Inquilino</button>
     </div>
 </div>
 <div class="row">

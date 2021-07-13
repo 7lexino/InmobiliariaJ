@@ -93,23 +93,18 @@ export class PropiedadesComponent implements OnInit {
     )
   }
 
-  VerPropiedad(propId: string){
-    this.propService.GetPropiedad(propId).subscribe(
-      res => {
-        this.propiedadActiva = res;
-        const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
-          data: {
-            tituloVentana: "Editar Propiedad",
-            propiedadActiva: this.propiedadActiva
-          },
-          width: "500px"
-        });
-        dialogRef.afterClosed().subscribe(res => {
-          this.GetDisponibles();
-        });
+  VerPropiedad(prop: Propiedad){
+    this.propiedadActiva = prop;
+    const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
+      data: {
+        tituloVentana: "Editar Propiedad",
+        propiedadActiva: this.propiedadActiva
       },
-      err => console.log(err)
-    )
+      width: "500px"
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      this.GetDisponibles();
+    });
   }
 
   EliminarPropiedad(propId: string){
@@ -128,13 +123,13 @@ export class PropiedadesComponent implements OnInit {
     }
   }
 
-  AbrirMtto(propId: string){
+  AbrirMtto(prop: Propiedad){
     const dialogRef = this.matDialog.open(MantenimientoDialogComponent, {
       data: {
         tituloVentana: "Mantenimientos",
-        propiedadActiva: this.propiedadActiva
+        propiedadActiva: prop
       },
-      width: "500px"
+      width: "1200px"
     });
   }
 }

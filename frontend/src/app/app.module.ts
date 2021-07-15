@@ -8,7 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatDialogModule } from '@angular/material/dialog'
+import { MatDialogModule } from '@angular/material/dialog';
+import { DataTablesModule } from 'angular-datatables'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +28,7 @@ import { ContratoDialogComponent } from './componentes/dialogs/contrato-dialog/c
 import { InquilinoDialogComponent } from './componentes/dialogs/inquilino-dialog/inquilino-dialog.component';
 import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog/propiedad-dialog.component';
 import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
-import { MttoIndividualDialogComponent } from './componentes/dialogs/mtto-individual-dialog/mtto-individual-dialog.component';
+import { EdoCuentaDialogComponent } from './componentes/dialogs/edo-cuenta-dialog/edo-cuenta-dialog.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { MttoIndividualDialogComponent } from './componentes/dialogs/mtto-indivi
     InquilinoDialogComponent,
     PropiedadDialogComponent,
     MantenimientoDialogComponent,
-    MttoIndividualDialogComponent,
+    EdoCuentaDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +60,7 @@ import { MttoIndividualDialogComponent } from './componentes/dialogs/mtto-indivi
     MatButtonModule,
     MatNativeDateModule,
     MatDialogModule,
+    DataTablesModule
   ],
   providers: [
     AuthGuard,

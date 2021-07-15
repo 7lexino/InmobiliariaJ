@@ -4,8 +4,8 @@ import { ContratosService } from 'src/app/servicios/contratos.service';
 import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ContratoDialogComponent } from '../dialogs/contrato-dialog/contrato-dialog.component';
-import { Propiedad } from 'src/app/interfaces/propiedad';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { Subject } from 'rxjs';
 
 //Usar Angular Material para componente datepicker y otros componentes
 
@@ -15,8 +15,11 @@ import { AuthService } from 'src/app/servicios/auth.service';
   styleUrls: ['./contratos.component.css']
 })
 export class ContratosComponent implements OnInit {
-
+  
   //Variables
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   faEye = faEye;
   faMoneyBillAlt = faMoneyBillAlt;
   faTrashAlt = faTrashAlt;
@@ -68,7 +71,22 @@ constructor(public authService:AuthService, private contrService: ContratosServi
 
   ngOnInit(): void {
     this.authService.VerificarToken();
-    this.GetActivos();
+
+    this.GetTodos();
+    this.dtOptions = {
+      retrieve: true,
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      order: [[0, 'asc']],
+      language: {
+        url: '../../../assets/lang/datatable_lang.json'
+      }
+    };
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
   //Custom Methods
@@ -83,7 +101,7 @@ constructor(public authService:AuthService, private contrService: ContratosServi
       width: "700px"
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.GetActivos();
+      this.GetTodos();
     });
   }
 
@@ -117,48 +135,55 @@ constructor(public authService:AuthService, private contrService: ContratosServi
     this.contratoActivo.inquilino.contacto.telefono2 = '';
   }
 
-  GetActivos(){
-    this.contrService.GetContratosActivos().subscribe(
+  GetTodos(){
+    this.contrService.GetContratos().subscribe(
       res => {
         this.contratos = res;
+        this.dtTrigger.next();
       },
       err => console.log(err)
     )
+    $("#radTodos").prop('checked', true);
   }
 
-  GetPorVencer(){
-    this.contrService.GetContratosPorVencer().subscribe(
-      res => {
-        this.contratos = res;
-        console.log(this.contratos);
-      },
-      err => console.log(err)
-    )
+  GetActivos(){
+    $("#radActivos").prop('checked', true);
+      if($.fn.dataTable.isDataTable('#dtContratos')){
+        this.contrService.GetContratosActivos().subscribe(
+          res => {
+            this.contratos = res;
+            this.dtTrigger.next();
+          },
+          err => console.log(err)
+        )
+    }
   }
 
   GetArchivados(){
-    this.contrService.GetContratosArchivados().subscribe(
-      res => {
-        this.contratos = res;
-      },
-      err => console.log(err)
-    )
+    $("#radArchivados").prop('checked', true);
+      if($.fn.dataTable.isDataTable('#dtContratos')){
+        this.contrService.GetContratosArchivados().subscribe(
+          res => {
+            this.contratos = res;
+            this.dtTrigger.next();
+          },
+          err => console.log(err)
+        )
+    }
   }
 
   VerContrato(contrId: string){
     this.contrService.GetContrato(contrId).subscribe(
       res => {
         this.contratoActivo = res;
-        const dialogRef = this.matDialog.open(ContratoDialogComponent, {
+        this.matDialog.open(ContratoDialogComponent, {
           data: {
             tituloVentana: "Detalles",
             contratoActivo: this.contratoActivo
           },
           width: "700px"
         });
-        dialogRef.afterClosed().subscribe(res => {
-          this.GetActivos();
-        });
+        
       },
       err => console.log(err)
     )

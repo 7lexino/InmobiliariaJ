@@ -1,19 +1,23 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
 import { Mantenimiento } from 'src/app/interfaces/mantenimiento';
 import { Propiedad } from 'src/app/interfaces/propiedad';
+import { AuthService } from 'src/app/servicios/auth.service';
 import { MantenimientosService } from 'src/app/servicios/mantenimientos.service';
-import { MttoIndividualDialogComponent } from '../mtto-individual-dialog/mtto-individual-dialog.component';
 
 @Component({
   selector: 'app-mantenimiento-dialog',
   templateUrl: './mantenimiento-dialog.component.html',
   styleUrls: ['./mantenimiento-dialog.component.css']
 })
-export class MantenimientoDialogComponent implements OnInit {
+export class MantenimientoDialogComponent implements OnDestroy, OnInit {
 
   //Variables
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   faEye = faEye;
   faTrashAlt = faTrashAlt;
   propiedadActiva: Propiedad = {
@@ -44,12 +48,25 @@ export class MantenimientoDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data:{
     tituloVentana: string,
     propiedadActiva: Propiedad
-  }, private matDialogRef: MatDialogRef<MantenimientoDialogComponent>, private mttoService: MantenimientosService) {
+  }, private mttoService: MantenimientosService, public authService: AuthService) {
     this.propiedadActiva = data.propiedadActiva;
   }
 
   ngOnInit(): void {
     this.GetMantenimientos();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      order: [[0, 'asc']],
+      language: {
+        url: '../../../assets/lang/datatable_lang.json'
+      }
+    };
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
   //Custom Methods
@@ -61,10 +78,10 @@ export class MantenimientoDialogComponent implements OnInit {
   }
   
   GetMantenimientos(){
-    //console.log(this.propiedadActiva);
     this.mttoService.GetTodosByProp(this.propiedadActiva._id).subscribe(
       res => {
         this.mantenimientos = res;
+        this.dtTrigger.next();
       },
       err => console.log(err)
     )
@@ -93,11 +110,13 @@ export class MantenimientoDialogComponent implements OnInit {
 
   GuardarMantenimiento(){
     this.mantenimientoActivo.propiedadId = this.propiedadActiva._id;
-    //console.log(this.mantenimientoActivo.propiedadId);
     if(this.mantenimientoActivo._id === ''){
       this.AgregarMantenimiento();
     }else{
-      this.ActualizarMantenimiento();
+      if(this.authService.GetUsuario().rango >= this.authService.eRangos.editor)
+        this.ActualizarMantenimiento();
+      else
+        alert("Permisos insuficientes para editar mantenimientos.");
     }
   }
 

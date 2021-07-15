@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Inquilino } from 'src/app/interfaces/inquilino';
 import { InquilinosService } from 'src/app/servicios/inquilinos.service';
-import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faMoneyBillAlt, faTrashAlt, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { InquilinoDialogComponent } from '../dialogs/inquilino-dialog/inquilino-dialog.component';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { EdoCuentaDialogComponent } from '../dialogs/edo-cuenta-dialog/edo-cuenta-dialog.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-inquilinos',
@@ -14,9 +16,13 @@ import { AuthService } from 'src/app/servicios/auth.service';
 export class InquilinosComponent implements OnInit {
 
   //Variables
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   faEye = faEye;
   faMoneyBillAlt = faMoneyBillAlt;
   faTrashAlt = faTrashAlt;
+  faAddressCard = faAddressCard;
 
   inquilinos: Inquilino[] = [];
   inquilinoActivo: Inquilino = {
@@ -38,7 +44,21 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
 
   ngOnInit(): void {
     this.authService.VerificarToken();
+
     this.GetTodos();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      order: [[0, 'asc']],
+      language: {
+        url: '../../../assets/lang/datatable_lang.json'
+      }
+    };
+  }
+
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
   //Custom Methods
@@ -53,11 +73,16 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
     this.inquilinoActivo.contacto.telefono1 = '';
     this.inquilinoActivo.contacto.telefono2 = ''; 
   }
-
+  
   GetTodos(){
+    if($.fn.dataTable.isDataTable('#dtInquilinos')){
+      var dt = $("#dtInquilinos").DataTable();
+      dt.destroy();
+    }
     this.inquiService.GetInquilinos().subscribe(
       res => {
         this.inquilinos = res;
+        this.dtTrigger.next();
       },
       err => console.log(err)
     )
@@ -110,6 +135,19 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
         err => console.log(err)
       )
     }
+  }
+
+  VerEdoCuenta(){
+    const dialogRef = this.matDialog.open(EdoCuentaDialogComponent, {
+      data: {
+        tituloVentana: "Estado de cuenta",
+        inquilinoActivo: this.inquilinoActivo
+      },
+      width: "800px"
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      
+    });
   }
 
 }

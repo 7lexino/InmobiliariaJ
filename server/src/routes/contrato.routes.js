@@ -34,6 +34,14 @@ router.post('/nuevo', async (req, res) => {
     }
 });
 
+router.get('/todos', async (req, res) => {
+    //Hacemos la consulta
+    const contratos = await Contrato.find({});
+
+    //Enviamos la respuesta obtenida al frontend
+    res.status(200).json(contratos);
+})
+
 router.get('/activos', async (req, res) => {
     const today = new Date().toJSON().slice(0,10); //Obtenemos la fecha actual
 

@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PropiedadDialogComponent } from '../dialogs/propiedad-dialog/propiedad-dialog.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { MantenimientoDialogComponent } from '../dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-propiedades',
@@ -15,6 +16,9 @@ import { MantenimientoDialogComponent } from '../dialogs/mantenimiento-dialog/ma
 export class PropiedadesComponent implements OnInit {
 
   //Variables
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+
   faEye = faEye;
   faMoneyBillAlt = faMoneyBillAlt;
   faTrashAlt = faTrashAlt;
@@ -37,13 +41,25 @@ export class PropiedadesComponent implements OnInit {
     }
   };
   
-  
   //Default Methods
   constructor(public authService:AuthService, private propService: PropiedadesService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.authService.VerificarToken();
-    this.GetDisponibles();
+    
+    this.CargarTabla();
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      order: [[0, 'asc']],
+      language: {
+        url: '../../../assets/lang/datatable_lang.json'
+      }
+    };
+  }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
   }
 
   //Custom Methods
@@ -57,7 +73,7 @@ export class PropiedadesComponent implements OnInit {
       width: "500px"
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.GetDisponibles();
+      this.CargarTabla();
     });
   }
 
@@ -75,35 +91,62 @@ export class PropiedadesComponent implements OnInit {
     this.propiedadActiva.direccion.estado = ''
   }
 
-  GetDisponibles(){
-    this.propService.GetPropiedadesDisponibles().subscribe(
+  CargarTabla(){
+    if($.fn.dataTable.isDataTable('#dtPropiedades')){
+      var dt = $("#dtPropiedades").DataTable();
+      dt.destroy();
+    }
+    this.propService.GetPropiedades().subscribe(
       res => {
         this.propiedades = res;
+        this.dtTrigger.next();
       },
       err => console.log(err)
     )
+    $("#radTodas").prop('checked', true);
+  }
+
+  GetTodas(){
+    $("#radTodas").prop('checked', true);
+    if($.fn.dataTable.isDataTable('#dtPropiedades')){
+      var table = $("#dtPropiedades").DataTable();
+      table
+        .columns(1)
+        .search('')
+        .draw();
+    }
+  }
+
+  GetDisponibles(){
+    $("#radDisponible").prop('checked', true);
+    if($.fn.dataTable.isDataTable('#dtPropiedades')){
+      var table = $("#dtPropiedades").DataTable();
+      table
+        .columns(1)
+        .search("Disponible")
+        .draw();
+    }
   }
 
   GetRentadas(){
-    this.propService.GetPropiedadesRentadas().subscribe(
-      res => {
-        this.propiedades = res;
-      },
-      err => console.log(err)
-    )
+    $("#radRentada").prop('checked', true);
+    if($.fn.dataTable.isDataTable('#dtPropiedades')){
+      var table = $("#dtPropiedades").DataTable();
+      table
+        .columns(1)
+        .search("Rentada")
+        .draw();
+    }
   }
 
   VerPropiedad(prop: Propiedad){
     this.propiedadActiva = prop;
-    const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
+    this.matDialog.open(PropiedadDialogComponent, {
       data: {
         tituloVentana: "Editar Propiedad",
         propiedadActiva: this.propiedadActiva
       },
       width: "500px"
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      this.GetDisponibles();
     });
   }
 

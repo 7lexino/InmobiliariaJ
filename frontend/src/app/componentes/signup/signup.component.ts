@@ -10,6 +10,7 @@ import { AuthService } from '../../servicios/auth.service';
 })
 export class SignupComponent implements OnInit {
 
+  //Variables
   usuario: Usuario = {
     _id: '',
     nombre: '',

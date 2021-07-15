@@ -13,6 +13,10 @@ export class ContratosService {
 
   constructor(private http:HttpClient, private propService: PropiedadesService, private inquiService: InquilinosService) { }
 
+  GetContratos(){
+    return this.http.get<Contrato[]>(this.URL + '/todos');
+  }
+
   GetContratosActivos(){
     return this.http.get<Contrato[]>(this.URL + '/activos');
   }

@@ -5,9 +5,17 @@
     <form class="row g-3">
         <div class="col-4">
             <input [(ngModel)]="contratoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
-            <label class="form-label" for="txtNoContrato">N° Contrato</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.noContrato" name="noContrato" class="form-control" type="text" id="txtNoContrato">
-            
+            <!-- <label class="form-label" for="txtNoContrato">N° Contrato</label>
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.noContrato" name="noContrato" class="form-control" type="text" id="txtNoContrato"> -->
+            <label class="form-label">Tipo</label><br>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radF" [value]="true">
+                <label class="form-check-label" for="radF">Facturdo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radNF" [value]="false">
+                <label class="form-check-label" for="radNF">No facturado</label>
+            </div>
         </div>
         <div class="col-4">
             <label for="txtFInicio" class="form-label">Fecha inicio</label>
@@ -53,11 +61,17 @@
         </div>
         <div class="col-4">
             <label for="numCostoInicial" class="form-label">Depósito</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoInicial" class="form-control" type="number" name="costoInicial" id="numCostoInicial"  />
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoInicial" class="form-control" type="number" name="costoInicial" id="numCostoInicial"  />
+            </div>
         </div>
         <div class="col-4">
             <label for="numCostoPeriodo" class="form-label">Costo renta</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoPeriodo" class="form-control" type="number" name="costoPeriodo" id="numCostoPeriodo"  />
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoPeriodo" class="form-control" type="number" name="costoPeriodo" id="numCostoPeriodo"  />
+            </div>
         </div>
 
         <div class="col-8">

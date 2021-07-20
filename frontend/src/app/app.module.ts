@@ -29,6 +29,11 @@ import { InquilinoDialogComponent } from './componentes/dialogs/inquilino-dialog
 import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog/propiedad-dialog.component';
 import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
 import { EdoCuentaDialogComponent } from './componentes/dialogs/edo-cuenta-dialog/edo-cuenta-dialog.component';
+import { PagosComponent } from './componentes/pagos/pagos.component';
+import { RemisionesComponent } from './componentes/remisiones/remisiones.component';
+import { RemisionDialogComponent } from './componentes/dialogs/remision-dialog/remision-dialog.component';
+import { EstadoCuentaComponent } from './componentes/estado-cuenta/estado-cuenta.component';
+import { PagoDialogComponent } from './componentes/dialogs/pago-dialog/pago-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,11 @@ import { EdoCuentaDialogComponent } from './componentes/dialogs/edo-cuenta-dialo
     PropiedadDialogComponent,
     MantenimientoDialogComponent,
     EdoCuentaDialogComponent,
+    PagosComponent,
+    RemisionesComponent,
+    RemisionDialogComponent,
+    EstadoCuentaComponent,
+    PagoDialogComponent,
   ],
   imports: [
     BrowserModule,

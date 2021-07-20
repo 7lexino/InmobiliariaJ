@@ -6,7 +6,8 @@ const Propiedad = require('../models/Propiedad');
 const Inquilino = require('../models/Inquilino');
 
 router.post('/nuevo', async (req, res) => {
-    var { noContrato, tipo, fechaInicio, fechaCierre, aval, costoInicial, costoPeriodo, propiedad, inquilino  } = req.body;
+    var { tipo, fechaInicio, fechaCierre, aval, costoInicial, costoPeriodo, propiedad, inquilino  } = req.body;
+    var noContrato = 0;
 
     //Realizamos consultas a la DB para poner la información de la propiedad e inquilino del contrato.
     //Estas consultas las haremos de manera sincrona
@@ -19,6 +20,14 @@ router.post('/nuevo', async (req, res) => {
         const inq = await Inquilino.findById(inquilino._id);
         inquilino = inq;
     
+        //Ahora consultamos para obtener el último id
+        const ultimoContrato = await Contrato.findOne({}, {}, { sort: { 'noContrato': -1 } });
+        if(ultimoContrato){
+            noContrato = ultimoContrato.noContrato + 1;
+        }else{
+            noContrato = 1;
+        }
+
         //Cuando ya tenemos todos los datos recopilados y guardados, ahora si creamos el contrato
         const newContrato = new Contrato({noContrato, tipo, fechaInicio, fechaCierre, aval, costoInicial, costoPeriodo, propiedad, inquilino});
         await newContrato.save(); //Guardamos los datos en la DB
@@ -71,14 +80,6 @@ router.get('/archivados', async (req, res) => {
 router.get('/get/:id', async (req, res) => {
     const contrato = await Contrato.findById(req.params.id);
     res.status(200).json(contrato);
-})
-
-router.delete('/delete/:id', async (req, res) => {
-    
-})
-
-router.put('/actualizar', async (req, res) => {
-    
 })
 
 module.exports = router;

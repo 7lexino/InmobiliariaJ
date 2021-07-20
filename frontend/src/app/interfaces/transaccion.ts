@@ -1,10 +1,10 @@
 export interface Transaccion {
     _id: string,
-    fecha: string,
+    tipo: string, //Cargo o Abono
     concepto: string,
-    tipo: string,
     monto: number,
     saldo: number,
-    adjunto: string,
-    inquilinoId: string
+    adjuntoId: number, //Factura o remisión
+    noContrato: number,
+    createdAt: string
 }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Contrato } from '../interfaces/contrato';
 import { InquilinosService } from './inquilinos.service';
 import { PropiedadesService } from './propiedades.service';
@@ -30,7 +31,7 @@ export class ContratosService {
   }
 
   AgregarContrato(contrato: Contrato){
-    return this.http.post<boolean>(this.URL + '/nuevo', contrato);
+    return this.http.post<boolean>(this.URL + '/nuevo', contrato);  
   }
 
   GetContrato(contrId: string){

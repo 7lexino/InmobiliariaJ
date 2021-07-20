@@ -4,7 +4,7 @@ import { Inquilino } from "./inquilino";
 export interface Contrato {
     _id: string,
     noContrato: number,
-    tipo: boolean,
+    tipo: boolean, //True=facturado, False=No facturado
     fechaInicio: string,
     fechaCierre: string,
     aval: {

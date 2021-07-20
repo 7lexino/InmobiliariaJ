@@ -38,6 +38,7 @@
                 <td>{{ contr.fechaCierre | date:'dd/M/y' }}</td>
                 <td>
                     <button (click)="VerContrato(contr._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
+                    <button routerLink="/estado_cuenta/{{ contr.noContrato }}/{{ contr.tipo }}/{{ contr.costoPeriodo }}" class="btn btn-success btn-sm mx-2"><fa-icon [icon]="faFileInvoiceDollar"></fa-icon></button>
                 </td>
               </tr>
             </tbody>

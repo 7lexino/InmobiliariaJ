@@ -6,8 +6,8 @@ const transaccionSchema = new Schema({
     tipo: String, //Cargo o Abono
     monto: Number,
     saldo: Number,
-    adjunto: String,
-    inquilinoId: String
+    adjuntoId: Number,
+    noContrato: Number
 }, {
     timestamps: true
 });

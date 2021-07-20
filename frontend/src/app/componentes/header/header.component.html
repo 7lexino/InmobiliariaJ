@@ -8,19 +8,19 @@
             <ul class="navbar-nav">
                 <ng-container *ngIf="authService.EstaLogueado();">
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/escritorio" routerLinkActive="active">Escritorio</a>
+                        <a class="nav-link" routerLink="/escritorio" routerLinkActive="active"><fa-icon [icon]="faStream"></fa-icon> Escritorio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/propiedades" routerLinkActive="active">Propiedades</a>
+                        <a class="nav-link" routerLink="/propiedades" routerLinkActive="active"><fa-icon [icon]="faHome"></fa-icon> Propiedades</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/inquilinos" routerLinkActive="active">Inquilinos</a>
+                        <a class="nav-link" routerLink="/inquilinos" routerLinkActive="active"><fa-icon [icon]="faUsers"></fa-icon> Inquilinos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/contratos" routerLinkActive="active">Contratos</a>
+                        <a class="nav-link" routerLink="/contratos" routerLinkActive="active"><fa-icon [icon]="faFileContract"></fa-icon> Contratos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/facturas" routerLinkActive="active">Facturas</a>
+                        <a class="nav-link" routerLink="/facturas" routerLinkActive="active"><fa-icon [icon]="faFileInvoiceDollar"></fa-icon> Facturas</a>
                     </li>
                 </ng-container>
             </ul>
@@ -36,7 +36,7 @@
                 </ng-container>
                 <ng-template #Logout>
                     <li class="nav-item">
-                        <a class="nav-link" style="cursor: pointer;" (click)="authService.Logout()">Cerrar sesión</a>
+                        <a class="nav-link" style="cursor: pointer;" (click)="authService.Logout()"><fa-icon [icon]="faSignOutAlt"></fa-icon> Cerrar sesión</a>
                     </li>
                 </ng-template>
             </ul>

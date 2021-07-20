@@ -10,6 +10,8 @@ import { PropiedadesComponent } from './componentes/propiedades/propiedades.comp
 import { InquilinosComponent } from './componentes/inquilinos/inquilinos.component';
 import { FacturasComponent } from './componentes/facturas/facturas.component';
 import { ContratosComponent } from './componentes/contratos/contratos.component';
+import { RemisionesComponent } from './componentes/remisiones/remisiones.component';
+import { EstadoCuentaComponent } from './componentes/estado-cuenta/estado-cuenta.component';
 
 const routes: Routes = [
   {
@@ -48,6 +50,16 @@ const routes: Routes = [
   {
     path: 'contratos',
     component: ContratosComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'remisiones/:noContrato/:remisionNueva',
+    component: RemisionesComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'estado_cuenta/:noContrato/:tipoContrato/:total', 
+    component: EstadoCuentaComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <h4>{{ data.tituloVentana }}</h4>
+    
+    <form class="row g-3">
+        <div class="col-6">
+            <input [(ngModel)]="remisionActiva._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <!-- <label for="txtID" class="form-label">No. Remisión</label>
+            <input [(ngModel)]="remisionActiva.id" class="form-control" type="text" name="id" id="txtID" /> -->
+            
+            <!-- <label class="form-label">Tipo</label><br>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="tipoContrato" name="tipoContrato" class="form-check-input" type="radio" id="radF" [value]="true">
+                <label class="form-check-label" for="radF">Facturdo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="tipoContrato" name="tipoContrato" class="form-check-input" type="radio" id="radNF" [value]="false">
+                <label class="form-check-label" for="radNF">No facturado</label>
+            </div> -->
+            <ng-container *ngIf="tipoContrato == true">
+                <label for="txtFactura" class="form-label">No. Factura</label>
+                <input [(ngModel)]="remisionActiva.factura" class="form-control" type="text" name="factura" id="txtFactura"/>
+            </ng-container>
+        </div>
+        <div class="col-12">
+            <label for="txtConcepto" class="form-label">Concepto</label>
+            <textarea [(ngModel)]="remisionActiva.concepto" name="concepto" id="txtConcepto" cols="30" rows="4" class="form-control"></textarea>
+        </div>
+        <div class="col-12">
+            <label for="nTotal" class="form-label">Monto total</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [(ngModel)]="remisionActiva.total" class="form-control" type="number" name="total" id="nTotal"/>
+            </div>
+        </div>
+        
+        <div class="col-12 d-flex justify-content-end">
+            <button (click)="CrearRemision()" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>

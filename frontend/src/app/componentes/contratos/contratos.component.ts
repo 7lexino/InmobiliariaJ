@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Contrato } from 'src/app/interfaces/contrato';
 import { ContratosService } from 'src/app/servicios/contratos.service';
-import { faEye, faMoneyBillAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faMoneyBillAlt, faTrashAlt, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { ContratoDialogComponent } from '../dialogs/contrato-dialog/contrato-dialog.component';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -20,6 +20,7 @@ export class ContratosComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
 
+  faFileInvoiceDollar = faFileInvoiceDollar;
   faEye = faEye;
   faMoneyBillAlt = faMoneyBillAlt;
   faTrashAlt = faTrashAlt;
@@ -136,6 +137,7 @@ constructor(public authService:AuthService, private contrService: ContratosServi
   }
 
   GetTodos(){
+    $("#radTodos").prop('checked', true);
     this.contrService.GetContratos().subscribe(
       res => {
         this.contratos = res;
@@ -143,7 +145,6 @@ constructor(public authService:AuthService, private contrService: ContratosServi
       },
       err => console.log(err)
     )
-    $("#radTodos").prop('checked', true);
   }
 
   GetActivos(){

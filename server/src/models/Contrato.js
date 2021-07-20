@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const contratoSchema = new Schema({
     noContrato: Number,
-    tipo: Boolean,
+    tipo: Boolean, //True=facturado, False=No facturado
     fechaInicio: String,
     fechaCierre: String,
     aval: {

@@ -29,7 +29,7 @@ export class EstadoCuentaComponent implements OnInit {
     concepto: '',
     monto: 0,
     saldo: 0,
-    adjuntoId: 0,
+    adjuntoId: '',
     noContrato: 0,
     createdAt: ''
   };

@@ -4,7 +4,7 @@ export interface Transaccion {
     concepto: string,
     monto: number,
     saldo: number,
-    adjuntoId: number, //Factura o remisión
+    adjuntoId: string, //Factura o remisión
     noContrato: number,
     createdAt: string
 }

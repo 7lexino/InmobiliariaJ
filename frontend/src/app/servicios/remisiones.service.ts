@@ -16,7 +16,7 @@ export class RemisionesService {
     concepto: '',
     monto: 0,
     saldo: 0,
-    adjuntoId: 0,
+    adjuntoId: '',
     noContrato: 0,
     createdAt: ''
   }
@@ -28,40 +28,6 @@ export class RemisionesService {
   }
 
   CrearRemision(remision: Remision, noContrato: number){
-    //Creamos la remisión
-    const res = this.http.post<boolean>(this.URL + '/nueva', remision);
-
-    //Ahora generamos una transacción tipo cargo
-    this.transaccion.tipo = 'cargo';
-    this.transaccion.concepto = remision.id + '. ' + remision.concepto
-    this.transaccion.monto = remision.total;
-    this.transaccion.adjuntoId = remision.id;
-    this.transaccion.noContrato = noContrato;
-    
-    this.tranService.UltimaTransaccionPorContrato(noContrato).subscribe(
-      res => {
-        console.log(this.transaccion);
-        if(res){
-          this.transaccion.saldo = res.saldo + remision.total;
-        }else{
-          this.transaccion.saldo = this.transaccion.monto;
-        }
-
-
-        this.tranService.GenerarTransaccion(this.transaccion).subscribe(
-          res => {
-            console.log("La transacción se generó correctamente.");
-          },
-          err => {
-            console.log(err)
-            alert("No se ha podido generar la transacción. Puede visualizar el error en la consola.");
-          }
-        )
-
-      },
-      err => this.transaccion.saldo = remision.total
-    )
-
-    return res;
+    return this.http.post<Boolean>(this.URL + '/nueva', remision);
   }
 }

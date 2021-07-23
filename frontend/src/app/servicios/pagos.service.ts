@@ -16,7 +16,7 @@ export class PagosService {
     concepto: '',
     monto: 0,
     saldo: 0,
-    adjuntoId: 0,
+    adjuntoId: '',
     noContrato: 0,
     createdAt: ''
   }
@@ -31,7 +31,7 @@ export class PagosService {
     this.transaccion.tipo = 'abono';
     this.transaccion.concepto = pago.metodoPago
     this.transaccion.monto = pago.monto;
-    this.transaccion.adjuntoId = 0;
+    this.transaccion.adjuntoId = '';
     this.transaccion.noContrato = noContrato;
     
     this.tranService.UltimaTransaccionPorContrato(noContrato).subscribe(

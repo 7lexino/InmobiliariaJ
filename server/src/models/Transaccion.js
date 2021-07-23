@@ -6,7 +6,7 @@ const transaccionSchema = new Schema({
     tipo: String, //Cargo o Abono
     monto: Number,
     saldo: Number,
-    adjuntoId: Number,
+    adjuntoId: String,
     noContrato: Number
 }, {
     timestamps: true

@@ -18,7 +18,10 @@
         </div>
         <div class="col-12">
             <label for="nTotal" class="form-label">Importe</label>
-            <input [(ngModel)]="pagoActivo.monto" class="form-control" type="number" name="monto" id="nTotal"/>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [(ngModel)]="pagoActivo.monto" class="form-control" type="number" name="monto" id="nTotal"/>
+            </div>
         </div>
         
         <div class="col-12 d-flex justify-content-end">

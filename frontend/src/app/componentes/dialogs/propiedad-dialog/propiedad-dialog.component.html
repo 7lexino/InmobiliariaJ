@@ -82,7 +82,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end">
-            <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="GuardarPropiedad(propiedadActiva)" class="btn btn-primary">Guardar</button>
+            <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="GuardarPropiedad()" class="btn btn-primary">Guardar</button>
         </div>
     </form>
 </div>

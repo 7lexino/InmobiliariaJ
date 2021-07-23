@@ -58,11 +58,13 @@ export class PropiedadDialogComponent implements OnInit {
     this.propiedadActiva.direccion.estado = ''
   }
 
-  GuardarPropiedad(propiedad: Propiedad){
-    if(propiedad._id == ''){ 
+  GuardarPropiedad(){
+    //Validamos
+
+    if(this.propiedadActiva._id == ''){ 
       this.CrearPropiedad();
     }else{
-      this.ModificarPropiedad(propiedad);
+      this.ModificarPropiedad(this.propiedadActiva);
     }
   }
 

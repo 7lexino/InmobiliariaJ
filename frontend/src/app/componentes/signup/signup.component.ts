@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/usuario';
 import { AuthService } from '../../servicios/auth.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { AuthService } from '../../servicios/auth.service';
 })
 export class SignupComponent implements OnInit {
 
-  usuario = {
+  //Variables
+  usuario: Usuario = {
+    _id: '',
     nombre: '',
     nick: '',
     correo: '',
-    contra: ''
+    contra: '',
+    rango: 0
   }
 
   constructor(private authService: AuthService, private router: Router) { }

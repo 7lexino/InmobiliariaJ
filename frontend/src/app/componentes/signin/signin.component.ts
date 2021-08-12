@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import * as $ from 'jquery';
+import { Usuario } from 'src/app/interfaces/usuario';
 
 @Component({
   selector: 'app-signin',
@@ -10,22 +11,24 @@ import * as $ from 'jquery';
 })
 export class SigninComponent implements OnInit {
 
-  usuario = {
-    nombre: "",
-    nick: "",
-    correo: "",
-    contra: ""
-  }
+  usuario: Usuario = {
+    _id: '',
+    nombre: '',
+    nick: '',
+    correo: '',
+    contra: '',
+    rango: 0
+  } 
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
   
   IniciarSesion(){
     this.authService.Loguear(this.usuario).subscribe(
       res => {
-        console.log(res);
         localStorage.setItem('token', res.token);
         this.router.navigate(['/escritorio']);
       },

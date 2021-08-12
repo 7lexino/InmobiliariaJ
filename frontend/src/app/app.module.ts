@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DataTablesModule } from 'angular-datatables'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +23,17 @@ import { FacturasComponent } from './componentes/facturas/facturas.component';
 import { ContratosComponent } from './componentes/contratos/contratos.component';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './servicios/token-interceptor.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ContratoDialogComponent } from './componentes/dialogs/contrato-dialog/contrato-dialog.component';
+import { InquilinoDialogComponent } from './componentes/dialogs/inquilino-dialog/inquilino-dialog.component';
+import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog/propiedad-dialog.component';
+import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
+import { EdoCuentaDialogComponent } from './componentes/dialogs/edo-cuenta-dialog/edo-cuenta-dialog.component';
+import { PagosComponent } from './componentes/pagos/pagos.component';
+import { RemisionesComponent } from './componentes/remisiones/remisiones.component';
+import { RemisionDialogComponent } from './componentes/dialogs/remision-dialog/remision-dialog.component';
+import { EstadoCuentaComponent } from './componentes/estado-cuenta/estado-cuenta.component';
+import { PagoDialogComponent } from './componentes/dialogs/pago-dialog/pago-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +45,33 @@ import { TokenInterceptorService } from './servicios/token-interceptor.service';
     PropiedadesComponent,
     InquilinosComponent,
     FacturasComponent,
-    ContratosComponent
+    ContratosComponent,
+    ContratoDialogComponent,
+    InquilinoDialogComponent,
+    PropiedadDialogComponent,
+    MantenimientoDialogComponent,
+    EdoCuentaDialogComponent,
+    PagosComponent,
+    RemisionesComponent,
+    RemisionDialogComponent,
+    EstadoCuentaComponent,
+    PagoDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule,
+    NoopAnimationsModule,
+    MatCommonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDialogModule,
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthGuard,

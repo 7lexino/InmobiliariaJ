@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <h4>{{ data.tituloVentana }}</h4>
+
+    <form class="row g-3">
+        <div class="col-12">
+            <input [(ngModel)]="propiedadActiva._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <label for="numPredial" class="form-label">Número predial</label>
+            <input [(ngModel)]="propiedadActiva.predial" class="form-control" type="text" name="predial" id="numPredial" />
+        </div>
+        <div class="col-12">
+            <label for="cbxTipo" class="form-label">Tipo de propiedad</label>
+            <select [(ngModel)]="propiedadActiva.tipo" name="tipo" id="cbxTipo" class="form-select" size="5" aria-label="size 3 select example">
+                <option selected value="Bodega">Bodega</option>
+                <option selected value="Casa">Casa</option>
+                <option value="Departamento">Departamento</option>
+                <option value="Local">Local</option>
+                <option value="Oficina">Oficina</option>
+                <option value="Terreno">Terreno</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <label for="cbxTipo" class="form-label">Calle</label>
+            <input [(ngModel)]="propiedadActiva.direccion.calle" class="form-control" type="text" name="direccion.calle" id="txtCalle" />
+        </div>
+        <div class="col-3">
+            <label for="numExt" class="form-label">Núm. Ext.</label>
+            <input [(ngModel)]="propiedadActiva.direccion.no_ext" class="form-control" type="text" name="direccion.no_ext" id="numExt"  />
+        </div>
+        <div class="col-3">
+            <label for="numInt" class="form-label">Núm. Int.</label>
+            <input [(ngModel)]="propiedadActiva.direccion.no_int" class="form-control" type="text" name="direccion.no_int" id="numInt" />
+        </div>
+        <div class="col-8">
+            <label for="txtColonia" class="form-label">Colonia</label>
+            <input [(ngModel)]="propiedadActiva.direccion.colonia" class="form-control" type="text" name="direccion.colonia" id="txtColonia" />
+        </div>
+        <div class="col-4">
+            <label for="numCP" class="form-label">C.P.</label>
+            <input [(ngModel)]="propiedadActiva.direccion.c_p" class="form-control" type="number" name="direccion.c_p" id="numCP" />
+        </div>
+        <div class="col-6">
+            <label for="txtCiudad" class="form-label">Ciudad</label>
+            <input [(ngModel)]="propiedadActiva.direccion.ciudad" class="form-control" type="text" name="direccion.ciudad" id="txtCiudad" />
+        </div>
+        <div class="col-6">
+            <label for="cbxEstado" class="form-label">Estado</label>
+            <select [(ngModel)]="propiedadActiva.direccion.estado" name="direccion.estado" id="cbxEstado" class="form-select" aria-label="select">
+                <option selected value="0">Seleccionar</option>
+                <option value="Aguascalientes">Aguascalientes</option>
+                <option value="Baja California">Baja California</option>
+                <option value="Baja California Sur">Baja California Sur</option>
+                <option value="Campeche">Campeche</option>
+                <option value="CDMX">CDMX</option>
+                <option value="Coahuila">Coahuila</option>
+                <option value="Colima">Colima</option>
+                <option value="Chiapas">Chiapas</option>
+                <option value="Chihuahua">Chihuahua</option>
+                <option value="Durango">Durango</option>
+                <option value="Guanajuato">Guanajuato</option>
+                <option value="Guerrero">Guerrero</option>
+                <option value="Hidalgo">Hidalgo</option>
+                <option value="Jalisco">Jalisco</option>
+                <option value="Estado de México">Estado de México</option>
+                <option value="Michoacán">Michoacán</option>
+                <option value="Morelos">Morelos</option>
+                <option value="Nayarit">Nayarit</option>
+                <option value="Nuevo León">Nuevo León</option>
+                <option value="Oaxaca">Oaxaca</option>
+                <option value="Puebla">Puebla</option>
+                <option value="Querétaro">Querétaro</option>
+                <option value="Quintana Roo">Quintana Roo</option>
+                <option value="San Luis Potosí">San Luis Potosí</option>
+                <option value="Sinaloa">Sinaloa</option>
+                <option value="Sonora">Sonora</option>
+                <option value="Tabasco">Tabasco</option>
+                <option value="Tamaulipas">Tamaulipas</option>
+                <option value="Tlaxcala">Tlaxcala</option>
+                <option value="Veracruz">Veracruz</option>
+                <option value="Yucatán">Yucatán</option>
+                <option value="Zacatecas">Zacatecas</option>
+            </select>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>
+                    

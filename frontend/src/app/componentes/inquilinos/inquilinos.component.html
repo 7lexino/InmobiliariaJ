@@ -1,1 +1,41 @@
-<p>inquilinos works!</p>
+<div class="row">
+    <div class="col-10">
+        <h1>Inquilinos</h1>
+        <div class="btn-group  mb-2 mt-4" role="group" aria-label="Basic radio toggle button group">
+            <input (click)="GetTodos()" type="radio" class="btn-check" name="radEstadoProp" id="radTodos" autocomplete="off" checked>
+            <label class="btn btn-outline-primary" for="radTodos">Todos</label>
+            <!-- <input (click)="GetRentadas()" type="radio" class="btn-check" name="radEstadoProp" id="radRentada" autocomplete="off">
+            <label class="btn btn-outline-primary" for="radRentada">Rentadas</label> -->
+        </div>
+    </div>
+    <div class="col-2 d-flex d-flex justify-content-end">
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevoInquilino()" class="btn btn-primary align-self-start" role="button">Agregar Inquilino</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col border py-4" style="background-color: white;">
+        <table id="dtInquilinos" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped table-border row-border hover">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo electrónico</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let inqui of inquilinos">
+                <td *ngIf="inqui.tipo == true">{{ inqui.contacto.nombre }} {{ inqui.contacto.apellidos }}</td>
+                <td *ngIf="inqui.tipo == false">{{ inqui.empresa }}</td>
+                <td>{{ inqui.contacto.correo }}</td>
+                <td>{{ inqui.contacto.telefono1 }} / {{ inqui.contacto.telefono2 }}</td>
+                <td>
+                    <button (click)="VerInquilino(inqui._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
+                    <!-- <button (click)="VerEdoCuenta()" class="btn btn-secondary btn-sm mx-2"><fa-icon [icon]="faAddressCard"></fa-icon></button> -->
+                    <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="EliminarInquilino(inqui._id)" class="btn btn-danger btn-sm mx-2"><fa-icon [icon]="faTrashAlt"></fa-icon></button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

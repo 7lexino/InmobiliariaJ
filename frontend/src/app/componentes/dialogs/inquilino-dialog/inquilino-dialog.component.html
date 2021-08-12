@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <h4>{{ data.tituloVentana }}</h4>
+    
+    <form class="row g-3">
+        <div class="col-12">
+            <input [(ngModel)]="inquilinoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <label class="form-label">Tipo</label><br>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="inquilinoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radPersona" [value]="true">
+                <label class="form-check-label" for="radPersona">Persona</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="inquilinoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radEmpresa" [value]="false">
+                <label class="form-check-label" for="radEmpresa">Empresa</label>
+            </div>
+        </div>
+        <div class="col-12" *ngIf="inquilinoActivo.tipo == false">
+            <label for="txtCompania" class="form-label">Nombre compañía</label>
+            <input [(ngModel)]="inquilinoActivo.empresa" class="form-control" type="text" name="empresa" id="txtCompania" />
+        </div>
+        <div class="col-12">
+            <label for="txtNombre" class="form-label">Nombre</label>
+            <input [(ngModel)]="inquilinoActivo.contacto.nombre" class="form-control" type="text" name="contacto.nombre" id="txtNombre"  />
+        </div>
+        <div class="col-12">
+            <label for="txtApellidos" class="form-label">Apellidos</label>
+            <input [(ngModel)]="inquilinoActivo.contacto.apellidos" class="form-control" type="text" name="contacto.apellidos" id="txtApellidos" />
+        </div>
+        <div class="col-12">
+            <label for="txtCorreo" class="form-label">Correo electrónico</label>
+            <input [(ngModel)]="inquilinoActivo.contacto.correo" class="form-control" type="text" name="contacto.correo" id="txtCorreo" />
+        </div>
+        <div class="col-6">
+            <label for="txtTel1" class="form-label">Teléfono 1</label>
+            <input [(ngModel)]="inquilinoActivo.contacto.telefono1" class="form-control" type="text" name="contacto.telefono1" id="txtTel1" />
+        </div>
+        <div class="col-6">
+            <label for="txtTel2" class="form-label">Teléfono 2</label>
+            <input [(ngModel)]="inquilinoActivo.contacto.telefono2" class="form-control" type="text" name="contacto.telefono2" id="txtTel2" />
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="GuardarInquilino(inquilinoActivo)" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>

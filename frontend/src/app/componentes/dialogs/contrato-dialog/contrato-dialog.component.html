@@ -1,0 +1,101 @@
+<div class="container-fluid">
+                            
+    <h4>{{ data.tituloVentana }}</h4>
+
+    <form class="row g-3">
+        <div class="col-4">
+            <input [(ngModel)]="contratoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <!-- <label class="form-label" for="txtNoContrato">N° Contrato</label>
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.noContrato" name="noContrato" class="form-control" type="text" id="txtNoContrato"> -->
+            <label class="form-label">Tipo</label><br>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radF" [value]="true">
+                <label class="form-check-label" for="radF">Facturdo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radNF" [value]="false">
+                <label class="form-check-label" for="radNF">No facturado</label>
+            </div>
+        </div>
+        <div class="col-4">
+            <label for="txtFInicio" class="form-label">Fecha inicio</label>
+            <div style="position: relative;">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio">
+                <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFInicio"></mat-datepicker-toggle>
+            </div>
+            <mat-datepicker #txtFInicio></mat-datepicker>
+        </div>
+        <div class="col-4">
+            <label for="txtFCierre" class="form-label">Fecha cierre</label>
+            <div style="position: relative;">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre">
+                <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFCierre"></mat-datepicker-toggle>
+            </div>
+            <mat-datepicker #txtFCierre></mat-datepicker>
+        </div>
+        <div class="col-6">
+            <label for="opcionesPropiedad" class="form-label">Propiedad</label>
+            <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select" [(ngModel)]="contratoActivo.propiedad._id" name="propiedad._id" id="opcionesPropiedad">
+                <ng-container *ngIf="data.tituloVentana === 'Nuevo Contrato'; then nuevoContrato; else viendoContrato">
+                </ng-container>
+                <ng-template #nuevoContrato>
+                    <ng-container *ngFor="let prop of propiedades">
+                        <ng-container *ngIf="prop.estadoRenta === 'Disponible'">
+                            <option value="{{ prop._id }}">{{ prop.predial }}</option>
+                        </ng-container>
+                    </ng-container>
+                </ng-template>
+                <ng-template #viendoContrato>
+                    <ng-container *ngFor="let prop of propiedades">
+                            <option value="{{ prop._id }}">{{ prop.predial }}</option>
+                    </ng-container>
+                </ng-template>
+            </select>
+        </div>
+        <div class="col-6">
+            <label for="opcionesInquilino" class="form-label">Inquilino</label>
+            <!-- <input [(ngModel)]="contratoActivo.inquilino.contacto.nombre" name="inquilino.contacto.nombre" class="form-control" list="opcionesInquilino" id="dataListInquilino" placeholder="Inquilino" autocomplete="off"> -->
+            <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select" [(ngModel)]="contratoActivo.inquilino._id" name="inquilino._id" id="opcionesInquilino">
+                <option *ngFor="let inq of inquilinos" value="{{ inq._id }}">{{ inq.contacto.nombre + ' ' + inq.contacto.apellidos }}</option>
+            </select>
+        </div>
+        <div class="col-4">
+            <label for="numCostoInicial" class="form-label">Depósito</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoInicial" class="form-control" type="number" name="costoInicial" id="numCostoInicial"  />
+            </div>
+        </div>
+        <div class="col-4">
+            <label for="numCostoPeriodo" class="form-label">Costo renta</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoPeriodo" class="form-control" type="number" name="costoPeriodo" id="numCostoPeriodo"  />
+            </div>
+        </div>
+
+        <div class="col-8">
+            <h5>Información del Aval</h5>
+            <label for="txtNombreAval" class="form-label">Nombre completo</label>
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.nombre" class="form-control" type="text" name="aval.nombre" id="txtNombreAval"  />
+        </div>
+        <div class="w-100"></div>
+        <div class="col-4">
+            <label for="txtCorreoAval" class="form-label">Correo electrónico</label>
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.correo" class="form-control" type="email" name="aval.correo" id="txtCorreoAval"  />
+        </div>
+        <div class="col-4">
+            <label for="txtTelefono1" class="form-label">Teléfono 1</label>
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.telefono1" class="form-control" type="text" name="aval.telefono1" id="txtTelefono1"  />
+        </div>
+        <div class="col-4">
+            <label for="txtTelefono2" class="form-label">Teléfono 2</label>
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.telefono2" class="form-control" type="text" name="aval.telefono2" id="txtTelefono2"  />
+        </div>
+        
+        <div class="col-12 d-flex justify-content-end">
+            <button *ngIf="data.tituloVentana === 'Nuevo Contrato'" (click)="CrearContrato()" class="btn btn-primary">Guardar</button>
+        </div>  
+    </form>
+
+</div>

@@ -1,4 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pago } from 'src/app/interfaces/pago';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -24,8 +25,9 @@ export class PagoDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
     tituloVentana: string,
     noContrato: number
-  }, private matDialogRef: MatDialogRef<PagoDialogComponent>, private pagoService: PagosService, public authService: AuthService) { 
-    
+  }, private matDialogRef: MatDialogRef<PagoDialogComponent>, private pagoService: PagosService, public authService: AuthService,
+  private dateAdapter: DateAdapter<Date>) { 
+    this.dateAdapter.setLocale('mx');
   }
 
   ngOnInit(): void {

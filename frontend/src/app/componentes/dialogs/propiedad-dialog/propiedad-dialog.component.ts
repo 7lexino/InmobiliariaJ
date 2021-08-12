@@ -35,14 +35,19 @@ export class PropiedadDialogComponent implements OnInit {
   }, private matDialogRef: MatDialogRef<PropiedadDialogComponent>, 
     private propService:PropiedadesService,
     public authService:AuthService) {
-    //
+    this.BuildForm();
     this.propiedadActiva = data.propiedadActiva;
   }
 
   ngOnInit(): void {
+    
   }
 
   //Custom Methods
+
+  BuildForm(){
+    
+  }
 
   ClearFields(){
     this.propiedadActiva._id = '';

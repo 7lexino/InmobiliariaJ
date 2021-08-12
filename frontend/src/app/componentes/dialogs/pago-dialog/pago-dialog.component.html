@@ -7,7 +7,15 @@
             <!-- <label for="txtID" class="form-label">No. Remisión</label>
             <input [(ngModel)]="pagoActivo.id" class="form-control" type="text" name="id" id="txtID" /> -->
         </div>
-        <div class="col-12">
+        <div class="col-6">
+            <label for="txtFecha" class="form-label">Fecha del pago</label>
+            <div style="position: relative;">
+                <input [(ngModel)]="pagoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha">
+                <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFecha"></mat-datepicker-toggle>
+            </div>
+            <mat-datepicker #txtFecha></mat-datepicker>
+        </div>
+        <div class="col-6">
             <label for="txtConcepto" class="form-label">Método de pago</label>
             <select [(ngModel)]="pagoActivo.metodoPago" name="metodoPago" id="" class="form-select">
                 <option value="" selected>Seleccione un método de pago</option>

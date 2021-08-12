@@ -66,7 +66,6 @@ export class ContratoDialogComponent implements OnInit {
   private propService: PropiedadesService,
   private inquiService: InquilinosService,
   private dateAdapter: DateAdapter<Date>) {
-    //
     this.contratoActivo = data.contratoActivo;
     this.dateAdapter.setLocale('mx');
   }

@@ -26,10 +26,11 @@ export class PagosService {
   CrearPago(pago: Pago, noContrato: number){
     //Creamos la remisión
     const res = this.http.post<boolean>(this.URL + '/nuevo', pago);
+    const dFecha = new Date(pago.fecha); //Parseamos el string a Date
 
     //Ahora generamos una transacción tipo cargo
     this.transaccion.tipo = 'abono';
-    this.transaccion.concepto = pago.metodoPago
+    this.transaccion.concepto = pago.metodoPago + ' el ' + dFecha.toLocaleDateString("es-MX");
     this.transaccion.monto = pago.monto;
     this.transaccion.adjuntoId = '';
     this.transaccion.noContrato = noContrato;
@@ -45,9 +46,7 @@ export class PagosService {
 
 
         this.tranService.GenerarTransaccion(this.transaccion).subscribe(
-          res => {
-            console.log("La transacción se generó correctamente.");
-          },
+          res => {},
           err => {
             console.log(err)
             alert("No se ha podido generar la transacción. Puede visualizar el error en la consola.");

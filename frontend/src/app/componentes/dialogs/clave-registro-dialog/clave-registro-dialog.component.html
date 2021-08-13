@@ -1,0 +1,12 @@
+<h5>{{ data.tituloVentana }}</h5>
+<div id="error_messages_dialog" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
+<form class="row g-3">
+    <div class="col-12">
+        <input class="form-control" type="text" name="" id="txtClave" autocomplete="off">
+    </div>
+    <div class="col-12">
+        <div class="d-grid gap-2 pt-2">
+            <button (click)="VerificarClave()" class="btn btn-primary btn-block" type="submit">Confirmar</button>
+        </div>
+    </div>
+</form>

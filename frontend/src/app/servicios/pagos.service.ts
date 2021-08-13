@@ -30,7 +30,7 @@ export class PagosService {
 
     //Ahora generamos una transacción tipo cargo
     this.transaccion.tipo = 'abono';
-    this.transaccion.concepto = pago.metodoPago + ' el ' + dFecha.toLocaleDateString("es-MX");
+    this.transaccion.concepto = pago.metodoPago + ' realizada el ' + dFecha.toLocaleDateString("es-MX");
     this.transaccion.monto = pago.monto;
     this.transaccion.adjuntoId = '';
     this.transaccion.noContrato = noContrato;

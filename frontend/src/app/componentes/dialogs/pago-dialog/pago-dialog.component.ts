@@ -33,7 +33,7 @@ export class PagoDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //Custmo methods
+  //Custom methods
 
   ClearFields(){
     this.pagoActivo._id = '';

@@ -1,6 +1,7 @@
 <div class="container-fluid">
     <h4>{{ data.tituloVentana }}</h4>
     
+    <div id="error_pago" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
     <form class="row g-3">
         <div class="col-12">
             <input [(ngModel)]="pagoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
@@ -10,15 +11,15 @@
         <div class="col-6">
             <label for="txtFecha" class="form-label">Fecha del pago</label>
             <div style="position: relative;">
-                <input [(ngModel)]="pagoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha">
+                <input [(ngModel)]="pagoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" id="dtFechaPago">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFecha"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFecha></mat-datepicker>
         </div>
         <div class="col-6">
             <label for="txtConcepto" class="form-label">Método de pago</label>
-            <select [(ngModel)]="pagoActivo.metodoPago" name="metodoPago" id="" class="form-select">
-                <option value="" selected>Seleccione un método de pago</option>
+            <select [(ngModel)]="pagoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
+                <option value="0" selected>Seleccione un método de pago</option>
                 <option value="Efectivo">Efectivo</option>
                 <option value="Transferencia">Transferencia</option>
                 <option value="Cheque">Cheque</option>

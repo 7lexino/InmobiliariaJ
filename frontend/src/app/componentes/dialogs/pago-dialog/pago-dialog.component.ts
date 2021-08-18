@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pago } from 'src/app/interfaces/pago';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PagosService } from 'src/app/servicios/pagos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-pago-dialog',
@@ -35,6 +36,16 @@ export class PagoDialogComponent implements OnInit {
 
   //Custom methods
 
+  MostrarError(mensaje: string){
+    $("#error_pago").text(mensaje);
+    $("#error_pago").hide();
+    $("#error_pago").show("slow", function(){
+      setTimeout(function(){
+        $("#error_pago").hide("slow");
+      }, 1800)
+    });
+  }
+
   ClearFields(){
     this.pagoActivo._id = '';
     this.pagoActivo.fecha = '';
@@ -42,12 +53,45 @@ export class PagoDialogComponent implements OnInit {
     this.pagoActivo.monto = 0;
   }
 
+  ValidarFormulario(){
+    const fPago = $("#dtFechaPago").val();
+    const metodoPago = $("#selMetodoPago").val();
+    const importe = $("#nTotal").val();
+
+    if(fPago == ""){
+      this.MostrarError("El campo fecha se encuentra vacío");
+      return false;
+    }
+
+    if(metodoPago == null || metodoPago == "0"){
+      this.MostrarError("Seleccione un método de pago");
+      return false;
+    }
+
+    if(importe == "" || importe == "0"){
+      this.MostrarError("El campo importe se encuentra vacío");
+      return false;
+    }
+
+    return true;
+  }
+
   CrearPago(){
+    //Validamos
+    if(!this.ValidarFormulario()){
+      return; //Detenemos ejecución
+    }
+
     this.pagoService.CrearPago(this.pagoActivo, this.data.noContrato).subscribe(
       res => {
-        alert("Pago generado");
+        Swal.fire({
+          title: "Pago generado",
+          text: 'El pago se ha generado exitosamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
         this.ClearFields();
-        this.matDialogRef.close();
+        this.matDialogRef.close(true);
       },
       err => console.log(err)
     )

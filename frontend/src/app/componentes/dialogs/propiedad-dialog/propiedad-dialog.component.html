@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <h4>{{ data.tituloVentana }}</h4>
 
-    <form class="row g-3">
+    <div id="error_propiedad" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
+    <form (submit)="GuardarPropiedad()" class="row g-3">
         <div class="col-12">
             <input [(ngModel)]="propiedadActiva._id" class="form-control" type="hidden" name="_id" id="identificador" />
             <label for="numPredial" class="form-label">Número predial</label>
@@ -10,8 +11,9 @@
         <div class="col-12">
             <label for="cbxTipo" class="form-label">Tipo de propiedad</label>
             <select [(ngModel)]="propiedadActiva.tipo" name="tipo" id="cbxTipo" class="form-select" size="5" aria-label="size 3 select example">
-                <option selected value="Bodega">Bodega</option>
-                <option selected value="Casa">Casa</option>
+                <option selected value="">Seleccionar</option>
+                <option value="Bodega">Bodega</option>
+                <option value="Casa">Casa</option>
                 <option value="Departamento">Departamento</option>
                 <option value="Local">Local</option>
                 <option value="Oficina">Oficina</option>
@@ -45,7 +47,7 @@
         <div class="col-6">
             <label for="cbxEstado" class="form-label">Estado</label>
             <select [(ngModel)]="propiedadActiva.direccion.estado" name="direccion.estado" id="cbxEstado" class="form-select" aria-label="select">
-                <option selected value="0">Seleccionar</option>
+                <option selected value="">Seleccionar</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Baja California">Baja California</option>
                 <option value="Baja California Sur">Baja California Sur</option>
@@ -82,7 +84,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end">
-            <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-primary">Guardar</button>
+            <input type="submit" value="Guardar" *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-primary">
         </div>
     </form>
 </div>

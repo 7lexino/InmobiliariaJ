@@ -49,7 +49,7 @@ export class EstadoCuentaComponent implements OnInit {
     //Opciones de la DataTable
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 100,
       language: {
         url: '../../../assets/lang/datatable_lang.json'
       }
@@ -101,7 +101,7 @@ export class EstadoCuentaComponent implements OnInit {
       width: "600px"
     });
     ref.afterClosed().subscribe(res => {
-      this.CargarTabla();
+      if(res) this.CargarTabla();
     });
   }
 
@@ -114,7 +114,7 @@ export class EstadoCuentaComponent implements OnInit {
       width: "600px"
     });
     ref.afterClosed().subscribe(res => {
-      this.CargarTabla();
+      if(res) this.CargarTabla();
     });
   }
 

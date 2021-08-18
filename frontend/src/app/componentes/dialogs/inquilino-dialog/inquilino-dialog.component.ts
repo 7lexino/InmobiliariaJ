@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Inquilino } from 'src/app/interfaces/inquilino';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { InquilinosService } from 'src/app/servicios/inquilinos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inquilino-dialog',
@@ -41,6 +42,16 @@ export class InquilinoDialogComponent implements OnInit {
 
   //Custom Methods
 
+  MostrarError(mensaje: string){
+    $("#error_inquilino").text(mensaje);
+    $("#error_inquilino").hide();
+    $("#error_inquilino").show("slow", function(){
+      setTimeout(function(){
+        $("#error_inquilino").hide("slow");
+      }, 1800)
+    });
+  }
+
   ClearFields(){
     this.inquilinoActivo._id = '';
     this.inquilinoActivo.tipo = true; //Individuo o Empresa
@@ -52,7 +63,43 @@ export class InquilinoDialogComponent implements OnInit {
     this.inquilinoActivo.contacto.telefono2 = ''; 
   }
 
+  ValidarFormulario(){
+    const nombreCompania = $("#txtCompania").val();
+    const nombre = $("#txtNombre").val();
+    const correo = $("#txtCorreo").val();
+    const tel1 = $("#txtTel1").val();
+
+    if($("#radEmpresa").is(":checked")){
+      if(nombreCompania == ""){
+        this.MostrarError("El campo nombre compañía se encuentra vacío");
+        return false;  
+      }
+    }
+
+    if(nombre == ""){
+      this.MostrarError("El campo nombre se encuentra vacío");
+      return false;
+    }
+
+    if(correo == ""){
+      this.MostrarError("El campo correo se encuentra vacío");
+      return false;
+    }
+
+    if(tel1 == ""){
+      this.MostrarError("El campo teléfono 1 se encuentra vacío");
+      return false;
+    }
+
+    return true;
+  }
+
   GuardarInquilino(inquilino: Inquilino){
+    //Validamos
+    if(!this.ValidarFormulario()){
+      return; //Detenemos ejecución
+    }
+
     if(inquilino._id == ''){ 
       this.CrearInquilino();
     }else{
@@ -64,9 +111,14 @@ export class InquilinoDialogComponent implements OnInit {
     this.inquiService.AgregarInquilino(this.inquilinoActivo).subscribe(
       res => {
         if(res){
-          alert("Inquilino creado");
+          Swal.fire({
+            title: "Inquilino creado",
+            text: 'El inquilino se ha creado correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
           this.ClearFields();
-          this.matDialogRef.close();
+          this.matDialogRef.close(true);
         }
         else
           alert("Error al crear inquilino");
@@ -80,9 +132,14 @@ export class InquilinoDialogComponent implements OnInit {
       res => {
         console.log(res);
         if(res){
-          alert("Inquilino modificado");
+          Swal.fire({
+            title: "Actualizado",
+            text: 'El inquilino se ha actualizado exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
           this.ClearFields();
-          this.matDialogRef.close();
+          this.matDialogRef.close(true);
         }
         else
           alert("Error al modificar el inquilino");

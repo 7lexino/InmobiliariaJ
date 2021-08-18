@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Remision } from 'src/app/interfaces/remision';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { RemisionesService } from 'src/app/servicios/remisiones.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-remision-dialog',
@@ -45,6 +46,16 @@ export class RemisionDialogComponent implements OnInit {
 
   //Custom methods
 
+  MostrarError(mensaje: string){
+    $("#error_remision").text(mensaje);
+    $("#error_remision").hide();
+    $("#error_remision").show("slow", function(){
+      setTimeout(function(){
+        $("#error_remision").hide("slow");
+      }, 1800)
+    });
+  }
+
   ClearFields(){
     this.remisionActiva._id = '';
     this.remisionActiva.id = 0;
@@ -53,12 +64,47 @@ export class RemisionDialogComponent implements OnInit {
     this.remisionActiva.noContrato = this.data.noContrato;
   }
 
+  ValidarFormulario(){
+    const docFactura = $("#txtFactura").val();
+    const concepto = $("#txtConcepto").val();
+    const monto = $("#nTotal").val();
+
+    if(this.tipoContrato == true){
+      if(docFactura == ""){
+        this.MostrarError("El campo no. factura se encuentra vacío");
+        return false;
+      }
+    }
+
+    if(concepto == ""){
+      this.MostrarError("El campo concepto se encuentra vacío");
+      return false;
+    }
+
+    if(monto == ""){
+      this.MostrarError("El campo monto total se encuentra vacío");
+      return false;
+    }
+
+    return true;
+  }
+
   CrearRemision(){
+    //Validamos
+    if(!this.ValidarFormulario()){
+      return; //Detenemos ejecución
+    }
+
     this.remiService.CrearRemision(this.remisionActiva, this.data.noContrato).subscribe(
       res => {
-        alert("Remisión creada");
+        Swal.fire({
+          title: "Remisión generada",
+          text: 'La remisión se ha generado exitosamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
         this.ClearFields();
-        this.matDialogRef.close();
+        this.matDialogRef.close(true);
       },
       err => console.log(err)
     )

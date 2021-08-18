@@ -98,7 +98,7 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
       width: "500px"
     });
     dialogRef.afterClosed().subscribe(res =>{
-      this.GetTodos();
+      if(res) this.GetTodos();
     })
   }
 
@@ -114,7 +114,7 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
           width: "500px"
         });
         dialogRef.afterClosed().subscribe(res => {
-          this.GetTodos();
+          if(res) this.GetTodos();
         })
       },
       err => console.log(err)

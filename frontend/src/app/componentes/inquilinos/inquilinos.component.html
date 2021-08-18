@@ -28,7 +28,10 @@
                 <td *ngIf="inqui.tipo == true">{{ inqui.contacto.nombre }} {{ inqui.contacto.apellidos }}</td>
                 <td *ngIf="inqui.tipo == false">{{ inqui.empresa }}</td>
                 <td>{{ inqui.contacto.correo }}</td>
-                <td>{{ inqui.contacto.telefono1 }} / {{ inqui.contacto.telefono2 }}</td>
+                <td>
+                  <ng-container *ngIf="inqui.contacto.telefono1 != ''">{{ inqui.contacto.telefono1 }}</ng-container>
+                  <ng-container *ngIf="inqui.contacto.telefono2 != ''"> / {{ inqui.contacto.telefono2 }}</ng-container>
+                </td>
                 <td>
                     <button (click)="VerInquilino(inqui._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
                     <!-- <button (click)="VerEdoCuenta()" class="btn btn-secondary btn-sm mx-2"><fa-icon [icon]="faAddressCard"></fa-icon></button> -->

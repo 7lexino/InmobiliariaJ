@@ -1,7 +1,8 @@
 <div class="container-fluid">
     <h4>{{ data.tituloVentana }}</h4>
     
-    <form class="row g-3">
+    <div id="error_inquilino" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
+    <form class="row g-3" id="frmNuevoInquilino">
         <div class="col-12">
             <input [(ngModel)]="inquilinoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
             <label class="form-label">Tipo</label><br>

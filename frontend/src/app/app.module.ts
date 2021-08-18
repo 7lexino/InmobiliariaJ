@@ -34,6 +34,7 @@ import { RemisionesComponent } from './componentes/remisiones/remisiones.compone
 import { RemisionDialogComponent } from './componentes/dialogs/remision-dialog/remision-dialog.component';
 import { EstadoCuentaComponent } from './componentes/estado-cuenta/estado-cuenta.component';
 import { PagoDialogComponent } from './componentes/dialogs/pago-dialog/pago-dialog.component';
+import { ClaveRegistroDialogComponent } from './componentes/dialogs/clave-registro-dialog/clave-registro-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { PagoDialogComponent } from './componentes/dialogs/pago-dialog/pago-dial
     RemisionDialogComponent,
     EstadoCuentaComponent,
     PagoDialogComponent,
+    ClaveRegistroDialogComponent,
   ],
   imports: [
     BrowserModule,

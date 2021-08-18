@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
-import * as $ from 'jquery';
 import { Usuario } from 'src/app/interfaces/usuario';
 
 @Component({
@@ -20,13 +19,44 @@ export class SigninComponent implements OnInit {
     rango: 0
   } 
 
+  //Default methods
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
   }
+
+  //Custom methods
+
+  MostrarError(mensaje: string){
+    $("#error_messages").text(mensaje);
+    $("#error_messages").hide();
+    $("#error_messages").show("slow");
+  }
+
+  ValidarFormulario(){
+    const usuario = $("#txtUsuario").val();
+    const contra = $("#txtContra").val();
+
+    if(usuario == ""){
+      this.MostrarError("El campo usuario se encuentra vacío");
+      return false;
+    }
+
+    if(contra == ""){
+      this.MostrarError("El campo contraseña se encuentra vacío");
+      return false;
+    }
+
+    return true;
+  }
   
   IniciarSesion(){
+    if(!this.ValidarFormulario()){
+      return; //Detenemos la ejecución
+    }
+
     this.authService.Loguear(this.usuario).subscribe(
       res => {
         localStorage.setItem('token', res.token);
@@ -34,14 +64,12 @@ export class SigninComponent implements OnInit {
       },
       err => {
         if(err.error == "wrong_user"){
-          $("#error_messages").text("El usuario no existe");          
-          $("#error_messages").show();
+          this.MostrarError("El usuario no existe");
           return;
         }
 
         if(err.error == "wrong_password"){
-          $("#error_messages").text("Contraseña incorrecta");          
-          $("#error_messages").show();
+          this.MostrarError("Contraseña incorrecta");
           return;
         }
       }

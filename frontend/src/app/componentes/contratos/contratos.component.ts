@@ -102,7 +102,7 @@ constructor(public authService:AuthService, private contrService: ContratosServi
       width: "700px"
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.GetTodos();
+      if(res) this.GetTodos();
     });
   }
 

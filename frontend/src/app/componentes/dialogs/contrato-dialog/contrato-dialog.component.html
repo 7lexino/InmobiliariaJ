@@ -1,7 +1,7 @@
 <div class="container-fluid">
-                            
     <h4>{{ data.tituloVentana }}</h4>
 
+    <div id="error_contrato" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
     <form class="row g-3">
         <div class="col-4">
             <input [(ngModel)]="contratoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
@@ -20,7 +20,7 @@
         <div class="col-4">
             <label for="txtFInicio" class="form-label">Fecha inicio</label>
             <div style="position: relative;">
-                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio" id="dtFInicio">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFInicio"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFInicio></mat-datepicker>
@@ -28,7 +28,7 @@
         <div class="col-4">
             <label for="txtFCierre" class="form-label">Fecha cierre</label>
             <div style="position: relative;">
-                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre" id="dtFCierre">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFCierre"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFCierre></mat-datepicker>

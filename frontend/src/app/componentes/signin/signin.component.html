@@ -8,13 +8,15 @@
                 <div id="error_messages" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
                 <form (submit)="IniciarSesion()">
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.nick" class="form-control" type="text" autocomplete="off" name="nick" id="" placeholder="Usuario" required>
+                        <input [(ngModel)]="usuario.nick" class="form-control" type="text" autocomplete="off" name="nick" id="txtUsuario" placeholder="Usuario" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.contra" class="form-control" type="password" autocomplete="off" name="contra" id="" placeholder="Contraseña" required>
+                        <input [(ngModel)]="usuario.contra" class="form-control" type="password" autocomplete="off" name="contra" id="txtContra" placeholder="Contraseña" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+                        </div>
                     </div>
                 </form>
             </div>

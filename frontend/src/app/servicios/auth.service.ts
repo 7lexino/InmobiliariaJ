@@ -32,6 +32,10 @@ export class AuthService {
     this.usuarioActivo.rango = 0;
   }
 
+  ExisteUsuario(nick: string){
+    return this.http.get<boolean>(this.URL + '/getusuariobynick/' + nick);
+  }
+
   Registrar(usuario: Usuario){
     return this.http.post<any>(this.URL + '/register', usuario);
   }
@@ -59,14 +63,7 @@ export class AuthService {
   }
 
   Loguear(usuario: Usuario){
-    const token = this.http.post<any>(this.URL + '/login', usuario);
-    token.subscribe(
-      res => {
-        //this.VerificarToken();
-      },
-      err => console.log(err)
-    )
-    return token;
+    return this.http.post<any>(this.URL + '/login', usuario);
   }
 
   EstaLogueado(){

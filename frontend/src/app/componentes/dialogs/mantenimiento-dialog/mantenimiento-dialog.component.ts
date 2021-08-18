@@ -17,6 +17,7 @@ export class MantenimientoDialogComponent implements OnDestroy, OnInit {
   //Variables
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
+  totalMtto: number = 0;
 
   faEye = faEye;
   faTrashAlt = faTrashAlt;
@@ -81,6 +82,10 @@ export class MantenimientoDialogComponent implements OnDestroy, OnInit {
     this.mttoService.GetTodosByProp(this.propiedadActiva._id).subscribe(
       res => {
         this.mantenimientos = res;
+        //Sumar para obtener el total
+        for(var i = 0; i < this.mantenimientos.length; i++){
+          this.totalMtto += this.mantenimientos[i].costo;
+        }
         this.dtTrigger.next();
       },
       err => console.log(err)

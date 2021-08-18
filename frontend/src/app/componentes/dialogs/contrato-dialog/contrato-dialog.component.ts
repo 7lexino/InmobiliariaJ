@@ -7,6 +7,7 @@ import { Propiedad } from 'src/app/interfaces/propiedad';
 import { InquilinosService } from 'src/app/servicios/inquilinos.service';
 import { Inquilino } from 'src/app/interfaces/inquilino';
 import { DateAdapter} from '@angular/material/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contrato-dialog',
@@ -77,6 +78,16 @@ export class ContratoDialogComponent implements OnInit {
 
   //Custom Methods
 
+  MostrarError(mensaje: string){
+    $("#error_contrato").text(mensaje);
+    $("#error_contrato").hide();
+    $("#error_contrato").show("slow", function(){
+      setTimeout(function(){
+        $("#error_contrato").hide("slow");
+      }, 1800)
+    });
+  }
+
   TraerPropiedades(){
     this.propService.GetPropiedades().subscribe(
       res =>{
@@ -125,13 +136,64 @@ export class ContratoDialogComponent implements OnInit {
     this.contratoActivo.inquilino.contacto.telefono2 = '';
   }
 
+  ValidarFormulario(){
+    const fInicio = $("#dtFInicio").val();
+    const fCierre = $("#dtFCierre").val();
+    const propiedad = $("#opcionesPropiedad").val();
+    const inquilino = $("#opcionesInquilino").val();
+    const deposito = $("#numCostoInicial").val();
+    const renta = $("#numCostoPeriodo").val();
+
+    if(fInicio == ""){
+      this.MostrarError("El campo fecha inicio se encuentra vacío");
+      return false;
+    }
+
+    if(fCierre == ""){
+      this.MostrarError("El campo fecha cierre se encuentra vacío");
+      return false;
+    }
+
+    if(propiedad == null){
+      this.MostrarError("El campo propiedad se encuentra vacío");
+      return false;
+    }
+
+    if(inquilino == null){
+      this.MostrarError("El campo inquilino se encuentra vacío");
+      return false;
+    }
+
+    if(deposito == ""){
+      this.MostrarError("El campo depósito se encuentra vacío");
+      return false;
+    }
+
+    if(renta == "" || renta == "0"){
+      this.MostrarError("El campo costo renta se encuentra vacío");
+      return false;
+    }
+
+    return true;
+  }
+
   CrearContrato(){
+    //Validamos
+    if(!this.ValidarFormulario()){
+      return; //Detenemos ejecución
+    }
+
     this.contrService.AgregarContrato(this.contratoActivo).subscribe(
       res => {
         if(res){
-          alert("Contrato creado");
+          Swal.fire({
+            title: "Contrato creado",
+            text: 'El contrato se ha creado correctamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
           this.ClearFields();
-          this.matDialogRef.close();
+          this.matDialogRef.close(true);
         }
         else
           alert("Error al crear contrato");

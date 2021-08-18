@@ -5,19 +5,18 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 router.post('/register', async (req, res) => {
-    const { nombre, nick, correo, contra} = req.body;
-    const newUser = new User({nombre, nick, correo, contra, rango: 1});
+    const { nombre, nick, correo, contra, rango} = req.body;
+
+    //Primero validamos que el usuario no exista
+    // const user = await User.findOne({nick: nick});
+    // if(user) return res.status(401).send("usuario_existente"); //El usuario ya se encuentra registrado
+
+    const newUser = new User({nombre, nick, correo, contra, rango});
     await newUser.save();
 
     const token = jwt.sign({_id: newUser._id}, 'secretKey');
 
     res.status(200).json({token});
-});
-
-router.put('/update', async (req, res) => {
-    const {user, password} = req.body;
-    await User.findOneAndUpdate({'user': user}, {'password': password});
-    res.send("Usuario actualizado");
 });
 
 router.post('/login', async (req, res) => {
@@ -33,6 +32,12 @@ router.post('/login', async (req, res) => {
     return res.status(200).json({token});
 });
 
+router.put('/update', async (req, res) => {
+    const {user, password} = req.body;
+    await User.findOneAndUpdate({'user': user}, {'password': password});
+    res.send("Usuario actualizado");
+});
+
 router.get('/getActiveUser', async (req, res) => {
     VerificarToken(req, res);
     res.status(200).json(req._id);
@@ -45,6 +50,11 @@ router.get('/usuario/:nick', async (req, res) => {
 
 router.get('/getusuario/:id', async (req, res) => {
     const usuario = await User.findOne({_id: req.params.id});
+    res.status(200).json(usuario);
+});
+
+router.get('/getusuariobynick/:nick', async (req, res) => {
+    const usuario = await User.findOne({nick: req.params.nick});
     res.status(200).json(usuario);
 });
 

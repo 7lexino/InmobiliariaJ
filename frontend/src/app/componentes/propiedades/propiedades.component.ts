@@ -73,7 +73,7 @@ export class PropiedadesComponent implements OnInit {
       width: "500px"
     });
     dialogRef.afterClosed().subscribe(res => {
-      this.CargarTabla();
+      if(res) this.CargarTabla();
     });
   }
 
@@ -141,12 +141,15 @@ export class PropiedadesComponent implements OnInit {
 
   VerPropiedad(prop: Propiedad){
     this.propiedadActiva = prop;
-    this.matDialog.open(PropiedadDialogComponent, {
+    const dialogRef = this.matDialog.open(PropiedadDialogComponent, {
       data: {
         tituloVentana: "Editar Propiedad",
         propiedadActiva: this.propiedadActiva
       },
       width: "500px"
+    });
+    dialogRef.afterClosed().subscribe(res => {
+      if(res) this.CargarTabla();
     });
   }
 

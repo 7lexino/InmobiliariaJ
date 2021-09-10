@@ -12,6 +12,7 @@ export class RemisionesService {
   private URL = 'http://localhost:3000/api/remision';
   transaccion: Transaccion = {
     _id: '',
+    fecha: '',
     tipo: '',
     concepto: '',
     monto: 0,

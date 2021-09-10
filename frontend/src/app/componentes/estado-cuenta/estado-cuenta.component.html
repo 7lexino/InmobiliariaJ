@@ -23,7 +23,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let tra of transacciones" >
-                <td>{{ tra.createdAt | date:'dd/M/Y' }}</td>
+                <td>{{ tra.fecha | date:'dd/M/Y' }}</td>
                 <td>{{ tra.concepto }}</td>
                 <td><ng-container *ngIf="tra.tipo == 'cargo'">{{ tra.monto | currency: 'MXN' }}</ng-container></td>
                 <td><ng-container *ngIf="tra.tipo == 'abono'">{{ tra.monto | currency: 'MXN' }}</ng-container></td>

@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-4">
             <h4>Nuevo mantenimiento</h4>
+            <div id="error_mtto" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
             <form class="row g-3">
                 <div class="col-12">
                     <input [(ngModel)]="mantenimientoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
@@ -18,7 +19,7 @@
                 <div class="col-6">
                     <label for="txtFecha" class="form-label">Fecha</label>
                     <div style="position: relative;">
-                        <input style="position:relative;" [(ngModel)]="mantenimientoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" autocomplete="off" />
+                        <input style="position:relative;" [(ngModel)]="mantenimientoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" autocomplete="off" id="dtFecha" />
                         <mat-datepicker-toggle matSuffix style="position: absolute; right: 0px; top: 0px;" [for]="txtFecha"></mat-datepicker-toggle>
                     </div>
                     <mat-datepicker #txtFecha></mat-datepicker>

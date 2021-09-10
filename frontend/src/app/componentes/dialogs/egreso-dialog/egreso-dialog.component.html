@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h4>{{ data.tituloVentana }}</h4>
+    
+    <div id="error_egreso" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
+    <form class="row g-3">
+        <div class="col-12">
+            <input [(ngModel)]="egresoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <!-- <label for="txtID" class="form-label">No. Remisión</label>
+            <input [(ngModel)]="pagoActivo.id" class="form-control" type="text" name="id" id="txtID" /> -->
+        </div>
+        <div class="col-6">
+            <label for="txtFecha" class="form-label">Fecha del egreso</label>
+            <div style="position: relative;">
+                <input [(ngModel)]="egresoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" id="dtFechaEgreso">
+                <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFecha"></mat-datepicker-toggle>
+            </div>
+            <mat-datepicker #txtFecha></mat-datepicker>
+        </div>
+        <div class="col-6">
+            <label for="nTotal" class="form-label">Importe</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input [(ngModel)]="egresoActivo.monto" class="form-control" type="number" name="monto" id="nTotal"/>
+            </div>
+            <!-- <label for="txtConcepto" class="form-label">Método de pago</label>
+            <select [(ngModel)]="egresoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
+                <option value="0" selected>Seleccione un método de pago</option>
+                <option value="Efectivo">Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+                <option value="Cheque">Cheque</option>
+            </select> -->
+        </div>
+        <div class="col-12">
+            <label for="txtConcepto" class="form-label">Concepto</label>
+            <textarea class="form-control" [(ngModel)]="egresoActivo.metodoPago" name="metodoPago" id="txtConcepto" cols="30" rows="3"></textarea>
+        </div>
+        
+        <div class="col-12 d-flex justify-content-end">
+            <button (click)="GenerarEgreso()" class="btn btn-primary">Guardar</button>
+        </div>
+    </form>
+</div>

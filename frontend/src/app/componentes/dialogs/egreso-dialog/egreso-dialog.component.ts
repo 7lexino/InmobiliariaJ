@@ -2,31 +2,30 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Pago } from 'src/app/interfaces/pago';
+import { Transaccion } from 'src/app/interfaces/transaccion';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { PagosService } from 'src/app/servicios/pagos.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-pago-dialog',
-  templateUrl: './pago-dialog.component.html',
-  styleUrls: ['./pago-dialog.component.css']
+  selector: 'app-egreso-dialog',
+  templateUrl: './egreso-dialog.component.html',
+  styleUrls: ['./egreso-dialog.component.css']
 })
-export class PagoDialogComponent implements OnInit {
+export class EgresoDialogComponent implements OnInit {
 
   //Variables
-  pagoActivo: Pago = {
+  egresoActivo: Pago = {
     _id: '',
     fecha: '',
-    metodoPago: '',
+    metodoPago: '', //Aquí se utilizará como conepto del egreso
     monto: 0
   }
 
   //Default methods
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
-    tituloVentana: string,
-    noContrato: number
-  }, private matDialogRef: MatDialogRef<PagoDialogComponent>, private pagoService: PagosService, public authService: AuthService,
+    tituloVentana: string
+  }, private matDialogRef: MatDialogRef<EgresoDialogComponent>, public authService: AuthService, private pagoService: PagosService,
   private dateAdapter: DateAdapter<Date>) { 
     this.dateAdapter.setLocale('mx');
   }
@@ -37,28 +36,28 @@ export class PagoDialogComponent implements OnInit {
   //Custom methods
 
   MostrarError(mensaje: string){
-    $("#error_pago").text(mensaje);
-    $("#error_pago").hide();
-    $("#error_pago").show("slow", function(){
+    $("#error_egreso").text(mensaje);
+    $("#error_egreso").hide();
+    $("#error_egreso").show("slow", function(){
       setTimeout(function(){
-        $("#error_pago").hide("slow");
+        $("#error_egreso").hide("slow");
       }, 1800)
     });
   }
 
   ClearFields(){
-    this.pagoActivo._id = '';
-    this.pagoActivo.fecha = '';
-    this.pagoActivo.metodoPago = '';
-    this.pagoActivo.monto = 0;
+    this.egresoActivo._id = '';
+    this.egresoActivo.fecha = '';
+    this.egresoActivo.metodoPago = '';
+    this.egresoActivo.monto = 0;
   }
 
   ValidarFormulario(){
-    const fPago = $("#dtFechaPago").val();
-    const metodoPago = $("#selMetodoPago").val();
+    const fEgreso = $("#dtFechaEgreso").val();
+    const metodoPago = $("#txtConcepto").val();
     const importe = $("#nTotal").val();
 
-    if(fPago == ""){
+    if(fEgreso == ""){
       this.MostrarError("El campo fecha se encuentra vacío");
       return false;
     }
@@ -76,17 +75,17 @@ export class PagoDialogComponent implements OnInit {
     return true;
   }
 
-  CrearPago(){
+  GenerarEgreso(){
     //Validamos
     if(!this.ValidarFormulario()){
       return; //Detenemos ejecución
     }
-    
-    this.pagoService.CrearPago(this.pagoActivo, this.data.noContrato).subscribe(
+
+    this.pagoService.CrearPago(this.egresoActivo, 0).subscribe(
       res => {
         Swal.fire({
-          title: "Pago generado",
-          text: 'El pago se ha generado exitosamente.',
+          title: "Egreso registrado", 
+          text: 'El egreso se ha registrado exitosamente.',
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });
@@ -96,4 +95,5 @@ export class PagoDialogComponent implements OnInit {
       err => console.log(err)
     )
   }
+
 }

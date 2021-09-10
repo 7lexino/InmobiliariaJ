@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/servicios/auth.service';
-import { faSignOutAlt, faHome, faUsers, faFileContract, faStream, faFileInvoiceDollar } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faHome, faUsers, faFileContract, faStream, faFileInvoiceDollar, faPiggyBank } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   faFileContract = faFileContract;
   faFileInvoiceDollar = faFileInvoiceDollar;
   faStream = faStream;
+  faPiggyBank = faPiggyBank;
 
   //Default methods
 

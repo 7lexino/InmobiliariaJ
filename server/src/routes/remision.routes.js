@@ -10,6 +10,8 @@ router.get('/remisiones/:noContrato', async (req, res) => {
 });
 
 router.post('/nueva', async (req, res) => {
+    let fecha = new Date(Date.now());
+    console.log(fecha);
     const { factura, concepto, total, noContrato } = req.body;
     let ultimoNoRemision = 1;
     let saldoNuevo = total;
@@ -30,12 +32,12 @@ router.post('/nueva', async (req, res) => {
     if(ultimaTransaccion){
         saldoNuevo = ultimaTransaccion.saldo + total;
     }
-    
+    console.log(fecha.getFullYear() + '-' + fecha.getMonth() + '-' + fecha.getDay());
     if(factura == ''){
-        const newTransaccion = new Transaccion({tipo:'cargo', concepto: newRemision.id + '. ' + concepto, monto: total, saldo: saldoNuevo, adjuntoId: newRemision.id, noContrato});
+        const newTransaccion = new Transaccion({ fecha: fecha.toISOString(), tipo:'cargo', concepto: newRemision.id + '. ' + concepto, monto: total, saldo: saldoNuevo, adjuntoId: newRemision.id, noContrato });
         await newTransaccion.save();
     }else{
-        const newTransaccion2 = new Transaccion({tipo:'cargo', concepto: newRemision.id + '. ' + concepto, monto: total, saldo: saldoNuevo, adjuntoId: factura, noContrato});
+        const newTransaccion2 = new Transaccion({ fecha: fecha.toISOString(), tipo:'cargo', concepto: newRemision.id + '. ' + concepto, monto: total, saldo: saldoNuevo, adjuntoId: factura, noContrato });
         await newTransaccion2.save();
     }
 

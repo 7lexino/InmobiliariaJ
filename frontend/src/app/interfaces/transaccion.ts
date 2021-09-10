@@ -1,6 +1,7 @@
 export interface Transaccion {
     _id: string,
-    tipo: string, //Cargo o Abono
+    fecha: string,
+    tipo: string, //Cargo, Abono o Egreso (Juguel)
     concepto: string,
     monto: number,
     saldo: number,

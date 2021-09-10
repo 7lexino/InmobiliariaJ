@@ -28,13 +28,14 @@ import { ContratoDialogComponent } from './componentes/dialogs/contrato-dialog/c
 import { InquilinoDialogComponent } from './componentes/dialogs/inquilino-dialog/inquilino-dialog.component';
 import { PropiedadDialogComponent } from './componentes/dialogs/propiedad-dialog/propiedad-dialog.component';
 import { MantenimientoDialogComponent } from './componentes/dialogs/mantenimiento-dialog/mantenimiento-dialog.component';
-import { EdoCuentaDialogComponent } from './componentes/dialogs/edo-cuenta-dialog/edo-cuenta-dialog.component';
 import { PagosComponent } from './componentes/pagos/pagos.component';
 import { RemisionesComponent } from './componentes/remisiones/remisiones.component';
 import { RemisionDialogComponent } from './componentes/dialogs/remision-dialog/remision-dialog.component';
 import { EstadoCuentaComponent } from './componentes/estado-cuenta/estado-cuenta.component';
 import { PagoDialogComponent } from './componentes/dialogs/pago-dialog/pago-dialog.component';
 import { ClaveRegistroDialogComponent } from './componentes/dialogs/clave-registro-dialog/clave-registro-dialog.component';
+import { EdoCuentaEmpresaComponent } from './componentes/edo-cuenta-empresa/edo-cuenta-empresa.component';
+import { EgresoDialogComponent } from './componentes/dialogs/egreso-dialog/egreso-dialog.component';
 
 @NgModule({
   declarations: [
@@ -51,13 +52,14 @@ import { ClaveRegistroDialogComponent } from './componentes/dialogs/clave-regist
     InquilinoDialogComponent,
     PropiedadDialogComponent,
     MantenimientoDialogComponent,
-    EdoCuentaDialogComponent,
     PagosComponent,
     RemisionesComponent,
     RemisionDialogComponent,
     EstadoCuentaComponent,
     PagoDialogComponent,
     ClaveRegistroDialogComponent,
+    EdoCuentaEmpresaComponent,
+    EgresoDialogComponent,
   ],
   imports: [
     BrowserModule,

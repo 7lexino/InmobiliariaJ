@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EdoCuentaDialogComponent } from './edo-cuenta-dialog.component';
+import { EdoCuentaEmpresaComponent } from './edo-cuenta-empresa.component';
 
-describe('EdoCuentaDialogComponent', () => {
-  let component: EdoCuentaDialogComponent;
-  let fixture: ComponentFixture<EdoCuentaDialogComponent>;
+describe('EdoCuentaEmpresaComponent', () => {
+  let component: EdoCuentaEmpresaComponent;
+  let fixture: ComponentFixture<EdoCuentaEmpresaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EdoCuentaDialogComponent ]
+      declarations: [ EdoCuentaEmpresaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EdoCuentaDialogComponent);
+    fixture = TestBed.createComponent(EdoCuentaEmpresaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

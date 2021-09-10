@@ -5,7 +5,6 @@ import { faEye, faMoneyBillAlt, faTrashAlt, faAddressCard } from '@fortawesome/f
 import { MatDialog } from '@angular/material/dialog';
 import { InquilinoDialogComponent } from '../dialogs/inquilino-dialog/inquilino-dialog.component';
 import { AuthService } from 'src/app/servicios/auth.service';
-import { EdoCuentaDialogComponent } from '../dialogs/edo-cuenta-dialog/edo-cuenta-dialog.component';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -136,18 +135,4 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
       )
     }
   }
-
-  VerEdoCuenta(){
-    const dialogRef = this.matDialog.open(EdoCuentaDialogComponent, {
-      data: {
-        tituloVentana: "Estado de cuenta",
-        inquilinoActivo: this.inquilinoActivo
-      },
-      width: "800px"
-    });
-    dialogRef.afterClosed().subscribe(res => {
-      
-    });
-  }
-
 }

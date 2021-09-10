@@ -25,6 +25,7 @@ export class EstadoCuentaComponent implements OnInit {
   transacciones: Transaccion[] = [];
   transaccionActiva: Transaccion = {
     _id: '',
+    fecha: '',
     tipo: '',
     concepto: '',
     monto: 0,

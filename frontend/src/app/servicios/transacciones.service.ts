@@ -22,4 +22,8 @@ export class TransaccionesService {
   UltimaTransaccionPorContrato(noContrato: number){
     return this.http.get<Transaccion>(this.URL + '/ultima_por_contrato/' + noContrato);
   }
+
+  GetTransaccionesEmpresa(){
+    return this.http.get<Transaccion[]>(this.URL + '/transacciones_empresa');
+  }
 }

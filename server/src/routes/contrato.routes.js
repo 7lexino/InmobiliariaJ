@@ -45,7 +45,7 @@ router.post('/nuevo', async (req, res) => {
 
 router.get('/todos', async (req, res) => {
     //Hacemos la consulta
-    const contratos = await Contrato.find({});
+    const contratos = await Contrato.find({ noContrato: { $gt: 0 } });
 
     //Enviamos la respuesta obtenida al frontend
     res.status(200).json(contratos);

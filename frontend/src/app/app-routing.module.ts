@@ -12,6 +12,7 @@ import { FacturasComponent } from './componentes/facturas/facturas.component';
 import { ContratosComponent } from './componentes/contratos/contratos.component';
 import { RemisionesComponent } from './componentes/remisiones/remisiones.component';
 import { EstadoCuentaComponent } from './componentes/estado-cuenta/estado-cuenta.component';
+import { EdoCuentaEmpresaComponent } from './componentes/edo-cuenta-empresa/edo-cuenta-empresa.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,11 @@ const routes: Routes = [
   {
     path: 'contratos',
     component: ContratosComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'finanzas',
+    component: EdoCuentaEmpresaComponent,
     canActivate: [AuthGuard]
   },
   {

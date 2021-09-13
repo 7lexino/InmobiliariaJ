@@ -15,6 +15,10 @@ export class TransaccionesService {
     return this.http.post<boolean>(this.URL + '/nueva', transaccion);
   }
 
+  TransaccionInicial(transaccion: Transaccion){
+    return this.http.post<boolean>(this.URL + 'transaccion_inicial', transaccion);
+  }
+
   GetTransaccionesByContrato(noContrato: number){
     return this.http.get<Transaccion[]>(this.URL + '/todas_by_contrato/' + noContrato);
   }

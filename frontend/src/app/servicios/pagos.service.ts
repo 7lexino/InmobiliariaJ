@@ -31,10 +31,10 @@ export class PagosService {
 
     //Ahora generamos una transacción para el contrato del inquilino
     this.transaccion.fecha = dFecha.toISOString();
-    noContrato == 0 ? this.transaccion.tipo = 'egreso' : this.transaccion.tipo = 'abono';
-    this.transaccion.concepto = pago.metodoPago;
+    this.transaccion.tipo = noContrato == 0 ? 'egreso' : 'abono';
+    this.transaccion.concepto = noContrato == 0 ? pago.metodoPago : pago.metodoPago + " realizada para contrato " + noContrato;
     this.transaccion.monto = pago.monto;
-    this.transaccion.adjuntoId = '';
+    this.transaccion.adjuntoId = pago.metodoPago == "Transferencia" ? "transferencia" : "";
     this.transaccion.noContrato = noContrato;
     
     this.tranService.UltimaTransaccionPorContrato(noContrato).subscribe(

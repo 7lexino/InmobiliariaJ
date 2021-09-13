@@ -11,6 +11,11 @@ router.post('/nueva', async (req, res) => {
     res.status(200).send(true);
 });
 
+router.post('transaccion_inicial', async (req, res) => {
+    const { fecha, tipo, concepto, monto, saldo, adjuntoId, noContrato } = req.body;
+    //const newTransaccion = new Transaccion({  })
+});
+
 router.get('/ultima_por_contrato/:noContrato', async (req, res) => {
     const transaccion = await Transaccion.findOne({ noContrato: req.params.noContrato}, {}, { sort: { 'createdAt': -1 } });
     res.status(200).json(transaccion);
@@ -30,7 +35,7 @@ router.get('/todas_by_contrato/:noContrato', async (req, res) => {
 });
 
 router.get('/transacciones_empresa', async (req, res) => {
-    const transacciones = await Transaccion.find({ noContrato: 0, $or: [{tipo: "abono"}, {tipo: "egreso"}] }, {}, { sort: { 'fecha': 1, 'createdAt': 1 } });
+    const transacciones = await Transaccion.find({ adjuntoId: "transferencia", noContrato: 0, $or: [{tipo: "abono"}, {tipo: "egreso"}] }, {}, { sort: { 'fecha': 1, 'createdAt': 1 } });
     res.status(200).json(transacciones);
 });
 

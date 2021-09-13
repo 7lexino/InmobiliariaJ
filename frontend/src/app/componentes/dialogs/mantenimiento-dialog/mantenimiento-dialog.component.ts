@@ -167,7 +167,12 @@ export class MantenimientoDialogComponent implements OnDestroy, OnInit {
   ActualizarMantenimiento(){
     this.mttoService.UpdateMantenimiento(this.mantenimientoActivo).subscribe(
       res =>{
-        alert("¡Mantenimiento actualizado!");
+        Swal.fire({
+          title: "Mantenimiento actualizado", 
+          text: 'El mantenimiento se ha guardado correctamente.',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
         this.GetMantenimientos();
       },
       err => console.log(err)
@@ -200,17 +205,17 @@ export class MantenimientoDialogComponent implements OnDestroy, OnInit {
     )
   }
 
-  EliminarMantenimiento(mttoId: string){
-    //Validamos
-    if(!this.ValidarFormulario()){
-      return; //Detenemos ejecución
-    }
-
+  EliminarMantenimiento(mttoId: string){    
     if(confirm("¿Realmente desea eliminar el mantenimiento?")){
       this.mttoService.DeleteMantenimiento(mttoId).subscribe(
         res => {
           if(res == true){
-            alert("Se ha eliminado correctamente");
+            Swal.fire({
+              title: "Mantenimiento eliminado", 
+              text: 'El mantenimiento se ha eliminado correctamente.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+            });
             this.GetMantenimientos();
           }
         },

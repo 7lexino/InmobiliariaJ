@@ -10,6 +10,8 @@ import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DataTablesModule } from 'angular-datatables'
+// require('datatables.net-dt');
+// require('datatables.net-buttons-dt');
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -74,8 +76,8 @@ import { EgresoDialogComponent } from './componentes/dialogs/egreso-dialog/egres
     MatButtonModule,
     MatNativeDateModule,
     MatDialogModule,
-    DataTablesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule
   ],
   providers: [
     AuthGuard,

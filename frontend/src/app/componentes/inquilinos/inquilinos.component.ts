@@ -51,7 +51,7 @@ constructor(public authService: AuthService, private inquiService: InquilinosSer
       order: [[0, 'asc']],
       language: {
         url: '../../../assets/lang/datatable_lang.json'
-      }
+      },
     };
   }
 

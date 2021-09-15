@@ -53,7 +53,8 @@ export class EstadoCuentaComponent implements OnInit {
       pageLength: 100,
       language: {
         url: '../../../assets/lang/datatable_lang.json'
-      }
+      },
+      dom: 'Bfrtip'
     };
 
     //Recopilamos la información de los parametros

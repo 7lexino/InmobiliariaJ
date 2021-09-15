@@ -9,7 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCommonModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DataTablesModule } from 'angular-datatables'
+import { DataTablesModule } from 'angular-datatables';
+//import { DataTablesModule } from 'angular-datatables'
 // require('datatables.net-dt');
 // require('datatables.net-buttons-dt');
 

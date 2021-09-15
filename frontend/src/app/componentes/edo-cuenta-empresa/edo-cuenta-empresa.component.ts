@@ -33,7 +33,6 @@ export class EdoCuentaEmpresaComponent implements OnInit {
     createdAt: ''
   }
 
-
   //Default methods
   constructor(public authService: AuthService,
     public tranService: TransaccionesService,
@@ -46,11 +45,11 @@ export class EdoCuentaEmpresaComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 100,
+      processing: true,
       language: {
         url: '../../../assets/lang/datatable_lang.json'
       },
-      dom: 'Bfrtip',
-      //buttons: ['excel']
+      dom: 'Bfrtip'
     };
 
   }

@@ -95,6 +95,8 @@ export class RemisionDialogComponent implements OnInit {
       return; //Detenemos ejecución
     }
 
+    //Primero generamos el PDF de la remisión
+
     this.remiService.CrearRemision(this.remisionActiva, this.data.noContrato).subscribe(
       res => {
         Swal.fire({

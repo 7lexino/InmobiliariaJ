@@ -65,7 +65,7 @@ export class RemisionesComponent implements OnInit {
 
   CargarTabla(){
     if($.fn.dataTable.isDataTable('#dtRemisiones')){
-      var table = $("#dtRemisiones").DataTable();
+      var table = $("#dtRemisiones").DataTable(this.dtOptions);
       table.destroy();
     }
     this.remiService.GetRemisiones(this.noContrato).subscribe(
@@ -74,7 +74,7 @@ export class RemisionesComponent implements OnInit {
         this.dtTrigger.next();
       },
       err => console.log(err)
-    )
+    );
   }
 
   NuevaRemision(){

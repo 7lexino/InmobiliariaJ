@@ -4,8 +4,8 @@ const router = Router();
 const Mantenimiento = require('../models/Mantenimiento');
 
 router.post('/nuevo', async (req, res) => {
-    const { fecha, descripcion, costo, propiedadId } = req.body;
-    const newMtto = new Mantenimiento({ fecha, descripcion, costo, propiedadId });
+    const { fecha, descripcion, costo, propiedadId, metodoPago } = req.body;
+    const newMtto = new Mantenimiento({ fecha, descripcion, costo, propiedadId, metodoPago });
     await newMtto.save();
     res.status(200).send(true);
 });

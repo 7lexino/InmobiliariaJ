@@ -18,9 +18,10 @@ export class EgresoDialogComponent implements OnInit {
   egresoActivo: Pago = {
     _id: '',
     fecha: '',
-    metodoPago: '', //Aquí se utilizará como conepto del egreso
+    metodoPago: 'Transferencia', //Aquí se utilizará como conepto del egreso
     monto: 0
   }
+  concepto: string = "";
 
   //Default methods
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
@@ -48,13 +49,13 @@ export class EgresoDialogComponent implements OnInit {
   ClearFields(){
     this.egresoActivo._id = '';
     this.egresoActivo.fecha = '';
-    this.egresoActivo.metodoPago = '';
+    this.egresoActivo.metodoPago = 'Transferencia';
     this.egresoActivo.monto = 0;
   }
 
   ValidarFormulario(){
     const fEgreso = $("#dtFechaEgreso").val();
-    const metodoPago = $("#txtConcepto").val();
+    const concepto = $("#txtConcepto").val();
     const importe = $("#nTotal").val();
 
     if(fEgreso == ""){
@@ -62,7 +63,7 @@ export class EgresoDialogComponent implements OnInit {
       return false;
     }
 
-    if(metodoPago == null || metodoPago == "0"){
+    if(concepto == null || concepto == "0"){
       this.MostrarError("Seleccione un método de pago");
       return false;
     }
@@ -81,7 +82,7 @@ export class EgresoDialogComponent implements OnInit {
       return; //Detenemos ejecución
     }
 
-    this.pagoService.CrearPago(this.egresoActivo, 0).subscribe(
+    this.pagoService.CrearPago(this.egresoActivo, 0, this.concepto).subscribe(
       res => {
         Swal.fire({
           title: "Egreso registrado", 

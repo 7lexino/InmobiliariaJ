@@ -4,6 +4,7 @@ const router = Router();
 const Contrato = require('../models/Contrato');
 const Propiedad = require('../models/Propiedad');
 const Inquilino = require('../models/Inquilino');
+const Transaccion = require('../models/Transaccion');
 
 router.post('/nuevo', async (req, res) => {
     var { tipo, fechaInicio, fechaCierre, aval, costoInicial, costoPeriodo, propiedad, inquilino  } = req.body;
@@ -29,7 +30,7 @@ router.post('/nuevo', async (req, res) => {
         }
 
         //Cuando ya tenemos todos los datos recopilados y guardados, ahora si creamos el contrato
-        const newContrato = new Contrato({noContrato, tipo, fechaInicio, fechaCierre, aval, costoInicial, costoPeriodo, propiedad, inquilino});
+        const newContrato = new Contrato({noContrato, tipo, fechaInicio, fechaCierre, aval, costoInicial, costoPeriodo, propiedad, inquilino, saldo:0 });
         await newContrato.save(); //Guardamos los datos en la DB
 
         //Ahora cambiamos el estatus de la propiedad a "Rentada"
@@ -45,8 +46,13 @@ router.post('/nuevo', async (req, res) => {
 
 router.get('/todos', async (req, res) => {
     //Hacemos la consulta
-    const contratos = await Contrato.find({ noContrato: { $gt: 0 } });
+    var contratos = await Contrato.find({ noContrato: { $gt: 0 } });
 
+    // contratos.forEach(async c => {
+    //     var ultimaTrans = await Transaccion.findOne({ noContrato: c.noContrato}, {}, { sort: { 'createdAt': -1 } });
+    //     c.saldo = ultimaTrans.saldo;
+    // });
+    // console.log(contratos);
     //Enviamos la respuesta obtenida al frontend
     res.status(200).json(contratos);
 })

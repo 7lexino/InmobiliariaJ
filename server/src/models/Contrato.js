@@ -5,6 +5,7 @@ const contratoSchema = new Schema({
     tipo: Boolean, //True=facturado, False=No facturado
     fechaInicio: String,
     fechaCierre: String,
+    saldo: Number,
     aval: {
         nombre: String,
         correo: String,

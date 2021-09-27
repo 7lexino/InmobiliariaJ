@@ -4,4 +4,5 @@ export interface Mantenimiento {
     descripcion: string,
     costo: number,
     propiedadId: string
+    metodoPago: string
 }

@@ -24,6 +24,14 @@
                     </div>
                     <mat-datepicker #txtFecha></mat-datepicker>
                 </div>
+                <div class="col-12">
+                    <label for="txtConcepto" class="form-label">Método de pago</label>
+                    <select [(ngModel)]="mantenimientoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
+                        <option value="0" selected>Seleccione un método de pago</option>
+                        <option value="Efectivo">Efectivo</option>
+                        <option value="Transferencia">Transferencia</option>
+                    </select>
+                </div>
                 <div class="col-12 d-flex justify-content-end">
                     <button (click)="ClearFieldsMtto()" class="btn btn-info">Limpiar</button>
                     <button (click)="GuardarMantenimiento()" class="btn btn-primary ms-2">Guardar</button>

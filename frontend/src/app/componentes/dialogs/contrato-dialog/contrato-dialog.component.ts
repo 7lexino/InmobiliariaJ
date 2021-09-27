@@ -23,6 +23,7 @@ export class ContratoDialogComponent implements OnInit {
     noContrato: 0,
     fechaInicio: '',
     fechaCierre: '',
+    saldo: 0,
     aval: {
         nombre: '',
         correo: '',

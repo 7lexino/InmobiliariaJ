@@ -45,7 +45,8 @@ export class MantenimientoDialogComponent implements OnDestroy, OnInit {
     fecha: '',
     descripcion: '',
     costo: 0,
-    propiedadId: ''
+    propiedadId: '',
+    metodoPago: ''
   };
 
   egresoActivo: Pago = {
@@ -226,16 +227,16 @@ export class MantenimientoDialogComponent implements OnDestroy, OnInit {
 
   GenerarEgreso(){
     this.egresoActivo.fecha = this.mantenimientoActivo.fecha;
-    this.egresoActivo.metodoPago = "Mantenimiento: " + this.mantenimientoActivo.descripcion;
+    this.egresoActivo.metodoPago = this.mantenimientoActivo.metodoPago;
     this.egresoActivo.monto = this.mantenimientoActivo.costo;
 
-    this.pagoService.CrearPago(this.egresoActivo, 0).subscribe(
+    this.pagoService.CrearPago(this.egresoActivo, 0, "Mantenimiento en propiedad " + this.propiedadActiva.predial + ": " + this.mantenimientoActivo.descripcion).subscribe(
       res => {
         this.ClearFields();
-        //this.matDialogRef.close(true);
       },
       err => console.log(err)
     )
+    
   }
 
 }

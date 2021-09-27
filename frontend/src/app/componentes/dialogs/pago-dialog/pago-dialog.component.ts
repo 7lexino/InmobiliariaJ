@@ -76,7 +76,7 @@ export class PagoDialogComponent implements OnInit {
     return true;
   }
 
-  CrearPago(){
+  async CrearPago(){
     //Validamos
     if(!this.ValidarFormulario()){
       return; //Detenemos ejecución
@@ -84,14 +84,16 @@ export class PagoDialogComponent implements OnInit {
     
     this.pagoService.CrearPago(this.pagoActivo, this.data.noContrato).subscribe(
       res => {
-        Swal.fire({
-          title: "Pago generado",
-          text: 'El pago se ha generado exitosamente.',
-          icon: 'success',
-          confirmButtonText: 'Aceptar'
-        });
-        this.ClearFields();
-        this.matDialogRef.close(true);
+        if(res){
+          Swal.fire({
+            title: "Pago generado",
+            text: 'El pago se ha generado exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          this.ClearFields();
+          this.matDialogRef.close(true);
+        }
       },
       err => console.log(err)
     )

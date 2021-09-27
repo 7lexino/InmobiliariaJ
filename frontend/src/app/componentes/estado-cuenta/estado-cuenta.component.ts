@@ -86,6 +86,13 @@ export class EstadoCuentaComponent implements OnInit {
     this.tranService.GetTransaccionesByContrato(this.noContrato).subscribe(
       res => {
         this.transacciones = res;
+        var saldoAnt = 0;
+        this.transacciones.forEach(e => {
+          if(e.tipo == "abono") e.saldo = saldoAnt + e.monto;
+          else if(e.tipo == "cargo") e.saldo = saldoAnt - e.monto;
+          saldoAnt = e.saldo;
+        });
+
         this.dtTrigger.next();
       },
       err => console.log(err)

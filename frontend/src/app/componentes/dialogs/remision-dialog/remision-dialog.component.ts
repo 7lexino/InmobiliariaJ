@@ -4,6 +4,7 @@ import { Remision } from 'src/app/interfaces/remision';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { RemisionesService } from 'src/app/servicios/remisiones.service';
 import Swal from 'sweetalert2';
+import { jsPDF } from "jspdf";
 
 @Component({
   selector: 'app-remision-dialog',
@@ -95,9 +96,7 @@ export class RemisionDialogComponent implements OnInit {
       return; //Detenemos ejecución
     }
 
-    //Primero generamos el PDF de la remisión
-
-    this.remiService.CrearRemision(this.remisionActiva, this.data.noContrato).subscribe(
+    this.remiService.CrearRemision(this.remisionActiva).subscribe(
       res => {
         Swal.fire({
           title: "Remisión generada",
@@ -109,7 +108,7 @@ export class RemisionDialogComponent implements OnInit {
         this.matDialogRef.close(true);
       },
       err => console.log(err)
-    )
+    );
   }
 
 }

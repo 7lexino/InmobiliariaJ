@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContratoDialogComponent } from '../dialogs/contrato-dialog/contrato-dialog.component';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Subject } from 'rxjs';
+import { jsPDF } from "jspdf";
+import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 
 //Usar Angular Material para componente datepicker y otros componentes
 
@@ -32,6 +34,7 @@ export class ContratosComponent implements OnInit {
     noContrato: 0,
     fechaInicio: '',
     fechaCierre: '',
+    saldo: 0,
     aval: {
         nombre: '',
         correo: '',
@@ -68,7 +71,7 @@ export class ContratosComponent implements OnInit {
   
   
   //Default Methods
-constructor(public authService:AuthService, private contrService: ContratosService, private matDialog: MatDialog) { }
+constructor(public authService:AuthService, private contrService: ContratosService, private tranService: TransaccionesService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.authService.VerificarToken();
@@ -145,6 +148,7 @@ constructor(public authService:AuthService, private contrService: ContratosServi
       },
       err => console.log(err)
     )
+    this.dtTrigger.next();
   }
 
   GetActivos(){
@@ -188,6 +192,13 @@ constructor(public authService:AuthService, private contrService: ContratosServi
       },
       err => console.log(err)
     )
+  }
+
+  GenerarPDF(){
+    const doc = new jsPDF();
+
+    doc.text("Hola mundo en PDF", 10, 10);
+    doc.save("a4.pdf"); //Genera y descarga el PDF
   }
 
 }

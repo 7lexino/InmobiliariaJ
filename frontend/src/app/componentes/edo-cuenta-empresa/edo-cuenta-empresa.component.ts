@@ -63,7 +63,7 @@ export class EdoCuentaEmpresaComponent implements OnInit {
 
   CargarTabla(){
     if($.fn.dataTable.isDataTable('#dtEdoCuentaE')){
-      var table = $("#dtEdoCuentaE").DataTable(this.dtOptions);
+      var table = $("#dtEdoCuentaE").DataTable();
       table.destroy();
     }
     this.tranService.GetTransaccionesEmpresa().subscribe(
@@ -123,7 +123,7 @@ export class EdoCuentaEmpresaComponent implements OnInit {
     this.transaccionActiva.monto = _saldo;
     this.transaccionActiva.saldo = 0;
     this.transaccionActiva.noContrato = 0;
-
+    this.transaccionActiva.adjuntoId = "transferencia";
 
     this.tranService.GenerarTransaccion(this.transaccionActiva).subscribe(res => {
       if(res){

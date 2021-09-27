@@ -4,7 +4,8 @@ const mantenimientoSchema = new Schema({
     fecha: String,
     descripcion: String,
     costo: Number,
-    propiedadId: String
+    propiedadId: String,
+    metodoPago: String,
 }, {
     timestamps: true
 });

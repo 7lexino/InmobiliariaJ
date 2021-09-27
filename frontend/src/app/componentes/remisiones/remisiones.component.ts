@@ -7,6 +7,7 @@ import { Remision } from 'src/app/interfaces/remision';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { RemisionesService } from 'src/app/servicios/remisiones.service';
 import { RemisionDialogComponent } from '../dialogs/remision-dialog/remision-dialog.component';
+import { jsPDF } from "jspdf";
 
 @Component({
   selector: 'app-remisiones',
@@ -88,6 +89,14 @@ export class RemisionesComponent implements OnInit {
     ref.afterClosed().subscribe(res => {
       this.CargarTabla();
     });
+  }
+
+  GenerarPDF(){
+    //Primero generamos el PDF de la remisión
+    const doc = new jsPDF();
+
+    doc.text("Hola mundo en PDF", 10, 10);
+    doc.save("a4.pdf");
   }
 
 }

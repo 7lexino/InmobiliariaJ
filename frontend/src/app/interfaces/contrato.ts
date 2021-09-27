@@ -7,6 +7,7 @@ export interface Contrato {
     tipo: boolean, //True=facturado, False=No facturado
     fechaInicio: string,
     fechaCierre: string,
+    saldo: number,
     aval: {
         nombre: string,
         correo: string,

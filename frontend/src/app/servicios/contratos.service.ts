@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Contrato } from '../interfaces/contrato';
-import { InquilinosService } from './inquilinos.service';
-import { PropiedadesService } from './propiedades.service';
+import { TransaccionesService } from './transacciones.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +10,9 @@ export class ContratosService {
 
   private URL = 'http://localhost:3000/api/contrato';
 
-  constructor(private http:HttpClient, private propService: PropiedadesService, private inquiService: InquilinosService) { }
+  constructor(private http:HttpClient, private tranService: TransaccionesService) { }
 
-  GetContratos(){
+  GetContratos() {
     return this.http.get<Contrato[]>(this.URL + '/todos');
   }
 

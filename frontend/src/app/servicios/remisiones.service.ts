@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Remision } from '../interfaces/remision';
 import { Transaccion } from '../interfaces/transaccion';
-import { TransaccionesService } from './transacciones.service';
+import { ContratosService } from './contratos.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,13 +22,13 @@ export class RemisionesService {
     createdAt: ''
   }
 
-  constructor(private http: HttpClient, private tranService: TransaccionesService) { }
+  constructor(private http: HttpClient, private contrService: ContratosService) { }
 
   GetRemisiones(noContrato: number){
     return this.http.get<Remision[]>(this.URL + '/remisiones/' + noContrato);
   }
 
-  CrearRemision(remision: Remision, noContrato: number){
+  CrearRemision(remision: Remision){
     return this.http.post<Boolean>(this.URL + '/nueva', remision);
   }
 }

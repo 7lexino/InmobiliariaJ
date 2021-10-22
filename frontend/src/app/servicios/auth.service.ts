@@ -10,7 +10,7 @@ import { Rangos } from '../enums/rangos-usuarios.enum';
 export class AuthService {
 
   eRangos = Rangos;
-  private URL = 'http://localhost:3000/api/user';
+  private URL = 'http://192.168.2.15:3000/api/user';
   private usuarioActivo: Usuario = {
     _id: '',
     nombre: '',

@@ -7,7 +7,7 @@ import { Mantenimiento } from '../interfaces/mantenimiento';
 })
 export class MantenimientosService {
 
-  private URL = 'http://localhost:3000/api/mantenimiento';
+  private URL = 'http://192.168.2.15:3000/api/mantenimiento';
 
   constructor(private http:HttpClient) { }
 

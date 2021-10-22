@@ -7,7 +7,7 @@ import { Transaccion } from '../interfaces/transaccion';
 })
 export class TransaccionesService {
 
-  private URL = 'http://localhost:3000/api/transaccion';
+  private URL = 'http://192.168.2.15:3000/api/transaccion';
 
   constructor(private http: HttpClient) { }
 

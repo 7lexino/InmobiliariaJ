@@ -7,7 +7,7 @@ import { Propiedad } from '../interfaces/propiedad';
 })
 export class PropiedadesService {
 
-  private URL = 'http://localhost:3000/api/propiedad';
+  private URL = 'http://192.168.2.15:3000/api/propiedad';
 
   constructor(private http:HttpClient) { }
 

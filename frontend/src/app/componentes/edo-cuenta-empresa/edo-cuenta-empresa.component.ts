@@ -4,8 +4,11 @@ import { faPrint } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
 import { Transaccion } from 'src/app/interfaces/transaccion';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { ExportarExcelService } from 'src/app/servicios/exportar-excel.service';
 import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { EgresoDialogComponent } from '../dialogs/egreso-dialog/egreso-dialog.component';
+import { ngxCsv } from 'ngx-csv/ngx-csv';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edo-cuenta-empresa',
@@ -36,7 +39,7 @@ export class EdoCuentaEmpresaComponent implements OnInit {
   //Default methods
   constructor(public authService: AuthService,
     public tranService: TransaccionesService,
-    private matDialog: MatDialog) { }
+    private matDialog: MatDialog, private excelService: ExportarExcelService) { }
 
   ngOnInit(): void {
     this.authService.VerificarToken();
@@ -48,8 +51,7 @@ export class EdoCuentaEmpresaComponent implements OnInit {
       processing: true,
       language: {
         url: '../../../assets/lang/datatable_lang.json'
-      },
-      dom: 'Bfrtip'
+      }
     };
 
   }
@@ -134,6 +136,84 @@ export class EdoCuentaEmpresaComponent implements OnInit {
       }
     },
     err => console.log(err));
+  }  
+
+  data = [
+    {
+      name: "Test 1",
+      age: 13,
+      average: 8.2,
+      approved: true,
+      description: "using 'Content here, content here' "
+    },
+    {
+      name: 'Test 2',
+      age: 11,
+      average: 8.2,
+      approved: true,
+      description: "using 'Content here, content here' "
+    },
+    {
+      name: 'Test 4',
+      age: 10,
+      average: 8.2,
+      approved: true,
+      description: "using 'Content here, content here' "
+    },
+    {
+      name: 'Test 4',
+      age: 10,
+      average: 8.2,
+      approved: true,
+      description: "using 'Content here, content here' "
+    },
+    {
+      name: 'Test 5',
+      age: 10,
+      average: 8.2,
+      approved: true,
+      description: "using 'Content here, content here' "
+    },
+    {
+      name: 'Test 6',
+      age: 11,
+      average: 8,
+      approved: false,
+      description: "Example"
+    }
+  ];
+
+  ImprimirEdoCuenta(noContrato: number) {
+    var date_inicio = $("#date_finicio").val();
+    var date_fin = $("#date_ffin").val();
+    
+    // Primero validamos que haya ingresado rango de fechas
+    if(date_inicio == "" || date_fin == ""){
+      Swal.fire({
+        title: "Error",
+        text: 'Introduce un rango de fechas',
+        icon: 'error',
+        confirmButtonText: 'Ok'
+      });
+      return;
+    }
+
+    this.excelService.ExportToExcel_EdoCuentaEmpresa(String(date_inicio), String(date_fin)).subscribe(
+      res => {
+        console.log(res);
+        if(res){
+          if(res){
+            window.open("assets/files/estado_cuenta.xlsx", "Download");
+          }
+        }
+      },
+      err => {
+        console.log("Entra aqui?");
+        console.log(err);
+        //window.open(err, "Download");
+      }
+    );
   }
 
 }
+

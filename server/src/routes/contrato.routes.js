@@ -73,7 +73,7 @@ router.get('/vencer', async (req, res) => {
     next.setDate(today.getDate() + 20); //Sumamos 20 días a la fecha actual
     today = today.toJSON().slice(0,10); //Convertimos la fecha a string
     next = next.toJSON().slice(0,10);
-    const contratos = await Contrato.find({ fechaCierre: {$gte: today, $ltes: next} });
+    const contratos = await Contrato.find({ fechaCierre: {$gte: today, $lte: next} });
     res.status(200).json(contratos);
 })
 
@@ -81,11 +81,11 @@ router.get('/archivados', async (req, res) => {
     const today = new Date().toJSON().slice(0,10); //Obtenemos la fecha actual y la convertimos a string
     const contratos = await Contrato.find({ fechaCierre: {$lt: today} });
     res.status(200).json(contratos);
-})
+});
 
 router.get('/get/:id', async (req, res) => {
     const contrato = await Contrato.findById(req.params.id);
     res.status(200).json(contrato);
-})
+});
 
 module.exports = router;

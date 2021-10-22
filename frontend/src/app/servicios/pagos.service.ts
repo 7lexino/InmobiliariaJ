@@ -12,7 +12,7 @@ import { TransaccionesService } from './transacciones.service';
 })
 export class PagosService {
 
-  private URL = 'http://localhost:3000/api/pago';
+  private URL = 'http://192.168.2.15:3000/api/pago';
   transaccion: Transaccion = {
     _id: '',
     fecha: '',

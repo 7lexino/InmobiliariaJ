@@ -7,7 +7,7 @@ import { Inquilino } from '../interfaces/inquilino';
 })
 export class InquilinosService {
 
-  private URL = 'http://localhost:3000/api/inquilino';
+  private URL = 'http://192.168.2.15:3000/api/inquilino';
 
   constructor(private http:HttpClient) { }
 

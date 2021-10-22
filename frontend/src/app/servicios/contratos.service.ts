@@ -8,7 +8,7 @@ import { TransaccionesService } from './transacciones.service';
 })
 export class ContratosService {
 
-  private URL = 'http://localhost:3000/api/contrato';
+  private URL = 'http://192.168.2.15:3000/api/contrato';
 
   constructor(private http:HttpClient, private tranService: TransaccionesService) { }
 

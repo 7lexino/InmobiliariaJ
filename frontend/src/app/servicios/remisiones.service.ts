@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Configuracion } from '../enums/config.enum';
 import { Remision } from '../interfaces/remision';
 import { Transaccion } from '../interfaces/transaccion';
 import { ContratosService } from './contratos.service';
@@ -9,7 +10,8 @@ import { ContratosService } from './contratos.service';
 })
 export class RemisionesService {
 
-  private URL = 'http://192.168.2.15:3000/api/remision';
+  eConfig = Configuracion;
+  private URL = this.eConfig.url_db + "/api/remision";
   transaccion: Transaccion = {
     _id: '',
     fecha: '',

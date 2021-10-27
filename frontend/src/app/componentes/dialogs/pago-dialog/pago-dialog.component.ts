@@ -76,7 +76,7 @@ export class PagoDialogComponent implements OnInit {
     return true;
   }
 
-  async CrearPago(){
+  CrearPago(){
     //Validamos
     if(!this.ValidarFormulario()){
       return; //Detenemos ejecución

@@ -41,7 +41,7 @@
                 <ng-template #nuevoContrato>
                     <ng-container *ngFor="let prop of propiedades">
                         <ng-container *ngIf="prop.estadoRenta === 'Disponible'">
-                            <option value="{{ prop._id }}">{{ prop.predial }}</option>
+                            <option value="{{ prop._id }}">{{ prop.direccion.calle }} {{ prop.direccion.no_ext }}</option>
                         </ng-container>
                     </ng-container>
                 </ng-template>

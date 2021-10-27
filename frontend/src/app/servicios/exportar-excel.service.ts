@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Configuracion } from '../enums/config.enum';
 //import { Workbook } from 'exceljs';
 //import * as fs from 'file-saver';
 // import * as Excel from 'exceljs'
@@ -10,7 +11,8 @@ import { Injectable } from '@angular/core';
 })
 export class ExportarExcelService {
   
-  private URL = 'http://192.168.2.15:3000/api/excel';
+  eConfig = Configuracion;
+  private URL = this.eConfig.url_db + "/api/excel";
 
   constructor(private http: HttpClient) { }
 

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Configuracion } from '../enums/config.enum';
 import { Propiedad } from '../interfaces/propiedad';
 
 @Injectable({
@@ -7,7 +8,8 @@ import { Propiedad } from '../interfaces/propiedad';
 })
 export class PropiedadesService {
 
-  private URL = 'http://192.168.2.15:3000/api/propiedad';
+  eConfig = Configuracion;
+  private URL = this.eConfig.url_db + "/api/propiedad";
 
   constructor(private http:HttpClient) { }
 

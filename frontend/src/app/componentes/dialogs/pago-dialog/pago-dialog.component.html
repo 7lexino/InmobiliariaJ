@@ -20,6 +20,8 @@
             <label for="txtConcepto" class="form-label">Método de pago</label>
             <select [(ngModel)]="pagoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
                 <option value="0" selected>Seleccione un método de pago</option>
+                <option value="Cheque">Cheque</option>
+                <option value="Depósito">Depósito</option>
                 <option value="Efectivo">Efectivo</option>
                 <option value="Transferencia">Transferencia</option>
             </select>

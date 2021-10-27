@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Configuracion } from '../enums/config.enum';
 import { Contrato } from '../interfaces/contrato';
 import { TransaccionesService } from './transacciones.service';
 
@@ -8,7 +9,8 @@ import { TransaccionesService } from './transacciones.service';
 })
 export class ContratosService {
 
-  private URL = 'http://192.168.2.15:3000/api/contrato';
+  eConfig = Configuracion;
+  private URL = this.eConfig.url_db + "/api/contrato";
 
   constructor(private http:HttpClient, private tranService: TransaccionesService) { }
 

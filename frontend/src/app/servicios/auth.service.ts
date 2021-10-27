@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Usuario } from '../interfaces/usuario';
 import { Rangos } from '../enums/rangos-usuarios.enum';
+import { Configuracion } from '../enums/config.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { Rangos } from '../enums/rangos-usuarios.enum';
 export class AuthService {
 
   eRangos = Rangos;
-  private URL = 'http://192.168.2.15:3000/api/user';
+  eConfig = Configuracion;
+  private URL = this.eConfig.url_db + "/api/user";
   private usuarioActivo: Usuario = {
     _id: '',
     nombre: '',

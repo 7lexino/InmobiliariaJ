@@ -13,7 +13,7 @@
     <div class="col-4">
       <div class="d-grid d-flex justify-content-end">
         <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-primary align-self-start" (click)="NuevoContrato()">Crear contrato</button>
-        <button (click)="GenerarPDF()" type="button" class="btn btn-primary ms-2">PDF</button>
+        <!-- <button (click)="GenerarPDF()" type="button" class="btn btn-primary ms-2">PDF</button> -->
       </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
             <tbody>
               <tr *ngFor="let contr of contratos">
                 <td>{{ contr.noContrato }}</td>
-                <td>{{ contr.propiedad.direccion.calle + ', ' + contr.propiedad.direccion.ciudad }}</td>
+                <td>{{ contr.propiedad.direccion.calle + ' ' + contr.propiedad.direccion.no_ext + ' ' + contr.propiedad.direccion.no_int + ', ' + contr.propiedad.direccion.ciudad }}</td>
                 <td>{{ contr.inquilino.contacto.nombre + ' ' + contr.inquilino.contacto.apellidos }}</td>
                 <td>{{ contr.fechaInicio | date:'dd/M/Y' }}</td>
                 <td>{{ contr.fechaCierre | date:'dd/M/y' }}</td>

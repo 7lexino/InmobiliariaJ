@@ -71,18 +71,18 @@ export class EdoCuentaEmpresaComponent implements OnInit {
     this.tranService.GetTransaccionesEmpresa().subscribe(
       res => {   
         this.transacciones = res;
-        var saldoAnt = 0;
-        this.transacciones.forEach(e => {
-          if(e.concepto == "transaccion_inicial"){
-            e.saldo = e.monto;
-            saldoAnt = e.saldo;
-          }else{
-            if(e.tipo == "abono") e.saldo = saldoAnt + e.monto;
-            else if(e.tipo == "egreso") e.saldo = saldoAnt - e.monto;
-            
-            saldoAnt = e.saldo;
-          }
-        });
+
+        // var saldoAnt = 0;
+        // this.transacciones.forEach(e => {
+        //   if(e.concepto == "transaccion_inicial"){
+        //     e.saldo = e.monto;
+        //     saldoAnt = e.saldo;
+        //   }else{
+        //     if(e.tipo == "abono") e.saldo = saldoAnt + e.monto;
+        //     else if(e.tipo == "egreso") e.saldo = saldoAnt - e.monto;
+        //     saldoAnt = e.saldo;
+        //   }
+        // });
 
         this.dtTrigger.next();
       },

@@ -41,22 +41,24 @@
                 <ng-template #nuevoContrato>
                     <ng-container *ngFor="let prop of propiedades">
                         <ng-container *ngIf="prop.estadoRenta === 'Disponible'">
-                            <option value="{{ prop._id }}">{{ prop.direccion.calle }} {{ prop.direccion.no_ext }}</option>
+                            <option value="{{ prop._id }}">{{ prop.direccion.calle + ' ' + prop.direccion.no_ext + ' ' + prop.direccion.no_int }}</option>
                         </ng-container>
                     </ng-container>
                 </ng-template>
                 <ng-template #viendoContrato>
                     <ng-container *ngFor="let prop of propiedades">
-                            <option value="{{ prop._id }}">{{ prop.predial }}</option>
+                            <option value="{{ prop._id }}">{{ prop.direccion.calle + ' ' + prop.direccion.no_ext + ' ' + prop.direccion.no_int }}</option>
                     </ng-container>
                 </ng-template>
             </select>
         </div>
         <div class="col-6">
             <label for="opcionesInquilino" class="form-label">Inquilino</label>
-            <!-- <input [(ngModel)]="contratoActivo.inquilino.contacto.nombre" name="inquilino.contacto.nombre" class="form-control" list="opcionesInquilino" id="dataListInquilino" placeholder="Inquilino" autocomplete="off"> -->
             <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select" [(ngModel)]="contratoActivo.inquilino._id" name="inquilino._id" id="opcionesInquilino">
-                <option *ngFor="let inq of inquilinos" value="{{ inq._id }}">{{ inq.contacto.nombre + ' ' + inq.contacto.apellidos }}</option>
+                <option *ngFor="let inq of inquilinos" value="{{ inq._id }}">
+                    <ng-container *ngIf="inq.tipo === true">{{ inq.contacto.nombre + ' ' + inq.contacto.apellidos }}</ng-container>
+                    <ng-container *ngIf="inq.tipo === false">{{ inq.empresa }}</ng-container>
+                </option>
             </select>
         </div>
         <div class="col-4">

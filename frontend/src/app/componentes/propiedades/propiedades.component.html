@@ -29,7 +29,7 @@
               <tr *ngFor="let prop of propiedades">
                 <td>{{ prop.predial }}</td>
                 <td><span class="badge" [ngClass]="{'bg-success': prop.estadoRenta == 'Disponible', 'bg-warning': prop.estadoRenta == 'Rentada'}">{{ prop.estadoRenta }}</span></td>
-                <td>{{ prop.direccion.calle }}, {{ prop.direccion.no_ext }}</td>
+                <td>{{ prop.direccion.calle }}, {{ prop.direccion.no_ext }} {{ prop.direccion.no_int }}</td>
                 <td>
                     <button (click)="VerPropiedad(prop)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>
                     <button (click)="AbrirMtto(prop)" class="btn btn-warning btn-sm mx-2"><fa-icon [icon]="faTools"></fa-icon></button>

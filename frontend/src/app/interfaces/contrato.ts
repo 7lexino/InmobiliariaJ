@@ -31,6 +31,7 @@ export interface Contrato {
     },
     inquilino: {
         _id: string,
+        tipo: boolean,
         empresa: string,
         contacto: {
             nombre: string,

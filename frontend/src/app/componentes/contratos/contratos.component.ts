@@ -58,6 +58,7 @@ export class ContratosComponent implements OnInit {
     },
     inquilino: {
       _id: '',
+      tipo: true,
       empresa: '',
       contacto: {
           nombre: '',
@@ -112,8 +113,8 @@ constructor(public authService:AuthService, private contrService: ContratosServi
   ClearFields(){
     this.contratoActivo._id = '';
     this.contratoActivo.tipo = true;
-    this.contratoActivo.noContrato = 0; //Individuo o Empresa
-    this.contratoActivo.fechaInicio = ''; //Nombre de la Compañía
+    this.contratoActivo.noContrato = 0;
+    this.contratoActivo.fechaInicio = '';
     this.contratoActivo.fechaCierre = '';
     this.contratoActivo.aval.nombre = '';
     this.contratoActivo.aval.correo = '';
@@ -131,6 +132,7 @@ constructor(public authService:AuthService, private contrService: ContratosServi
     this.contratoActivo.propiedad.direccion.no_ext = '';
     this.contratoActivo.propiedad.direccion.no_int = '';
     this.contratoActivo.inquilino._id = '';
+    this.contratoActivo.inquilino.tipo = true;
     this.contratoActivo.inquilino.empresa = '';
     this.contratoActivo.inquilino.contacto.nombre = '';
     this.contratoActivo.inquilino.contacto.apellidos = '';

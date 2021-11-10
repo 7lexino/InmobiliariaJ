@@ -47,6 +47,7 @@ export class ContratoDialogComponent implements OnInit {
     },
     inquilino: {
       _id: '',
+      tipo: true,
       empresa: '',
       contacto: {
           nombre: '',
@@ -129,6 +130,7 @@ export class ContratoDialogComponent implements OnInit {
     this.contratoActivo.propiedad.direccion.no_ext = '';
     this.contratoActivo.propiedad.direccion.no_int = '';
     this.contratoActivo.inquilino._id = '';
+    this.contratoActivo.inquilino.tipo = true;
     this.contratoActivo.inquilino.empresa = '';
     this.contratoActivo.inquilino.contacto.nombre = '';
     this.contratoActivo.inquilino.contacto.apellidos = '';

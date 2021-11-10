@@ -47,12 +47,6 @@ router.post('/nuevo', async (req, res) => {
 router.get('/todos', async (req, res) => {
     //Hacemos la consulta
     var contratos = await Contrato.find({ noContrato: { $gt: 0 } });
-
-    // contratos.forEach(async c => {
-    //     var ultimaTrans = await Transaccion.findOne({ noContrato: c.noContrato}, {}, { sort: { 'createdAt': -1 } });
-    //     c.saldo = ultimaTrans.saldo;
-    // });
-    // console.log(contratos);
     //Enviamos la respuesta obtenida al frontend
     res.status(200).json(contratos);
 })

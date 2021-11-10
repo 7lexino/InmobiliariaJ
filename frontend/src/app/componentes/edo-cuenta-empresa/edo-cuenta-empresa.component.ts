@@ -123,7 +123,7 @@ export class EdoCuentaEmpresaComponent implements OnInit {
     this.transaccionActiva.concepto = "transaccion_inicial";
     this.transaccionActiva.tipo = "abono";
     this.transaccionActiva.monto = _saldo;
-    this.transaccionActiva.saldo = 0;
+    this.transaccionActiva.saldo = _saldo;
     this.transaccionActiva.noContrato = 0;
     this.transaccionActiva.adjuntoId = "transferencia";
 

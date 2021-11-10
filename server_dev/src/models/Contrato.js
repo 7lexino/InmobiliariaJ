@@ -29,6 +29,7 @@ const contratoSchema = new Schema({
     },
     inquilino: {
         _id: String,
+        tipo: Boolean,
         empresa: String,
         contacto: {
             nombre: String,

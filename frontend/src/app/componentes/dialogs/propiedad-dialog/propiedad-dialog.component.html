@@ -4,13 +4,13 @@
     <div id="error_propiedad" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
     <form (submit)="GuardarPropiedad()" class="row g-3">
         <div class="col-12">
-            <input [(ngModel)]="propiedadActiva._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <input [(ngModel)]="propiedadActiva._id" class="form-control border-juguel" type="hidden" name="_id" id="identificador" />
             <label for="numPredial" class="form-label">Número predial</label>
-            <input [(ngModel)]="propiedadActiva.predial" class="form-control" type="text" name="predial" id="numPredial" />
+            <input [(ngModel)]="propiedadActiva.predial" class="form-control border-juguel" type="text" name="predial" id="numPredial" />
         </div>
         <div class="col-12">
             <label for="cbxTipo" class="form-label">Tipo de propiedad</label>
-            <select [(ngModel)]="propiedadActiva.tipo" name="tipo" id="cbxTipo" class="form-select" size="5" aria-label="size 3 select example">
+            <select [(ngModel)]="propiedadActiva.tipo" name="tipo" id="cbxTipo" class="form-select border-juguel" size="5" aria-label="size 3 select example">
                 <option selected value="">Seleccionar</option>
                 <option value="Bodega">Bodega</option>
                 <option value="Casa">Casa</option>
@@ -22,31 +22,31 @@
         </div>
         <div class="col-6">
             <label for="cbxTipo" class="form-label">Calle</label>
-            <input [(ngModel)]="propiedadActiva.direccion.calle" class="form-control" type="text" name="direccion.calle" id="txtCalle" />
+            <input [(ngModel)]="propiedadActiva.direccion.calle" class="form-control border-juguel" type="text" name="direccion.calle" id="txtCalle" />
         </div>
         <div class="col-3">
             <label for="numExt" class="form-label">Núm. Ext.</label>
-            <input [(ngModel)]="propiedadActiva.direccion.no_ext" class="form-control" type="text" name="direccion.no_ext" id="numExt"  />
+            <input [(ngModel)]="propiedadActiva.direccion.no_ext" class="form-control border-juguel" type="text" name="direccion.no_ext" id="numExt"  />
         </div>
         <div class="col-3">
             <label for="numInt" class="form-label">Núm. Int.</label>
-            <input [(ngModel)]="propiedadActiva.direccion.no_int" class="form-control" type="text" name="direccion.no_int" id="numInt" />
+            <input [(ngModel)]="propiedadActiva.direccion.no_int" class="form-control border-juguel" type="text" name="direccion.no_int" id="numInt" />
         </div>
         <div class="col-8">
             <label for="txtColonia" class="form-label">Colonia</label>
-            <input [(ngModel)]="propiedadActiva.direccion.colonia" class="form-control" type="text" name="direccion.colonia" id="txtColonia" />
+            <input [(ngModel)]="propiedadActiva.direccion.colonia" class="form-control border-juguel" type="text" name="direccion.colonia" id="txtColonia" />
         </div>
         <div class="col-4">
             <label for="numCP" class="form-label">C.P.</label>
-            <input [(ngModel)]="propiedadActiva.direccion.c_p" class="form-control" type="number" name="direccion.c_p" id="numCP" />
+            <input [(ngModel)]="propiedadActiva.direccion.c_p" class="form-control border-juguel" type="number" name="direccion.c_p" id="numCP" />
         </div>
         <div class="col-6">
             <label for="txtCiudad" class="form-label">Ciudad</label>
-            <input [(ngModel)]="propiedadActiva.direccion.ciudad" class="form-control" type="text" name="direccion.ciudad" id="txtCiudad" />
+            <input [(ngModel)]="propiedadActiva.direccion.ciudad" class="form-control border-juguel" type="text" name="direccion.ciudad" id="txtCiudad" />
         </div>
         <div class="col-6">
             <label for="cbxEstado" class="form-label">Estado</label>
-            <select [(ngModel)]="propiedadActiva.direccion.estado" name="direccion.estado" id="cbxEstado" class="form-select" aria-label="select">
+            <select [(ngModel)]="propiedadActiva.direccion.estado" name="direccion.estado" id="cbxEstado" class="form-select border-juguel" aria-label="select">
                 <option selected value="">Seleccionar</option>
                 <option value="Aguascalientes">Aguascalientes</option>
                 <option value="Baja California">Baja California</option>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="col-12 d-flex justify-content-end">
-            <input type="submit" value="Guardar" *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-primary">
+            <input type="submit" value="Guardar" *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-juguel">
         </div>
     </form>
 </div>

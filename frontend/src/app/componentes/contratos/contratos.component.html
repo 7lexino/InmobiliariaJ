@@ -3,16 +3,16 @@
         <h1>Contratos</h1>
         <div class="btn-group  mb-2 mt-4" role="group" aria-label="Basic radio toggle button group">
             <input (click)="GetTodos()" type="radio" class="btn-check radEstadoProp" name="radEstadoProp" id="radTodos" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="radTodos">Todos</label>
+            <label class="btn btn-outline-dark" for="radTodos">Todos</label>
             <input (click)="GetActivos()" type="radio" class="btn-check radEstadoProp" name="radEstadoProp" id="radActivos" autocomplete="off">
-            <label class="btn btn-outline-primary" for="radActivos">Activos</label>
+            <label class="btn btn-outline-dark" for="radActivos">Activos</label>
             <input (click)="GetArchivados()" type="radio" class="btn-check radEstadoProp" name="radEstadoProp" id="radArchivados" autocomplete="off">
-            <label class="btn btn-outline-primary" for="radArchivados">Archivados</label>
+            <label class="btn btn-outline-dark" for="radArchivados">Archivados</label>
         </div>
     </div>
     <div class="col-4">
       <div class="d-grid d-flex justify-content-end">
-        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn btn-primary align-self-start" (click)="NuevoContrato()">Crear contrato</button>
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" class="btn align-self-start btn-juguel" (click)="NuevoContrato()">Crear contrato</button>
         <!-- <button (click)="GenerarPDF()" type="button" class="btn btn-primary ms-2">PDF</button> -->
       </div>
     </div>
@@ -27,13 +27,14 @@
                 <th scope="col">Inquilino</th>
                 <th scope="col">Fecha Inicio</th>
                 <th scope="col">Fecha Cierre</th>
+                <th scope="col">Costo periodo</th>
                 <th scope="col">Saldo pendiente</th>
                 <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let contr of contratos">
-                <td>{{ contr.noContrato }}</td>
+                <td><h5><span [ngClass]="{'bg-success': contr.tipo, 'bg-warning': !contr.tipo}" class="badge">{{ contr.noContrato }}</span></h5></td>
                 <td>{{ contr.propiedad.direccion.calle + ' ' + contr.propiedad.direccion.no_ext + ' ' + contr.propiedad.direccion.no_int + ', ' + contr.propiedad.direccion.ciudad }}</td>
                 <ng-container *ngIf="contr.inquilino.tipo == true">
                   <td>{{ contr.inquilino.contacto.nombre + ' ' + contr.inquilino.contacto.apellidos }}</td>
@@ -43,6 +44,7 @@
                 </ng-container>
                 <td>{{ contr.fechaInicio | date:'dd/M/Y' }}</td>
                 <td>{{ contr.fechaCierre | date:'dd/M/y' }}</td>
+                <td>{{ contr.costoPeriodo | currency: 'MXN' }}</td>
                 <td>{{ contr.saldo | currency: 'MXN' }}</td>
                 <td>
                     <button (click)="VerContrato(contr._id)" class="btn btn-info btn-sm"><fa-icon [icon]="faEye"></fa-icon></button>

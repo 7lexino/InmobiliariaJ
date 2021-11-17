@@ -4,21 +4,21 @@
     <div id="error_pago" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
     <form class="row g-3">
         <div class="col-12">
-            <input [(ngModel)]="pagoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <input [(ngModel)]="pagoActivo._id" class="form-control border-juguel" type="hidden" name="_id" id="identificador" />
             <!-- <label for="txtID" class="form-label">No. Remisión</label>
             <input [(ngModel)]="pagoActivo.id" class="form-control" type="text" name="id" id="txtID" /> -->
         </div>
         <div class="col-6">
             <label for="txtFecha" class="form-label">Fecha del pago</label>
             <div style="position: relative;">
-                <input [(ngModel)]="pagoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" id="dtFechaPago">
+                <input [(ngModel)]="pagoActivo.fecha" name="fecha" class="form-control border-juguel" matInput [matDatepicker]="txtFecha" id="dtFechaPago">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFecha"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFecha></mat-datepicker>
         </div>
         <div class="col-6">
             <label for="txtConcepto" class="form-label">Método de pago</label>
-            <select [(ngModel)]="pagoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
+            <select [(ngModel)]="pagoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select border-juguel">
                 <option value="0" selected>Seleccione un método de pago</option>
                 <option value="Cheque">Cheque</option>
                 <option value="Depósito">Depósito</option>
@@ -30,12 +30,12 @@
             <label for="nTotal" class="form-label">Importe</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input [(ngModel)]="pagoActivo.monto" class="form-control" type="number" name="monto" id="nTotal"/>
+                <input [(ngModel)]="pagoActivo.monto" class="form-control border-juguel" type="number" name="monto" id="nTotal"/>
             </div>
         </div>
         
         <div class="col-12 d-flex justify-content-end">
-            <button (click)="CrearPago()" class="btn btn-primary">Guardar</button>
+            <button (click)="CrearPago()" class="btn btn-juguel">Guardar</button>
         </div>
     </form>
 </div>

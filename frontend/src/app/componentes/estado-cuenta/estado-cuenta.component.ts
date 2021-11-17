@@ -8,6 +8,7 @@ import { TransaccionesService } from 'src/app/servicios/transacciones.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RemisionDialogComponent } from '../dialogs/remision-dialog/remision-dialog.component';
 import { PagoDialogComponent } from '../dialogs/pago-dialog/pago-dialog.component';
+import { ContratosService } from 'src/app/servicios/contratos.service';
 
 @Component({
   selector: 'app-estado-cuenta',
@@ -37,13 +38,15 @@ export class EstadoCuentaComponent implements OnInit {
   noContrato: number = 0;
   tipoContrato: boolean = true;
   total: number = 0;
-
+  inquilino: string = "";
+  tipo_contrato: boolean = false;
 
   //Default methods
 
   constructor(public authService: AuthService,
     private route: ActivatedRoute,
     private tranService: TransaccionesService,
+    private contrService: ContratosService,
     private matDialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -76,6 +79,14 @@ export class EstadoCuentaComponent implements OnInit {
     this.noContrato = Number(this.route.snapshot.paramMap.get('noContrato'));
     this.tipoContrato = this.route.snapshot.paramMap.get('tipoContrato') === "true" ? true : false;
     this.total = Number(this.route.snapshot.paramMap.get('total'));
+
+    this.contrService.GetContratoByNoContrato(this.noContrato).subscribe(
+      res => {
+        this.inquilino = res.inquilino.tipo == true ? res.inquilino.empresa : res.inquilino.contacto.nombre + ' ' + res.inquilino.contacto.apellidos;
+        this.tipo_contrato = res.tipo;
+      },
+      err => console.log(err)
+    )
   }
 
   CargarTabla(){

@@ -3,15 +3,15 @@
         <h1>Propiedades</h1>
         <div class="btn-group  mb-2 mt-4" role="group" aria-label="Basic radio toggle button group">
             <input (click)="GetTodas()" type="radio" class="btn-check" name="radEstadoProp" id="radTodas" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="radTodas">Todas</label>
+            <label class="btn btn-outline-dark border_juguel" for="radTodas">Todas</label>
             <input (click)="GetDisponibles()" type="radio" class="btn-check" name="radEstadoProp" id="radDisponible" autocomplete="off">
-            <label class="btn btn-outline-primary" for="radDisponible">Disponibles</label>
+            <label class="btn btn-outline-dark border_juguel" for="radDisponible">Disponibles</label>
             <input (click)="GetRentadas()" type="radio" class="btn-check" name="radEstadoProp" id="radRentada" autocomplete="off">
-            <label class="btn btn-outline-primary" for="radRentada">Rentadas</label>
+            <label class="btn btn-outline-dark border_juguel" for="radRentada">Rentadas</label>
         </div>
     </div>
     <div class="col-2 d-flex justify-content-end">
-        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevaPropiedad()" type="button" class="btn btn-primary align-self-start" role="button">Agregar propiedad</button>
+        <button *ngIf="authService.GetUsuario().rango >= authService.eRangos.editor" (click)="NuevaPropiedad()" type="button" class="btn align-self-start btn-juguel" role="button">Agregar propiedad</button>
     </div>
 </div>
 <div class="row">

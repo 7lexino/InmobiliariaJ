@@ -5,36 +5,36 @@
             <div id="error_mtto" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
             <form class="row g-3">
                 <div class="col-12">
-                    <input [(ngModel)]="mantenimientoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
-                    <input [(ngModel)]="mantenimientoActivo.propiedadId" class="form-control" type="hidden" name="propiedadId" id="propId" />
+                    <input [(ngModel)]="mantenimientoActivo._id" class="form-control border-juguel" type="hidden" name="_id" id="identificador" />
+                    <input [(ngModel)]="mantenimientoActivo.propiedadId" class="form-control border-juguel" type="hidden" name="propiedadId" id="propId" />
                 </div>
                 <div class="col-12">
                     <label for="txtDescripcion" class="form-label">Descripción</label>
-                    <textarea [(ngModel)]="mantenimientoActivo.descripcion" name="descripcion" class="form-control" id="txtDescripcion" rows="3" placeholder="Descripción del mantenimiento hecho"></textarea>
+                    <textarea [(ngModel)]="mantenimientoActivo.descripcion" name="descripcion" class="form-control border-juguel" id="txtDescripcion" rows="3" placeholder="Descripción del mantenimiento hecho"></textarea>
                 </div>
                 <div class="col-6">
                     <label for="txtCosto" class="form-label">Costo</label>
-                    <input [(ngModel)]="mantenimientoActivo.costo" class="form-control" type="number" name="costo" id="txtCosto" autocomplete="off" />
+                    <input [(ngModel)]="mantenimientoActivo.costo" class="form-control border-juguel" type="number" name="costo" id="txtCosto" autocomplete="off" />
                 </div>
                 <div class="col-6">
                     <label for="txtFecha" class="form-label">Fecha</label>
                     <div style="position: relative;">
-                        <input style="position:relative;" [(ngModel)]="mantenimientoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" autocomplete="off" id="dtFecha" />
+                        <input style="position:relative;" [(ngModel)]="mantenimientoActivo.fecha" name="fecha" class="form-control border-juguel" matInput [matDatepicker]="txtFecha" autocomplete="off" id="dtFecha" />
                         <mat-datepicker-toggle matSuffix style="position: absolute; right: 0px; top: 0px;" [for]="txtFecha"></mat-datepicker-toggle>
                     </div>
                     <mat-datepicker #txtFecha></mat-datepicker>
                 </div>
                 <div class="col-12">
                     <label for="txtConcepto" class="form-label">Método de pago</label>
-                    <select [(ngModel)]="mantenimientoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
+                    <select [(ngModel)]="mantenimientoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select border-juguel">
                         <option value="0" selected>Seleccione un método de pago</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="Transferencia">Transferencia</option>
                     </select>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
-                    <button (click)="ClearFieldsMtto()" class="btn btn-info">Limpiar</button>
-                    <button (click)="GuardarMantenimiento()" class="btn btn-primary ms-2">Guardar</button>
+                    <button (click)="ClearFieldsMtto()" class="btn btn-dark">Limpiar</button>
+                    <button (click)="GuardarMantenimiento()" class="btn btn-juguel ms-2">Guardar</button>
                 </div>
             </form>
         </div>

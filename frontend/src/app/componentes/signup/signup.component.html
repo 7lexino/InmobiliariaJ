@@ -8,19 +8,19 @@
                 <div id="error_messages" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
                 <form (submit)="ValidarUsuario()">
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.nombre" class="form-control" type="text" name="nombre" id="txtNombre" placeholder="Nombre" autocomplete="off">
+                        <input [(ngModel)]="usuario.nombre" class="form-control border-juguel" type="text" name="nombre" id="txtNombre" placeholder="Nombre" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.nick" class="form-control" type="text" name="nick" id="txtUsuario" placeholder="Usuario" autocomplete="off">
+                        <input [(ngModel)]="usuario.nick" class="form-control border-juguel" type="text" name="nick" id="txtUsuario" placeholder="Usuario" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.correo" class="form-control" type="email" name="correo" id="txtCorreo" placeholder="Correo" autocomplete="off">
+                        <input [(ngModel)]="usuario.correo" class="form-control border-juguel" type="email" name="correo" id="txtCorreo" placeholder="Correo" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <input [(ngModel)]="usuario.contra" class="form-control" type="password" name="contra" id="txtContra" placeholder="Contraseña" autocomplete="off">
+                        <input [(ngModel)]="usuario.contra" class="form-control border-juguel" type="password" name="contra" id="txtContra" placeholder="Contraseña" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <select class="form-select" [(ngModel)]="usuario.rango" name="rango" id="selRango">
+                        <select class="form-select border-juguel" [(ngModel)]="usuario.rango" name="rango" id="selRango">
                             <option value="0">Seleccione el nivel de usuario</option>
                             <option value="1">Operador</option>
                             <option value="2">Editor</option>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-3">
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary btn-block" type="submit">Registrar</button>
+                            <button class="btn btn-block btn-juguel" type="submit">Registrar</button>
                         </div>
                     </div>
                 </form>

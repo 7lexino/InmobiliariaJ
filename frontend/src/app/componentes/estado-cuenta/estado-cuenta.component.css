@@ -1,0 +1,23 @@
+.btn-juguel{
+    background-color: #FC9E49;
+    border: 1px solid #ea872e;
+    color:#FFF;
+}
+.btn-juguel:focus{
+    border-color: #ea872e;
+    box-shadow: 0 0 0 0.2rem rgba(252, 158, 73, 0.25);
+}
+.borde_redondo{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 100px;
+    color: transparent;
+    border: 1px solid #000;
+}
+.f{
+    background: green;
+}
+.nf{
+    background: yellow;
+}

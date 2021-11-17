@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-7">
-        <h1>Estado de cuenta del contrato {{ noContrato }}</h1>
+        <h2><span [ngClass]="{'bg-success': tipo_contrato, 'bg-warning': !tipo_contrato}" class="badge">{{noContrato}}</span> Estado de cuenta del contrato {{ inquilino }}</h2>
     </div>
     <div class="col-5 d-flex d-flex justify-content-end">
-        <button (click)="NuevaRemision()" class="btn btn-primary align-self-start" role="button">Crear remisión</button>
+        <button (click)="NuevaRemision()" class="btn btn-juguel align-self-start" role="button">Crear remisión</button>
         <button (click)="NuevoPago()" class="btn btn-success align-self-start ms-2" role="button">Hacer pago</button>
         <!-- <button class="btn btn-secondary align-self-start"><fa-icon [icon]="faPrint"></fa-icon></button> -->
     </div>

@@ -82,4 +82,10 @@ router.get('/get/:id', async (req, res) => {
     res.status(200).json(contrato);
 });
 
+router.get('/get_by_contrato/:noContrato', async (req, res) => {
+    const contratos = await Contrato.find({ noContrato: req.params.noContrato });
+    const contrato = contratos[0];
+    res.status(200).json(contrato);
+});
+
 module.exports = router;

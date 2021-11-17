@@ -11,7 +11,7 @@
         <div class="col-6">
             <label for="txtFecha" class="form-label">Fecha del egreso</label>
             <div style="position: relative;">
-                <input [(ngModel)]="egresoActivo.fecha" name="fecha" class="form-control" matInput [matDatepicker]="txtFecha" id="dtFechaEgreso">
+                <input [(ngModel)]="egresoActivo.fecha" name="fecha" class="form-control border-juguel" matInput [matDatepicker]="txtFecha" id="dtFechaEgreso">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFecha"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFecha></mat-datepicker>
@@ -20,7 +20,7 @@
             <label for="nTotal" class="form-label">Importe</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input [(ngModel)]="egresoActivo.monto" class="form-control" type="number" name="monto" id="nTotal"/>
+                <input [(ngModel)]="egresoActivo.monto" class="form-control border-juguel" type="number" name="monto" id="nTotal"/>
             </div>
             <!-- <label for="txtConcepto" class="form-label">Método de pago</label>
             <select [(ngModel)]="egresoActivo.metodoPago" name="metodoPago" id="selMetodoPago" class="form-select">
@@ -32,11 +32,11 @@
         </div>
         <div class="col-12">
             <label for="txtConcepto" class="form-label">Concepto</label>
-            <textarea class="form-control" [(ngModel)]="concepto" name="concepto" id="txtConcepto" cols="30" rows="3"></textarea>
+            <textarea class="form-control border-juguel" [(ngModel)]="concepto" name="concepto" id="txtConcepto" cols="30" rows="3"></textarea>
         </div>
         
         <div class="col-12 d-flex justify-content-end">
-            <button (click)="GenerarEgreso()" class="btn btn-primary">Guardar</button>
+            <button (click)="GenerarEgreso()" class="btn btn-juguel">Guardar</button>
         </div>
     </form>
 </div>

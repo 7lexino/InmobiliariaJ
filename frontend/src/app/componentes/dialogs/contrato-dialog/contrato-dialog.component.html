@@ -4,23 +4,23 @@
     <div id="error_contrato" class="alert alert-dismissible alert-warning" style="display: none;" role="alert"></div>
     <form class="row g-3">
         <div class="col-4">
-            <input [(ngModel)]="contratoActivo._id" class="form-control" type="hidden" name="_id" id="identificador" />
+            <input [(ngModel)]="contratoActivo._id" class="form-control border-juguel" type="hidden" name="_id" id="identificador" />
             <!-- <label class="form-label" for="txtNoContrato">N° Contrato</label>
             <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.noContrato" name="noContrato" class="form-control" type="text" id="txtNoContrato"> -->
             <label class="form-label">Tipo</label><br>
             <div class="form-check form-check-inline">
-                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radF" [value]="true">
+                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input border-juguel bg-juguel" type="radio" id="radF" [value]="true">
                 <label class="form-check-label" for="radF">Facturdo</label>
             </div>
             <div class="form-check form-check-inline">
-                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input" type="radio" id="radNF" [value]="false">
+                <input [(ngModel)]="contratoActivo.tipo" name="tipo" class="form-check-input border-juguel bg-juguel" type="radio" id="radNF" [value]="false">
                 <label class="form-check-label" for="radNF">No facturado</label>
             </div>
         </div>
         <div class="col-4">
             <label for="txtFInicio" class="form-label">Fecha inicio</label>
             <div style="position: relative;">
-                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control" matInput [matDatepicker]="txtFInicio" id="dtFInicio">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaInicio" name="fechaInicio" class="form-control border-juguel" matInput [matDatepicker]="txtFInicio" id="dtFInicio">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFInicio"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFInicio></mat-datepicker>
@@ -28,14 +28,14 @@
         <div class="col-4">
             <label for="txtFCierre" class="form-label">Fecha cierre</label>
             <div style="position: relative;">
-                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control" matInput [matDatepicker]="txtFCierre" id="dtFCierre">
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.fechaCierre" name="fechaCierre" class="form-control border-juguel" matInput [matDatepicker]="txtFCierre" id="dtFCierre">
                 <mat-datepicker-toggle style="position: absolute; right: 0px; top: 0px;" matSuffix [for]="txtFCierre"></mat-datepicker-toggle>
             </div>
             <mat-datepicker #txtFCierre></mat-datepicker>
         </div>
         <div class="col-6">
             <label for="opcionesPropiedad" class="form-label">Propiedad</label>
-            <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select" [(ngModel)]="contratoActivo.propiedad._id" name="propiedad._id" id="opcionesPropiedad">
+            <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select border-juguel" [(ngModel)]="contratoActivo.propiedad._id" name="propiedad._id" id="opcionesPropiedad">
                 <ng-container *ngIf="data.tituloVentana === 'Nuevo Contrato'; then nuevoContrato; else viendoContrato">
                 </ng-container>
                 <ng-template #nuevoContrato>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-6">
             <label for="opcionesInquilino" class="form-label">Inquilino</label>
-            <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select" [(ngModel)]="contratoActivo.inquilino._id" name="inquilino._id" id="opcionesInquilino">
+            <select [attr.disabled]="data.tituloVentana === 'Detalles' ? true : null" class="form-select border-juguel" [(ngModel)]="contratoActivo.inquilino._id" name="inquilino._id" id="opcionesInquilino">
                 <option *ngFor="let inq of inquilinos" value="{{ inq._id }}">
                     <ng-container *ngIf="inq.tipo === true">{{ inq.contacto.nombre + ' ' + inq.contacto.apellidos }}</ng-container>
                     <ng-container *ngIf="inq.tipo === false">{{ inq.empresa }}</ng-container>
@@ -65,38 +65,38 @@
             <label for="numCostoInicial" class="form-label">Depósito</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoInicial" class="form-control" type="number" name="costoInicial" id="numCostoInicial"  />
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoInicial" class="form-control border-juguel" type="number" name="costoInicial" id="numCostoInicial"  />
             </div>
         </div>
         <div class="col-4">
             <label for="numCostoPeriodo" class="form-label">Costo renta</label>
             <div class="input-group">
                 <span class="input-group-text">$</span>
-                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoPeriodo" class="form-control" type="number" name="costoPeriodo" id="numCostoPeriodo"  />
+                <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.costoPeriodo" class="form-control border-juguel" type="number" name="costoPeriodo" id="numCostoPeriodo"  />
             </div>
         </div>
 
         <div class="col-8">
             <h5>Información del Aval</h5>
             <label for="txtNombreAval" class="form-label">Nombre completo</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.nombre" class="form-control" type="text" name="aval.nombre" id="txtNombreAval"  />
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.nombre" class="form-control border-juguel" type="text" name="aval.nombre" id="txtNombreAval"  />
         </div>
         <div class="w-100"></div>
         <div class="col-4">
             <label for="txtCorreoAval" class="form-label">Correo electrónico</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.correo" class="form-control" type="email" name="aval.correo" id="txtCorreoAval"  />
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.correo" class="form-control border-juguel" type="email" name="aval.correo" id="txtCorreoAval"  />
         </div>
         <div class="col-4">
             <label for="txtTelefono1" class="form-label">Teléfono 1</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.telefono1" class="form-control" type="text" name="aval.telefono1" id="txtTelefono1"  />
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.telefono1" class="form-control border-juguel" type="text" name="aval.telefono1" id="txtTelefono1"  />
         </div>
         <div class="col-4">
             <label for="txtTelefono2" class="form-label">Teléfono 2</label>
-            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.telefono2" class="form-control" type="text" name="aval.telefono2" id="txtTelefono2"  />
+            <input [attr.readonly]="data.tituloVentana === 'Detalles' ? true : null" [(ngModel)]="contratoActivo.aval.telefono2" class="form-control border-juguel" type="text" name="aval.telefono2" id="txtTelefono2"  />
         </div>
         
         <div class="col-12 d-flex justify-content-end">
-            <button *ngIf="data.tituloVentana === 'Nuevo Contrato'" (click)="CrearContrato()" class="btn btn-primary">Guardar</button>
+            <button *ngIf="data.tituloVentana === 'Nuevo Contrato'" (click)="CrearContrato()" class="btn btn-juguel">Guardar</button>
         </div>  
     </form>
 

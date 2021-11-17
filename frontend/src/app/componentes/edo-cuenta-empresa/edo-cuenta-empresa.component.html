@@ -5,15 +5,15 @@
     <div class="col-8 d-flex d-flex justify-content-end align-items-end">
         <div class="form-group mb-3">
           <label for="date_finicio">Fecha inicial</label>
-          <input id="date_finicio" type="date" class="form-control">
+          <input id="date_finicio" type="date" class="form-control border-juguel">
         </div>
         <div class="form-group ms-2 mb-3">
           <label for="date_ffin">Fecha final</label>
-          <input id="date_ffin" type="date" class="form-control">
+          <input id="date_ffin" type="date" class="form-control border-juguel">
         </div>
         <button (click)="ImprimirEdoCuenta(0)" class="btn btn-secondary ms-2 mb-3"><fa-icon [icon]="faPrint"></fa-icon></button>
         <button (click)="SetSaldoInicial()" *ngIf="transacciones.length <= 0" class="btn btn-success mb-3" role="button">Saldo inicial</button>
-        <button (click)="NuevoEgreso()" class="btn btn-warning ms-2 mb-3" role="button">Registrar egreso</button>
+        <button (click)="NuevoEgreso()" class="btn btn-juguel ms-2 mb-3" role="button">Registrar egreso</button>
     </div>
 </div>
 <div class="row">

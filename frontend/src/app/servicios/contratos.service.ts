@@ -37,4 +37,8 @@ export class ContratosService {
   GetContrato(contrId: string){
     return this.http.get<Contrato>(this.URL + '/get/' + contrId);
   }
+
+  GetContratoByNoContrato(noContrato: number){
+    return this.http.get<Contrato>(this.URL + '/get_by_contrato/' + noContrato);
+  }
 }
